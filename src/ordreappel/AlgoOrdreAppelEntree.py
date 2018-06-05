@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8; mode: python -*-
-""" Calcul de l'ordre d'appel, pour https://github.com/Naereen/ParcourSup.py.
+""" AlgoOrdreAppelSortie, pour https://github.com/Naereen/ParcourSup.py.
 
 - Auteurs: Lilian Besson, Bastien Trotobas and contributors, (C) 2018.
 - Adresse: https://github.com/Naereen/ParcourSup.py
@@ -9,15 +9,9 @@
 __author__ = "Lilian Besson, Bastien Trotobas and contributors"
 __version__ = "0.0.1"
 
-from exemples import tous_les_exemples
+from xml.etree.ElementTree import Element, SubElement, tostring
+from os import path
+import json
 
-
-def main():
-    for i, exemple in enumerate(tous_les_exemples):
-        print(f"\n\n\nPour l'exemple #{i} :")  # DEBUG
-        exemple()
-
-
-if __name__ == '__main__':
-    # lance tous les tests
-    main()
+class AlgoOrdreAppelSortie(object):
+    pass
