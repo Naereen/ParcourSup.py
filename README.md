@@ -1,31 +1,66 @@
-# :baby: :fr: Un clone en Python 3 de ParcoursSup, écrit à but didactique
+# :baby: :fr: Un clone en Python 3 de [Parcoursup](http://www.parcoursup.fr/), écrit à but didactique
 > [Écrit par](AUTHORS) [Lilian Besson (@Naereen)](https://github.com/Naereen) et [Bastien Trotobas (@BastienTr)](https://github.com/BastienTr), et d'autres collaborateurs.
 
-Ce dépôt contient un (petit) clone de l'algorithme régissant la plateforme ParcoursSup, qui gère depuis 2018 les affectations des élèves de classe de Terminale dans leur formation dans l'enseignement supérieur.
+- [:baby: :fr: Un clone en Python 3 de Parcoursup, écrit à but didactique](#baby---fr--un-clone-en-python-3-de-parcoursuphttp---wwwparcoursupfr---ecrit-a-but-didactique)
+    - [Plan de bataille](#plan-de-batailletodomd)
+    - [Explications](#explications)
+    - [Démonstration dans un notebook Jupyter](#demonstration-dans-un-notebook-jupyterhttps---wwwjupyterorg)
+    - [Documentation et ressources](#documentation-et-ressources)
+    - [Exemples](#exemples)
+        - [Installation](#installation)
+        - [Un exemple](#un-exemple)
+    - [À propos](#a-propos)
+        - [Language ?](#language)
+        - [:scroll: Licence ? ![GitHub license](https://github.com/Naereen/badges/blob/master/LICENSE)](#scroll--licence-github-licensehttps---imgshieldsio-github-license-naereen-parcoursuppysvghttps---githubcom-naereen-badges-blob-master-license)
+
+
+Ce dépôt contient un (petit) clone de l'algorithme régissant la [plateforme Parcoursup](http://www.parcoursup.fr/), qui gère depuis 2018 les affectations des élèves de classe de Terminale dans leur formation dans l'enseignement supérieur.
 
 L'algorithme et son implémentation officielle (en Java), sont disponibles sur [ce site (framagit.org/parcoursup/algorithmes-de-parcoursup)](https://framagit.org/parcoursup/algorithmes-de-parcoursup).
+
+- Nous proposons ici une implémentation simplifiée des différents algorithmes de Parcoursup, en Python et dans un but didactique.
+- Nous avons pour objectif de comprendre et d'expliquer ces algorithmes, en utilisant que des notions et des modules Python qui soient abordables compréhensibles par des élèves de classes préparatoires scientifiques (typiquement des MPSI).
+- Vous pouvez contribuer si vous le souhaiter !
+
+---
+
+## [Plan de bataille](TODO.md)
+TODO
 
 ## Explications
 TODO
 
-## Documentation et ressources
-TODO
-
-- Ces articles sur des blogs du Monde: sur [ingenuingenieur.blog.lemonde.fr](http://ingenuingenieur.blog.lemonde.fr/2018/05/29/parcoursup-2018-les-dessous-de-lalgorithme-racontes-par-ses-createurs/), sur [enseigner.blog.lemonde.fr](http://enseigner.blog.lemonde.fr/2018/04/03/parcoursup-naivete-habilete-ou-machiavelisme-gouvernemental/) ou sur [binaire.blog.lemonde.fr](http://binaire.blog.lemonde.fr/2018/06/05/la-transparence-a-lecole-de-parcoursup/).
-
 ## Démonstration dans un [notebook Jupyter](https://www.Jupyter.org/)
 TODO
 
+---
+
+## Documentation et ressources
+
+- La page officielle de présentation de Parcoursup est [ici](http://www.enseignementsup-recherche.gouv.fr/pid37384/parcoursup-plateforme-admission-dans-superieur.html) (en 2018).
+
+- Les indicateurs quotidiennement publiés par le ministère sont sur [cette page là](http://www.enseignementsup-recherche.gouv.fr/cid130714/tableaux-de-bord-des-indicateurs-de-parcoursup.html) (en juin 2018).
+
+- Cette carte qui montre jour après jour les résultats donnés par Parcoursup : [statistique.parcoursup.fr](http://statistique.parcoursup.fr/).
+
+- [Le dossier de presse du ministère](http://cache.media.enseignementsup-recherche.gouv.fr/file/Parcoursup/73/7/DP_Parcoursup_-_Au_service_de_l_orientation_et_de_la_reussite_des_futurs_etudiants_936737.pdf) pour Parcoursup
+
+- Ces articles sur des blogs du Monde: sur [ingenuingenieur.blog.lemonde.fr](http://ingenuingenieur.blog.lemonde.fr/2018/05/29/parcoursup-2018-les-dessous-de-lalgorithme-racontes-par-ses-createurs/), sur [enseigner.blog.lemonde.fr](http://enseigner.blog.lemonde.fr/2018/04/03/parcoursup-naivete-habilete-ou-machiavelisme-gouvernemental/) ou sur [binaire.blog.lemonde.fr](http://binaire.blog.lemonde.fr/2018/06/05/la-transparence-a-lecole-de-parcoursup/).
+
 ----
 
-## Installation
+## Exemples
+### Installation
 
 ```bash
 cd /tmp/
-git clone https://GitHub.com/Naereen/ParcoursSup.py
-cd ParcoursSup.py/src
-make TODO
+git clone https://GitHub.com/Naereen/Parcoursup.py
+cd Parcoursup.py/src
+make install  # TODO
 ```
+
+### Un exemple
+TODO
 
 ----
 
@@ -40,13 +75,13 @@ make TODO
 - [La bibliothèque standard](https://docs.python.org/3.6/) pour tout le reste.
 
 
-### :scroll: Licence ? [![GitHub license](https://img.shields.io/github/license/Naereen/ParcoursSup.py.svg)](https://github.com/Naereen/badges/blob/master/LICENSE)
+### :scroll: Licence ? [![GitHub license](https://img.shields.io/github/license/Naereen/Parcoursup.py.svg)](https://github.com/Naereen/badges/blob/master/LICENSE)
 Code lire, [sous licence MIT](https://lbesson.mit-license.org/) (file [LICENSE](LICENSE)).
 © [Lilian Besson](https://GitHub.com/Naereen) et [Bastien Trotobas] et collaborateurs, 2018.
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/ParcoursSup.py/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/Parcoursup.py/graphs/commit-activity)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/Naereen/ama)
-[![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/ParcoursSup.py/README.md?pixel)](https://GitHub.com/Naereen/ParcoursSup.py/)
+[![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/Parcoursup.py/README.md?pixel)](https://GitHub.com/Naereen/Parcoursup.py/)
 
 [![ForTheBadge uses-badges](http://ForTheBadge.com/images/badges/uses-badges.svg)](http://ForTheBadge.com)
 [![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/)
