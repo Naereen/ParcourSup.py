@@ -4,7 +4,8 @@
 - [:baby: :fr: Un clone en Python 3 de Parcoursup, écrit à but didactique](#baby---fr--un-clone-en-python-3-de-parcoursuphttp---wwwparcoursupfr---ecrit-a-but-didactique)
     - [Plan de bataille](#plan-de-batailletodomd)
     - [Explications](#explications)
-    - [Démonstration dans un notebook Jupyter](#demonstration-dans-un-notebook-jupyterhttps---wwwjupyterorg)
+    - [Organisation de ce dépôt](#organisation-de-ce-depot)
+    - [Démonstration dans un notebook Jupyter ?](#demonstration-dans-un-notebook-jupyterhttps---wwwjupyterorg)
     - [Documentation et ressources](#documentation-et-ressources)
     - [Exemples](#exemples)
         - [Installation](#installation)
@@ -30,7 +31,17 @@ TODO
 ## Explications
 TODO
 
-## Démonstration dans un [notebook Jupyter](https://www.Jupyter.org/)
+## Organisation de ce dépôt
+
+- Le code des algorithmes est [dans le dossier `src/`](src/),
+- Les (exemples de) données sont [dans le dossier `donnees/`](donnees/),
+- Des utilitaires, notamment les scripts pour générer des données synthétiques sont [dans le dossier `utils/`](utils/),
+- Des visualisations sont dans [le dossier `notebooks/`](notebooks/),
+- Enfin, une documentation est disponible dans [le dossier `docs/`](docs/).
+
+TODO
+
+## Démonstration dans un [notebook Jupyter](https://www.Jupyter.org/) ?
 TODO
 
 ---
@@ -44,6 +55,8 @@ TODO
 - Cette carte qui montre jour après jour les résultats donnés par Parcoursup : [statistique.parcoursup.fr](http://statistique.parcoursup.fr/).
 
 - [Le dossier de presse du ministère](http://cache.media.enseignementsup-recherche.gouv.fr/file/Parcoursup/73/7/DP_Parcoursup_-_Au_service_de_l_orientation_et_de_la_reussite_des_futurs_etudiants_936737.pdf) pour Parcoursup
+
+- [Ce document texte](https://framagit.org/parcoursup/algorithmes-de-parcoursup/blob/master/doc/implementation.txt) et [cet autre document PDF](https://framagit.org/parcoursup/algorithmes-de-parcoursup/blob/master/doc/presentation_algorithmes_parcoursup.pdf) donnent plein d'explications.
 
 - Ces articles sur des blogs du Monde: sur [ingenuingenieur.blog.lemonde.fr](http://ingenuingenieur.blog.lemonde.fr/2018/05/29/parcoursup-2018-les-dessous-de-lalgorithme-racontes-par-ses-createurs/), sur [enseigner.blog.lemonde.fr](http://enseigner.blog.lemonde.fr/2018/04/03/parcoursup-naivete-habilete-ou-machiavelisme-gouvernemental/) ou sur [binaire.blog.lemonde.fr](http://binaire.blog.lemonde.fr/2018/06/05/la-transparence-a-lecole-de-parcoursup/).
 
