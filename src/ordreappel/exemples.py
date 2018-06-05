@@ -13,8 +13,7 @@ from os import path
 
 from VoeuClasse import VoeuClasse
 from GroupeClassement import GroupeClassement
-import AlgoOrdreAppelEntree
-import AlgoOrdreAppelSortie
+from AlgoOrdreAppel import AlgoOrdreAppel
 
 # Classe d'un exemple
 
@@ -34,23 +33,68 @@ class Exemple(object):
     def to_string(self):
         return ""
 
-    def exporte(self, ordre, xml=False):
+    def exporte(self, contenu, entree=True, xml=True):
         extension = 'xml' if xml else 'json'
-        nom_fichier = path.join(['..', '..', 'donnees', self.nom + '.' + extension])
+        entree_ou_sortie = 'entree' if entree else 'sortie'
+        nom_fichier = path.join(['..', '..', 'donnees', f'{self.nom}_{entree_ou_sortie}.{extension}'])
         if path.exists(nom_fichier):
             print(f"Attention : le fichier de sortie '{nom_fichier}' existe déjà...")  # DEBUG
-
-        contenu = self.to_string()
         with open(nom_fichier, "w") as fichier:
             fichier.write(contenu)
 
-    def execute(self, xml=False):
+    def exporteEntree_XML(self, groupesClassements):
+        # créer le XML
+        root = etree.Element('algoOrdreAppelEntree')
+        groupesXML = etree.Element('groupesClassements')
+        for groupe in groupesClassements:
+            groupesXML.append(etree.Element('C_GP_COD', attrib={'text': groupe.C_GP_COD}))
+            groupesXML.append(etree.Element('tauxMinBoursiersPourcents', attrib={'text': groupe.tauxMinBoursiersPourcents}))
+            groupesXML.append(etree.Element('tauxMinResidentsPourcents', attrib={'text': groupe.tauxMinResidentsPourcents}))
+            for voeu in groupe.voeuxClasses:
+                voeuXML = etree.Element('VoeuxClasses')
+                voeuXML.append(etree.Element('typeCandidat', attrib={'text': voeu.typeCandidat}))
+                voeuXML.append(etree.Element('G_CN_COD', attrib={'text': voeu.G_CN_COD}))
+                voeuXML.append(etree.Element('rang', attrib={'text': voeu.rang}))
+                groupesXML.append(voeuXML)
+        root.append(groupesXML)
+        # et sauve en string
+        contenu = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n"""
+        contenu += etree.tostring(root, pretty_print=True)
+        print(contenu)  # DEBUG
+        # sauve le fichier
+        return self.exporte(contenu, entree=True)
+
+    def exporteSortie_XML(self, sortie):
+        # créer le XML
+        root = etree.Element('algoOrdreAppelSortie')
+        ordresXML = etree.Element('ordresAppel')
+        for numOrdre, ordre in enumerate(ordresClassements):
+            ordreXML = etree.Element('entry')
+            ordreXML.append(key)
+            key = etree.Element('key', attrib={'text': numOrdre})
+            value = etree.Element('value')
+            for voeu in ordre.voeuxClasses:
+                voeuXML = etree.Element('VoeuxClasses')
+                voeuXML.append(etree.Element('typeCandidat', attrib={'text': voeu.typeCandidat}))
+                voeuXML.append(etree.Element('G_CN_COD', attrib={'text': voeu.G_CN_COD}))
+                voeuXML.append(etree.Element('rang', attrib={'text': voeu.rang}))
+                value.append(voeuXML)
+            ordreXML.append(value)
+            ordresXML.append(ordreXML)
+        root.append(ordresXML)
+        # et sauve en string
+        contenu = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n"""
+        contenu += etree.tostring(root, pretty_print=True)
+        print(contenu)  # DEBUG
+        # sauve le fichier
+        return self.exporte(contenu, entree=False)
+
+    def execute(self, xml=True):
         liste_groupes = [self.groupe]
-        entree = AlgoOrdreAppelEntree(liste_groupes)
-        sortie = AlgoOrdreAppelSortie(entree)
-        # ordre = self.groupe.calculerOrdreAppel()
-        # self.exporte(ordre, xml=xml)
-        return ordre
+        entree = AlgoOrdreAppel(liste_groupes)
+        self.exporteEntree_XML(entree.groupesClassements)
+        entree.calculeOrdresAppels()
+        self.exporteEntree_XML(entree.ordresAppel)
 
 
 # Exemples
