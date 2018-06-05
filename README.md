@@ -1,6 +1,7 @@
 # :baby: :fr: Un clone en Python 3 de [Parcoursup](http://www.parcoursup.fr/), écrit à but didactique
 > [Écrit par](AUTHORS) [Lilian Besson (@Naereen)](https://github.com/Naereen) et [Bastien Trotobas (@BastienTr)](https://github.com/BastienTr), et d'autres collaborateurs.
 
+<details>
 - [:baby: :fr: Un clone en Python 3 de Parcoursup, écrit à but didactique](#baby---fr--un-clone-en-python-3-de-parcoursuphttp---wwwparcoursupfr---ecrit-a-but-didactique)
     - [Plan de bataille](#plan-de-batailletodomd)
     - [Explications](#explications)
@@ -13,7 +14,7 @@
     - [À propos](#a-propos)
         - [Language ?](#language)
         - [:scroll: Licence ? ![GitHub license](https://github.com/Naereen/badges/blob/master/LICENSE)](#scroll--licence-github-licensehttps---imgshieldsio-github-license-naereen-parcoursuppysvghttps---githubcom-naereen-badges-blob-master-license)
-
+</details>
 
 Ce dépôt contient un (petit) clone de l'algorithme régissant la [plateforme Parcoursup](http://www.parcoursup.fr/), qui gère depuis 2018 les affectations des élèves de classe de Terminale dans leur formation dans l'enseignement supérieur.
 
