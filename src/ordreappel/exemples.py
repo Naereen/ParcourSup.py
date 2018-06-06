@@ -34,12 +34,12 @@ class Exemple(object):
         self.initialise()
         assert hasattr(self, "groupes"), f"Erreur : cet exemple {self} devrait avoir un attribut 'groupes'. La méthode initialise() doit être mal implémentée."  # DEBUG
 
-    def initialise(self):
+    def initialise(self) -> None:
         """ Construit l'attribut groupes, il ne doit pas être vide."""
         self.groupes = []
         raise NotImplementedError
 
-    def exporte(self, contenu, entree=True, xml=False, debug=False):
+    def exporte(self, contenu, entree=True, xml=False, debug=False) -> bool:
         """ Exporte l'entrée ou la sortie, dans un fichier XML ou JSON."""
         extension = 'xml' if xml else 'json'
         entree_ou_sortie = 'entree' if entree else 'sortie'
@@ -56,20 +56,27 @@ class Exemple(object):
             fichier.write(contenu)
         return True
 
-    def execute(self):
+    def execute(self) -> None:
         """ Calcule les ordre d'appels et sauvegarde les fichiers."""
         # crée l'entrée
         entree = AlgoOrdreAppel(self.groupes)
-        # calcule la sortie
-        entree.calculeOrdresAppels()
-        # et sauvegarde les deux, en XML ou en JSON
 
+        # et sauvegarde les deux, d'abord en XML
         entreeXML = entree.exporteEntree_XML()
         contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
         contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
         contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
         self.exporte(contenu, entree=True, xml=True)
 
+        # et maintenant le JSON
+        entreeJSON = entree.exporteEntree_JSON()
+        contenu = json.dumps(entreeJSON, sort_keys=True, indent=4)
+        self.exporte(contenu, entree=True, xml=False)
+
+        # calcule la sortie
+        entree.calculeOrdresAppels()
+
+        # et sauvegarde les deux, d'abord en XML
         sortieXML = entree.exporteSortie_XML()
         contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
         contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
@@ -77,10 +84,6 @@ class Exemple(object):
         self.exporte(contenu, entree=False, xml=True)
 
         # et maintenant le JSON
-        entreeJSON = entree.exporteEntree_JSON()
-        contenu = json.dumps(entreeJSON, sort_keys=True, indent=4)
-        self.exporte(contenu, entree=True, xml=False)
-
         sortieJSON = entree.exporteSortie_JSON()
         contenu = json.dumps(sortieJSON, sort_keys=True, indent=4)
         self.exporte(contenu, entree=False, xml=False)
@@ -92,9 +95,9 @@ class Exemple(object):
 class exempleA1(Exemple):
     """ Exemple A1 avec 20% de boursiers et 0% de non-résidents."""
 
-    def initialise(self):
+    def initialise(self) -> None:
         self.nom = 'exemple_A1'
-        groupe = GroupeClassement(1, 20, 0)
+        groupe = GroupeClassement(0, 20, 0)
         # C1 C2 C3 C4 C5 B6 B7 C8
         for i in range(1, 5 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, False, False))
@@ -107,9 +110,9 @@ class exempleA1(Exemple):
 class exempleA2(Exemple):
     """ Exemple A2 avec 2% de boursiers et 0% de non-résidents."""
 
-    def initialise(self):
+    def initialise(self) -> None:
         self.nom = 'exemple_A2'
-        groupe = GroupeClassement(1, 2, 0)
+        groupe = GroupeClassement(0, 2, 0)
         # C1 C2 C3 C4 C5 B6 C7 C8
         for i in range(1, 5 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, False, False))
@@ -122,9 +125,9 @@ class exempleA2(Exemple):
 class exempleA3(Exemple):
     """ Exemple A3 avec 10% de boursiers et 0% de non-résidents."""
 
-    def initialise(self):
+    def initialise(self) -> None:
         self.nom = 'exemple_A3'
-        groupe = GroupeClassement(1, 10, 0)
+        groupe = GroupeClassement(0, 10, 0)
         # C1 C2 C3 ...C900 B901 B902 B903 ...B1000
         for i in range(1, 900 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, False, False))
@@ -136,9 +139,9 @@ class exempleA3(Exemple):
 class exempleA4(Exemple):
     """ Exemple A4 avec 10% de boursiers et 0% de non-résidents."""
 
-    def initialise(self):
+    def initialise(self) -> None:
         self.nom = 'exemple_A4'
-        groupe = GroupeClassement(1, 10, 0)
+        groupe = GroupeClassement(0, 10, 0)
         # C1 B2 B3 C4 C5 C6 C7 B8 C9 C10
         groupe.ajouterVoeu(VoeuClasse(1, 1, False, False))
         groupe.ajouterVoeu(VoeuClasse(2, 2, True, False))
@@ -156,9 +159,9 @@ class exempleA4(Exemple):
 class exempleA5(Exemple):
     """ Exemple A5 avec 10% de boursiers et 95% de non-résidents."""
 
-    def initialise(self):
+    def initialise(self) -> None:
         self.nom = 'exemple_A5'
-        groupe = GroupeClassement(1, 10, 95)
+        groupe = GroupeClassement(0, 10, 95)
         # (BR)1(BR)2R3 . . . R19C20
         # (BR)21(BR)22R23 . . . R39C40
         # (BR)41R42 . . . R50
@@ -188,9 +191,9 @@ class exempleA5(Exemple):
 class exempleA6(Exemple):
     """ Exemple A6 avec 10% de boursiers et 95% de non-résidents."""
 
-    def initialise(self):
+    def initialise(self) -> None:
         self.nom = 'exemple_A6'
-        groupe = GroupeClassement(1, 10, 95)
+        groupe = GroupeClassement(0, 10, 95)
         # R1 ... R100
         for i in range(1, 100 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, False, True))

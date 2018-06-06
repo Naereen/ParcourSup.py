@@ -3,6 +3,9 @@
 
 ## Sources
 
+- Calcul de l'ordre d'appel, algorithmes et tests dans le dossier [`ordreappel/`](ordreappel/),
+- Calcul des propositions, algorithmes et tests dans le dossier [`propositions/`](propositions/).
+
 ---
 
 ### :scroll: Licence ? [![GitHub license](https://img.shields.io/github/license/Naereen/Parcoursup.py.svg)](https://github.com/Naereen/badges/blob/master/LICENSE)

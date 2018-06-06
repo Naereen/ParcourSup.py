@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <algoOrdreAppelEntree>
     <groupesClassements>
-        <C_GP_COD>1</C_GP_COD>
+        <C_GP_COD>0</C_GP_COD>
         <tauxMinBoursiersPourcents>20</tauxMinBoursiersPourcents>
         <tauxMinResidentsPourcents>0</tauxMinResidentsPourcents>
         <voeuxClasses>

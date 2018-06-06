@@ -9,11 +9,10 @@
 __author__ = "Lilian Besson, Bastien Trotobas and contributors"
 __version__ = "0.0.1"
 
-try:
-    import xml.etree.cElementTree as ET
-except ImportError:
-    import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET
+from typing import Dict, List
 
+from GroupeClassement import GroupeClassement
 from VoeuClasse import typeCandidat_vers_str
 
 
@@ -21,7 +20,7 @@ class AlgoOrdreAppel(object):
     """ Stocke les entrées et sorties de l'algorithme de calcul d'ordre d'appel.
     """
 
-    def __init__(self, groupesClassements):
+    def __init__(self, groupesClassements: List[GroupeClassement]):
         """ Stocke la liste non-vide de classements."""
         assert groupesClassements, f"Erreur : {self.__class__.__name__} le paramètre groupesClassements doit être non vide, et pas {groupesClassements}..."  # DEBUG
         liste_C_GP_COD = [ga.C_GP_COD for ga in groupesClassements]
@@ -31,14 +30,14 @@ class AlgoOrdreAppel(object):
         self.groupesClassements = groupesClassements
         self.ordresAppel = dict()
 
-    def calculeOrdresAppels(self):
+    def calculeOrdresAppels(self) -> None:
         """ Calcule l'ordre d'appels de chaque groupes de classements."""
         for ga in self.groupesClassements:
             self.ordresAppel[ga.C_GP_COD] = ga.calculerOrdreAppel()
 
     # --- Exporte vers des arbres XML ou un dictionnaire JSON
 
-    def exporteEntree_XML(self):
+    def exporteEntree_XML(self) -> ET.Element:
         """ Converti l'entrée en un arbre XML."""
         racine = ET.Element('algoOrdreAppelEntree')
         groupesXML = ET.Element('groupesClassements')
@@ -55,7 +54,7 @@ class AlgoOrdreAppel(object):
         racine.append(groupesXML)
         return racine
 
-    def exporteEntree_JSON(self):
+    def exporteEntree_JSON(self) -> Dict:
         """ Converti l'entrée en un dictionnaire."""
         racine = {
             'algoOrdreAppelEntree': {
@@ -79,14 +78,14 @@ class AlgoOrdreAppel(object):
         }
         return racine
 
-    def exporteSortie_XML(self):
+    def exporteSortie_XML(self) -> ET.Element:
         """ Converti les résultats de la sortie en un arbre XML."""
         racine = ET.Element('algoOrdreAppelSortie')
         ordresXML = ET.Element('ordresAppel')
-        for C_GP_COD, ordre in self.ordresAppel.items():
+        for numero, ordre in enumerate(self.ordresAppel.values()):
             ordreXML = ET.Element('entry')
             key = ET.Element('key')
-            key.text = str(C_GP_COD)
+            key.text = str(numero)
             ordreXML.append(key)
             value = ET.Element('value')
             for voeu in ordre:
@@ -100,13 +99,13 @@ class AlgoOrdreAppel(object):
         racine.append(ordresXML)
         return racine
 
-    def exporteSortie_JSON(self):
+    def exporteSortie_JSON(self) -> Dict:
         """ Converti les résultats de la sortie en un dictionnaire."""
         racine = {
             'algoOrdreAppelSortie': {
                 'ordresAppel': [
                     {
-                        'key': key,
+                        'key': numero,
                         'voeux': [
                             {
                                 'typeCandidat': typeCandidat_vers_str(voeu.typeCandidat),
@@ -116,7 +115,7 @@ class AlgoOrdreAppel(object):
                             for voeu in ordre
                         ]
                     }
-                    for key, ordre in enumerate(self.ordresAppel.values())
+                    for numero, ordre in enumerate(self.ordresAppel.values())
                 ]
             }
         }

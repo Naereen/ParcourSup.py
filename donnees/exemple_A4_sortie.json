@@ -5,9 +5,14 @@
                 "key": 0,
                 "voeux": [
                     {
-                        "G_CN_COD": 8,
-                        "rang": 8,
+                        "G_CN_COD": 2,
+                        "rang": 2,
                         "typeCandidat": "BoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 1,
+                        "rang": 1,
+                        "typeCandidat": "NonBoursierNonResident"
                     },
                     {
                         "G_CN_COD": 3,
@@ -15,28 +20,8 @@
                         "typeCandidat": "BoursierNonResident"
                     },
                     {
-                        "G_CN_COD": 2,
-                        "rang": 2,
-                        "typeCandidat": "BoursierNonResident"
-                    },
-                    {
-                        "G_CN_COD": 10,
-                        "rang": 10,
-                        "typeCandidat": "NonBoursierNonResident"
-                    },
-                    {
-                        "G_CN_COD": 9,
-                        "rang": 9,
-                        "typeCandidat": "NonBoursierNonResident"
-                    },
-                    {
-                        "G_CN_COD": 7,
-                        "rang": 7,
-                        "typeCandidat": "NonBoursierNonResident"
-                    },
-                    {
-                        "G_CN_COD": 6,
-                        "rang": 6,
+                        "G_CN_COD": 4,
+                        "rang": 4,
                         "typeCandidat": "NonBoursierNonResident"
                     },
                     {
@@ -45,13 +30,28 @@
                         "typeCandidat": "NonBoursierNonResident"
                     },
                     {
-                        "G_CN_COD": 4,
-                        "rang": 4,
+                        "G_CN_COD": 6,
+                        "rang": 6,
                         "typeCandidat": "NonBoursierNonResident"
                     },
                     {
-                        "G_CN_COD": 1,
-                        "rang": 1,
+                        "G_CN_COD": 7,
+                        "rang": 7,
+                        "typeCandidat": "NonBoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 8,
+                        "rang": 8,
+                        "typeCandidat": "BoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 9,
+                        "rang": 9,
+                        "typeCandidat": "NonBoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 10,
+                        "rang": 10,
                         "typeCandidat": "NonBoursierNonResident"
                     }
                 ]

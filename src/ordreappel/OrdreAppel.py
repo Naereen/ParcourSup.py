@@ -23,7 +23,7 @@ class OrdreAppel(list):
         """
         if len(self) <= 1:
             return 0.0
-        nbInversions: int = 0
+        nbInversions = 0
         for i, voe1 in enumerate(self):
             for j, voe2 in enumerate(self):
                 if j < i and voe1 < voe2:  # une inversion !

@@ -10,28 +10,8 @@
                         "typeCandidat": "BoursierNonResident"
                     },
                     {
-                        "G_CN_COD": 8,
-                        "rang": 8,
-                        "typeCandidat": "NonBoursierNonResident"
-                    },
-                    {
-                        "G_CN_COD": 7,
-                        "rang": 7,
-                        "typeCandidat": "NonBoursierNonResident"
-                    },
-                    {
-                        "G_CN_COD": 5,
-                        "rang": 5,
-                        "typeCandidat": "NonBoursierNonResident"
-                    },
-                    {
-                        "G_CN_COD": 4,
-                        "rang": 4,
-                        "typeCandidat": "NonBoursierNonResident"
-                    },
-                    {
-                        "G_CN_COD": 3,
-                        "rang": 3,
+                        "G_CN_COD": 1,
+                        "rang": 1,
                         "typeCandidat": "NonBoursierNonResident"
                     },
                     {
@@ -40,8 +20,28 @@
                         "typeCandidat": "NonBoursierNonResident"
                     },
                     {
-                        "G_CN_COD": 1,
-                        "rang": 1,
+                        "G_CN_COD": 3,
+                        "rang": 3,
+                        "typeCandidat": "NonBoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 4,
+                        "rang": 4,
+                        "typeCandidat": "NonBoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 5,
+                        "rang": 5,
+                        "typeCandidat": "NonBoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 7,
+                        "rang": 7,
+                        "typeCandidat": "NonBoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 8,
+                        "rang": 8,
                         "typeCandidat": "NonBoursierNonResident"
                     }
                 ]

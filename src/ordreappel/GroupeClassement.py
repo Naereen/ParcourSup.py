@@ -9,13 +9,14 @@
 __author__ = "Lilian Besson, Bastien Trotobas and contributors"
 __version__ = "0.0.1"
 
+from typing import List, Dict
+
 
 #: En mode débug, on affiche juste le résultat.
 DEBUG = True
 # DEBUG = False
 
 from queue import Queue, PriorityQueue
-# from collections import deque
 
 from VoeuClasse import VoeuClasse, TypeCandidat
 from OrdreAppel import OrdreAppel
@@ -28,7 +29,7 @@ class GroupeClassement(object):
         tauxMinBoursiersPourcents: int,
         tauxMinResidentsPourcents: int,
     ):
-        assert C_GP_COD > 0, f"Erreur : {self.__class__.__name__} le paramètre C_GP_COD doit être > 0, et pas {C_GP_COD}..."  # DEBUG
+        assert C_GP_COD >= 0, f"Erreur : {self.__class__.__name__} le paramètre C_GP_COD doit être > 0, et pas {C_GP_COD}..."  # DEBUG
         self.C_GP_COD = C_GP_COD  #: C_GP_COD
 
         assert 0 <= tauxMinBoursiersPourcents <= 100, f"Erreur : {self.__class__.__name__} le paramètre tauxMinBoursiersPourcents doit être 0<=...<=100 , et pas {tauxMinBoursiersPourcents}..."  # DEBUG
@@ -38,7 +39,7 @@ class GroupeClassement(object):
         assert 0 <= tauxMinBoursiersPourcents <= 100, f"Erreur : {self.__class__.__name__} le paramètre tauxMinBoursiersPourcents doit être 0<=...<=100 , et pas {tauxMinBoursiersPourcents}..."  # DEBUG
         assert isinstance(tauxMinBoursiersPourcents, int), f"Erreur : {self.__class__.__name__} le paramètre tauxMinBoursiersPourcents doit être entier, et pas {tauxMinBoursiersPourcents}..."  # DEBUG
         self.tauxMinResidentsPourcents = tauxMinResidentsPourcents  #: tauxMinResidentsPourcents
-        self.voeuxClasses = []  #: La liste des vœux du groupe de classement
+        self.voeuxClasses: List[VoeuClasse] = []  #: La liste des vœux du groupe de classement
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.C_GP_COD})"
@@ -49,7 +50,7 @@ class GroupeClassement(object):
 
     def calculerOrdreAppel(self, verbeux: bool= DEBUG) -> OrdreAppel:
         """ Calcule de l'ordre d'appel."""
-        def log(*args, **kwargs):
+        def log(*args, **kwargs) -> None:
             if verbeux:
                 print(*args, **kwargs)
 
@@ -58,7 +59,7 @@ class GroupeClassement(object):
         log(f"  On crée des listes de vœux pour chaque types de candidats ({list(TypeCandidat)}).")
         # on crée autant de listes de vœux que de types de candidats,
         # triées par ordre de classement
-        filesAttente = {
+        filesAttente: Dict[List[VoeuClasse]] = {
             t: []
             for t in list(TypeCandidat)
         }
@@ -79,7 +80,7 @@ class GroupeClassement(object):
         for i, voeu in enumerate(self.voeuxClasses):
             # on ajoute le voeu à la fin de la file (FIFO) correspondante
             filesAttente[voeu.typeCandidat].append(voeu)
-            log(f"  On ajoute le voeu {voeu} à la file du type {voeu.typeCandidat}, c'est le {i+1}ème à être ajouté.")
+            # log(f"  On ajoute le voeu {voeu} à la file du type {voeu.typeCandidat}, c'est le {i+1}ème à être ajouté.")
             if voeu.estBoursier():
                 nbBoursiersTotal += 1
                 log(f"    On compte un-e boursier-e en plus, c'est le {nbBoursiersTotal}ème...")
@@ -110,23 +111,23 @@ class GroupeClassement(object):
             # on fait la liste des voeux satisfaisant
             # les deux contraintes à la fois, ordonnée par rang de classement
             if verbeux: liste_eligibles = []
-            eligibles = PriorityQueue()
+            eligibles = []
             for queue in filesAttente.values():
                 if queue:
-                    voeu = queue[-1]  # le dernier
+                    voeu = queue[-1]  # le meilleur a été ajouté en dernier
                     if (voeu.estBoursier() or not contrainteTauxBoursier) and (voeu.estResident() or not contrainteTauxResident):
-                        eligibles.put(voeu)
+                        eligibles.append(voeu)
                         if verbeux: liste_eligibles.append(voeu)
             log(f"  Les vœux satisfaisant les deux contraintes à la fois, ordonnés par rang de classement sont :\n{liste_eligibles}")
-            if verbeux: del liste_eligibles  # juste pour l'affichier
+            if verbeux: del liste_eligibles  # juste pour l'afficher
 
             # stocke le meilleur candidat à appeler tout en respectant
             # les deux contraintes si possible
             # ou à défaut seulement la contrainte sur le taux boursier
             meilleur = None
 
-            if not eligibles.empty():
-                meilleur = eligibles.get()
+            if eligibles:
+                meilleur = max(eligibles)  # on prend le meilleur de cette liste
                 log(f"  La liste des éligibles n'est pas vide, donc le-la meilleur-e est le-la meilleur-e de cette liste = {meilleur}")
             else:
                 # la liste peut être vide dans le cas où les deux contraintes

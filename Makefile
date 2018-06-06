@@ -18,10 +18,13 @@ install:	pypenv
 # tests and runners
 
 tests_ordreappel:
-	python3 ./src/ordreappel/__init__.py
+	cd ./src/ordreappel/ ; python3 ./__init__.py
+
+tests_ordreappel.xml:
+	cd donnees/ ; ./compare_avec_donnees_references.sh
 
 tests_propositions:
-	python3 ./src/propositions/__init__.py
+	cd ./src/propositions/ ; python3 ./__init__.py
 
 # Cleaner
 clean:

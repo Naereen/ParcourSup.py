@@ -2,13 +2,8 @@
 <algoOrdreAppelSortie>
     <ordresAppel>
         <entry>
-            <key>1</key>
+            <key>0</key>
             <value>
-                <voeux>
-                    <typeCandidat>BoursierNonResident</typeCandidat>
-                    <G_CN_COD>7</G_CN_COD>
-                    <rang>7</rang>
-                </voeux>
                 <voeux>
                     <typeCandidat>BoursierNonResident</typeCandidat>
                     <G_CN_COD>6</G_CN_COD>
@@ -16,23 +11,8 @@
                 </voeux>
                 <voeux>
                     <typeCandidat>NonBoursierNonResident</typeCandidat>
-                    <G_CN_COD>8</G_CN_COD>
-                    <rang>8</rang>
-                </voeux>
-                <voeux>
-                    <typeCandidat>NonBoursierNonResident</typeCandidat>
-                    <G_CN_COD>5</G_CN_COD>
-                    <rang>5</rang>
-                </voeux>
-                <voeux>
-                    <typeCandidat>NonBoursierNonResident</typeCandidat>
-                    <G_CN_COD>4</G_CN_COD>
-                    <rang>4</rang>
-                </voeux>
-                <voeux>
-                    <typeCandidat>NonBoursierNonResident</typeCandidat>
-                    <G_CN_COD>3</G_CN_COD>
-                    <rang>3</rang>
+                    <G_CN_COD>1</G_CN_COD>
+                    <rang>1</rang>
                 </voeux>
                 <voeux>
                     <typeCandidat>NonBoursierNonResident</typeCandidat>
@@ -41,8 +21,28 @@
                 </voeux>
                 <voeux>
                     <typeCandidat>NonBoursierNonResident</typeCandidat>
-                    <G_CN_COD>1</G_CN_COD>
-                    <rang>1</rang>
+                    <G_CN_COD>3</G_CN_COD>
+                    <rang>3</rang>
+                </voeux>
+                <voeux>
+                    <typeCandidat>NonBoursierNonResident</typeCandidat>
+                    <G_CN_COD>4</G_CN_COD>
+                    <rang>4</rang>
+                </voeux>
+                <voeux>
+                    <typeCandidat>BoursierNonResident</typeCandidat>
+                    <G_CN_COD>7</G_CN_COD>
+                    <rang>7</rang>
+                </voeux>
+                <voeux>
+                    <typeCandidat>NonBoursierNonResident</typeCandidat>
+                    <G_CN_COD>5</G_CN_COD>
+                    <rang>5</rang>
+                </voeux>
+                <voeux>
+                    <typeCandidat>NonBoursierNonResident</typeCandidat>
+                    <G_CN_COD>8</G_CN_COD>
+                    <rang>8</rang>
                 </voeux>
             </value>
         </entry>

@@ -29,7 +29,7 @@ def typeCandidat_vers_str(typeCandidat: TypeCandidat) -> str:
 def typeCandidat_si_Boursier_etou_Resident(
         estBoursier: bool,
         estResident: bool
-    ):
+    ) -> TypeCandidat:
     """ Donne le type de candidat selon qu'il/elle soit boursier-e et/ou résident-e. """
     if estBoursier and estResident:
         return TypeCandidat.BoursierResident
@@ -68,11 +68,11 @@ class VoeuClasse(object):
         """ Pour savoir si le candidat est résident-e."""
         return self.typeCandidat == TypeCandidat.BoursierResident or self.typeCandidat == TypeCandidat.NonBoursierResident
 
-    # --- Méthodes magiques
+    # --- Méthodes pour comparer les objets, les autres sont automatiques avec @total_ordering
 
     def __lt__(self, voeu) -> bool:
         """ Comparateur permettant de trier les vœux par ordre du groupe de classement."""
-        return self.rang < voeu.rang
+        return self.rang > voeu.rang
 
     def __eq__(self, voeu) -> bool:
         """ Comparateur permettant de trier les vœux par ordre du groupe de classement."""

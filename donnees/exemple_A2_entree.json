@@ -2,7 +2,7 @@
     "algoOrdreAppelEntree": {
         "groupesClassements": [
             {
-                "C_GP_COD": 1,
+                "C_GP_COD": 0,
                 "tauxMinBoursiersPourcents": 2,
                 "tauxMinResidentsPourcents": 0,
                 "voeuxClasses": [
