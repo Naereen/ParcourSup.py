@@ -106,7 +106,7 @@ class AlgoOrdreAppel(object):
             'algoOrdreAppelSortie': {
                 'ordresAppel': [
                     {
-                        'key': C_GP_COD,
+                        'key': key,
                         'voeux': [
                             {
                                 'typeCandidat': typeCandidat_vers_str(voeu.typeCandidat),
@@ -116,7 +116,7 @@ class AlgoOrdreAppel(object):
                             for voeu in ordre
                         ]
                     }
-                    for C_GP_COD, ordre in self.ordresAppel.items()
+                    for key, ordre in enumerate(self.ordresAppel.values())
                 ]
             }
         }

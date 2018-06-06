@@ -13,6 +13,10 @@ from exemples import tous_les_exemples
 
 
 def main(numeroExemple=None):
+    if numeroExemple is not None:
+        max_numero = len(tous_les_exemples)
+        if not 0 <= numeroExemple < max_numero:
+            print(f"Erreur, l'exemple numéro #{numeroExemple + 1} n'est pas disponible.")
     for i, exemple in enumerate(tous_les_exemples):
         if numeroExemple is not None and i != numeroExemple:
             continue

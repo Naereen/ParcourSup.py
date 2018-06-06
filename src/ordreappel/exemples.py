@@ -32,13 +32,14 @@ class Exemple(object):
     def __init__(self):
         self.nom = "Unknown"  #: Nom pour le fichier .xml ou .json de test.
         self.initialise()
-        assert hasattr(self, "groupe"), f"Erreur : cet exemple {self} devrait avoir un attribut 'groupe'. La méthode initialise() doit être mal implémentée."  # DEBUG
+        assert hasattr(self, "groupes"), f"Erreur : cet exemple {self} devrait avoir un attribut 'groupes'. La méthode initialise() doit être mal implémentée."  # DEBUG
 
     def initialise(self):
-        """ Construit l'attribut groupe."""
+        """ Construit l'attribut groupes, il ne doit pas être vide."""
+        self.groupes = []
         raise NotImplementedError
 
-    def exporte(self, contenu, entree=True, xml=False, debug=DEBUG):
+    def exporte(self, contenu, entree=True, xml=False, debug=True):
         """ Exporte l'entrée ou la sortie, dans un fichier XML ou JSON."""
         extension = 'xml' if xml else 'json'
         entree_ou_sortie = 'entree' if entree else 'sortie'
@@ -46,7 +47,7 @@ class Exemple(object):
         if debug:
             print(f"On devrait sauvegarder le contenu suivant dans le fichier '{nom_fichier}'...")  # DEBUG
             print(contenu)  # DEBUG
-            return False
+            # return False
         if path.exists(nom_fichier):
             print(f"Attention : le fichier de sortie '{nom_fichier}' existe déjà...")  # DEBUG
         with open(nom_fichier, "w") as fichier:
@@ -56,25 +57,22 @@ class Exemple(object):
     def execute(self, xml=True):
         """ Calcule les ordre d'appels et sauvegarde les fichiers."""
         # crée l'entrée
-        liste_groupes = [self.groupe]
-        entree = AlgoOrdreAppel(liste_groupes)
+        entree = AlgoOrdreAppel(self.groupes)
         # calcule la sortie
         entree.calculeOrdresAppels()
         # et sauvegarde les deux, en XML ou en JSON
         if xml:
-            entete = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n"""
-
             entreeXML = entree.exporteEntree_XML()
-            contenu = ET.tostring(entreeXML, encoding='unicode', method='html')
+            contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
             contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
-            print("contenu =\n", contenu)
-            self.exporte(entete + contenu, entree=True, xml=True)
+            contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
+            self.exporte(contenu, entree=True, xml=True)
 
             sortieXML = entree.exporteSortie_XML()
-            contenu = ET.tostring(sortieXML, encoding='unicode', method='html')
+            contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
             contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
-            print("contenu =\n", contenu)
-            self.exporte(entete + contenu, entree=False, xml=True)
+            contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
+            self.exporte(contenu, entree=False, xml=True)
         else:
             entreeJSON = entree.exporteEntree_JSON()
             contenu = json.dumps(entreeJSON, sort_keys=True, indent=4)
@@ -99,7 +97,7 @@ class exempleA1(Exemple):
         groupe.ajouterVoeu(VoeuClasse(6, 6, True, False))
         groupe.ajouterVoeu(VoeuClasse(7, 7, True, False))
         groupe.ajouterVoeu(VoeuClasse(8, 8, False, False))
-        self.groupe = groupe  #: GroupeClassement de cet exemple.
+        self.groupes = [groupe]  #: GroupeClassement de cet exemple.
 
 
 class exempleA2(Exemple):
@@ -114,7 +112,7 @@ class exempleA2(Exemple):
         groupe.ajouterVoeu(VoeuClasse(6, 6, True, False))
         groupe.ajouterVoeu(VoeuClasse(7, 7, False, False))
         groupe.ajouterVoeu(VoeuClasse(8, 8, False, False))
-        self.groupe = groupe  #: GroupeClassement de cet exemple.
+        self.groupes = [groupe]  #: GroupeClassement de cet exemple.
 
 
 class exempleA3(Exemple):
@@ -128,7 +126,7 @@ class exempleA3(Exemple):
             groupe.ajouterVoeu(VoeuClasse(i, i, False, False))
         for i in range(901, 1000 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, True, False))
-        self.groupe = groupe  #: GroupeClassement de cet exemple.
+        self.groupes = [groupe]  #: GroupeClassement de cet exemple.
 
 
 class exempleA4(Exemple):
@@ -148,7 +146,7 @@ class exempleA4(Exemple):
         groupe.ajouterVoeu(VoeuClasse(8, 8, True, False))
         groupe.ajouterVoeu(VoeuClasse(9, 9, False, False))
         groupe.ajouterVoeu(VoeuClasse(10, 10, False, False))
-        self.groupe = groupe  #: GroupeClassement de cet exemple.
+        self.groupes = [groupe]  #: GroupeClassement de cet exemple.
 
 
 class exempleA5(Exemple):
@@ -180,7 +178,7 @@ class exempleA5(Exemple):
             groupe.ajouterVoeu(VoeuClasse(l, l, True, False))
             for m in range(l + 1, l + 9 + 1):
                 groupe.ajouterVoeu(VoeuClasse(m, m, False, True))
-        self.groupe = groupe  #: GroupeClassement de cet exemple.
+        self.groupes = [groupe]  #: GroupeClassement de cet exemple.
 
 
 class exempleA6(Exemple):
@@ -195,7 +193,7 @@ class exempleA6(Exemple):
         # B101 ... B111
         for i in range(101, 110 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, True, False))
-        self.groupe = groupe  #: GroupeClassement de cet exemple.
+        self.groupes = [groupe]  #: GroupeClassement de cet exemple.
 
 
 #: Liste de tous les exemples.
