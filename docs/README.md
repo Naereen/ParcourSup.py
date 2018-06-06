@@ -3,6 +3,12 @@
 
 ## Documentation
 
+Ce dossier contiendra des ressources supplémentaires pour expliquer les algorithmes de Parcoursup, ainsi que les fichiers nécessaires à générer une documentation Sphinx pour ce projet Python.
+
+* TODO générer conf.py et Makefile pour Sphinx
+* TODO héberger la documentation sur GitHub pages d'abord
+* TODO si tout marche, héberger la documentation sur ReadTheDocs, e.g., https://parcoursup-python.rtfd.io/ serait pas mal (il faut [importer le projet](https://readthedocs.org/dashboard/import/))
+
 ---
 
 ### :scroll: Licence ? [![GitHub license](https://img.shields.io/github/license/Naereen/Parcoursup.py.svg)](https://github.com/Naereen/badges/blob/master/LICENSE)

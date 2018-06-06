@@ -12,7 +12,7 @@
     - [Documentation et ressources](#documentation-et-ressources)
     - [Exemples](#exemples)
         - [Installation](#installation)
-        - [Un exemple](#un-exemple)
+        - [Tests](#tests)
     - [À propos](#a-propos)
         - [Language ?](#language)
         - [:scroll: Licence ? ![GitHub license](https://github.com/Naereen/badges/blob/master/LICENSE)](#scroll--licence-github-licensehttps---imgshieldsio-github-license-naereen-parcoursuppysvghttps---githubcom-naereen-badges-blob-master-license)
@@ -30,10 +30,10 @@ L'algorithme et son implémentation officielle (en Java), sont disponibles sur [
 ---
 
 ## [Plan de bataille](TODO.md)
-TODO
 
 ## Explications
-TODO
+
+* TODO expliquer un peu.
 
 ## Organisation de ce dépôt
 
@@ -43,10 +43,10 @@ TODO
 - Des visualisations sont dans [le dossier `notebooks/`](notebooks/),
 - Enfin, une documentation est disponible dans [le dossier `docs/`](docs/).
 
-TODO
+* TODO enlever ce qui n'est pas nécessaire.
 
 ## Démonstration dans un [notebook Jupyter](https://www.Jupyter.org/) ?
-TODO
+* TODO si besoin ?
 
 ---
 
@@ -69,15 +69,30 @@ TODO
 ## Exemples
 ### Installation
 
+Ces lignes de bash (à exécuter sur une machine type GNU/Linux ou un Mac avec les outils standards) clone ce dépôt, et installent un [`virtualenv` Python](https://virtualenv.pypa.io/) et installent [les dépendances](requirements.txt) dans cet environnement virtuel :
+
 ```bash
 cd /tmp/
 git clone https://GitHub.com/Naereen/Parcoursup.py
-cd Parcoursup.py/src
-make install  # TODO
+cd Parcoursup.py/
+make install
 ```
 
-### Un exemple
-TODO
+### Tests
+
+Les tests qui reproduisent [les données d'exemples](donnees) peuvent être exécutés avec les deux commandes suivantes :
+
+- Ordres d'appel :
+```bash
+$ python3 ./src/ordreappel/__init__.py
+...
+```
+
+- Proposition de vœux :
+```bash
+$ python3 ./src/propositions/__init__.py
+...
+```
 
 ----
 
@@ -87,7 +102,6 @@ TODO
 
 - [Numpy](http://numpy.org/) pour les tableaux,
 - [matplotlib](http://matplotlib.org/) pour les affichages,
-- [scipy](http://scipy.org/) pour les calculs numériques,
 - [pandas](http://pandas.pydata.org/) pour les statistiques,
 - [La bibliothèque standard](https://docs.python.org/3.6/) pour tout le reste.
 

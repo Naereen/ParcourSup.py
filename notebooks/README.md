@@ -3,6 +3,11 @@
 
 ## Notebooks
 
+Ce dossier contiendra des ressources supplémentaires pour expliquer les algorithmes de Parcoursup sous forme de [Notebooks Jupyter](https://jupyter.org/).
+
+* TODO trouver quelque chose d'intéressant et de pédagogique à écrire sous forme de notebooks
+* TODO rédiger un notebook !
+
 ---
 
 ### :scroll: Licence ? [![GitHub license](https://img.shields.io/github/license/Naereen/Parcoursup.py.svg)](https://github.com/Naereen/badges/blob/master/LICENSE)

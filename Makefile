@@ -17,8 +17,11 @@ install:	pypenv
 
 # tests and runners
 
-test_ordreappel:
+tests_ordreappel:
 	python3 ./src/ordreappel/__init__.py
+
+tests_propositions:
+	python3 ./src/propositions/__init__.py
 
 # Cleaner
 clean:

@@ -3,6 +3,37 @@
 
 ## Données
 
+Ce dossier contient des données **synthétiques** et de tests.
+
+---
+
+## Tests
+
+### Ordre d'appels
+
+Les 6 fichiers de tests pour [l'algorithme de calcul d'ordre d'appel](src/ordreappel/) qui [sont fournis](https://framagit.org/parcoursup/algorithmes-de-parcoursup/tree/master/doc/exemples) pour le code de l'outil officiel sont reproduits par notre implémentation :
+
+* TODO corriger algorithme pour fonctionner sur chaque exemple !
+* TODO corriger algorithme pour même sortie sur chaque exemple !
+
+- Exemple A1 : [entrée en XML](exemple_A1_entree.xml) ([aussi en JSON](exemple_A1_entree.json)), et [sortie en XML](exemple_A1_sortie.xml) ([aussi en JSON](exemple_A1_sortie.json)),
+- Exemple A2 : [entrée en XML](exemple_A2_entree.xml) ([aussi en JSON](exemple_A2_entree.json)), et [sortie en XML](exemple_A2_sortie.xml) ([aussi en JSON](exemple_A2_sortie.json)),
+- Exemple A3 : [entrée en XML](exemple_A3_entree.xml) ([aussi en JSON](exemple_A3_entree.json)), et [sortie en XML](exemple_A3_sortie.xml) ([aussi en JSON](exemple_A3_sortie.json)),
+- Exemple A4 : [entrée en XML](exemple_A4_entree.xml) ([aussi en JSON](exemple_A4_entree.json)), et [sortie en XML](exemple_A4_sortie.xml) ([aussi en JSON](exemple_A4_sortie.json)),
+- Exemple A5 : [entrée en XML](exemple_A5_entree.xml) ([aussi en JSON](exemple_A5_entree.json)), et [sortie en XML](exemple_A5_sortie.xml) ([aussi en JSON](exemple_A5_sortie.json)),
+- Exemple A6 : [entrée en XML](exemple_A6_entree.xml) ([aussi en JSON](exemple_A6_entree.json)), et [sortie en XML](exemple_A6_sortie.xml) ([aussi en JSON](exemple_A6_sortie.json)).
+
+### Propositions des affectations
+
+TODO
+
+Les 7 fichiers de tests pour [l'algorithme de propositions des affectations](src/propositions/) qui [sont fournis](https://framagit.org/parcoursup/algorithmes-de-parcoursup/tree/master/doc/exemples) pour le code de l'outil officiel sont reproduits par notre implémentation :
+
+- Exemple d'une entrée aléatoire [en XML](ExempleAleatoire_entree.xml) ([aussi en JSON](ExempleAleatoire_entree.json)),
+- Exemple B7, jour 1 : [entrée en XML](ExempleB7Jour1_entree.xml) ([aussi en JSON](ExempleB7Jour1_entree.xml)), et [sortie en XML](ExempleB7Jour1_sortie.xml) ([aussi en JSON](ExempleB7Jour1_sortie.xml)),
+- Exemple B7, jour 2 : [entrée en XML](ExempleB7Jour2_entree.xml) ([aussi en JSON](ExempleB7Jour2_entree.xml)), et [sortie en XML](ExempleB7Jour2_sortie.xml) ([aussi en JSON](ExempleB7Jour2_sortie.xml)),
+- Exemple B7, jour 3 : [entrée en XML](ExempleB7Jour3_entree.xml) ([aussi en JSON](ExempleB7Jour3_entree.xml)), et [sortie en XML](ExempleB7Jour3_sortie.xml) ([aussi en JSON](ExempleB7Jour3_sortie.xml)).
+
 ---
 
 ### :scroll: Licence ? [![GitHub license](https://img.shields.io/github/license/Naereen/Parcoursup.py.svg)](https://github.com/Naereen/badges/blob/master/LICENSE)
@@ -14,7 +45,8 @@ Code lire, [sous licence MIT](https://lbesson.mit-license.org/) (file [LICENSE](
 [![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/Parcoursup.py/README.md?pixel)](https://GitHub.com/Naereen/Parcoursup.py/)
 
 [![ForTheBadge uses-badges](http://ForTheBadge.com/images/badges/uses-badges.svg)](http://ForTheBadge.com)
-[![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/)
+[![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://Gi
+tHub.com/)
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 [![ForTheBadge built-with-science](http://ForTheBadge.com/images/badges/built-with-science.svg)](https://GitHub.com/Naereen/)

@@ -39,7 +39,7 @@ class Exemple(object):
         self.groupes = []
         raise NotImplementedError
 
-    def exporte(self, contenu, entree=True, xml=False, debug=True):
+    def exporte(self, contenu, entree=True, xml=False, debug=False):
         """ Exporte l'entrée ou la sortie, dans un fichier XML ou JSON."""
         extension = 'xml' if xml else 'json'
         entree_ou_sortie = 'entree' if entree else 'sortie'
@@ -47,39 +47,43 @@ class Exemple(object):
         if debug:
             print(f"On devrait sauvegarder le contenu suivant dans le fichier '{nom_fichier}'...")  # DEBUG
             print(contenu)  # DEBUG
-            # return False
+            return False
         if path.exists(nom_fichier):
             print(f"Attention : le fichier de sortie '{nom_fichier}' existe déjà...")  # DEBUG
         with open(nom_fichier, "w") as fichier:
+            print(f"\nContenu écrit dans le fichier {nom_fichier}...")  # DEBUG
+            print(contenu)  # DEBUG
             fichier.write(contenu)
         return True
 
-    def execute(self, xml=True):
+    def execute(self):
         """ Calcule les ordre d'appels et sauvegarde les fichiers."""
         # crée l'entrée
         entree = AlgoOrdreAppel(self.groupes)
         # calcule la sortie
         entree.calculeOrdresAppels()
         # et sauvegarde les deux, en XML ou en JSON
-        if xml:
-            entreeXML = entree.exporteEntree_XML()
-            contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
-            contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
-            contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
-            self.exporte(contenu, entree=True, xml=True)
 
-            sortieXML = entree.exporteSortie_XML()
-            contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
-            contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
-            contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
-            self.exporte(contenu, entree=False, xml=True)
-        else:
-            entreeJSON = entree.exporteEntree_JSON()
-            contenu = json.dumps(entreeJSON, sort_keys=True, indent=4)
-            self.exporte(contenu, entree=True, xml=False)
-            sortieJSON = entree.exporteSortie_JSON()
-            contenu = json.dumps(sortieJSON, sort_keys=True, indent=4)
-            self.exporte(contenu, entree=False, xml=False)
+        entreeXML = entree.exporteEntree_XML()
+        contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
+        contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
+        contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
+        self.exporte(contenu, entree=True, xml=True)
+
+        sortieXML = entree.exporteSortie_XML()
+        contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
+        contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
+        contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
+        self.exporte(contenu, entree=False, xml=True)
+
+        # et maintenant le JSON
+        entreeJSON = entree.exporteEntree_JSON()
+        contenu = json.dumps(entreeJSON, sort_keys=True, indent=4)
+        self.exporte(contenu, entree=True, xml=False)
+
+        sortieJSON = entree.exporteSortie_JSON()
+        contenu = json.dumps(sortieJSON, sort_keys=True, indent=4)
+        self.exporte(contenu, entree=False, xml=False)
 
 
 # Exemples

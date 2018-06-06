@@ -3,6 +3,10 @@
 
 ## Scripts utilitaires
 
+Ce dossier contiendra des scripts utilitaires pour bidouiller des choses, si besoin.
+
+* TODO supprimer si pas besoin !
+
 ---
 
 ### :scroll: Licence ? [![GitHub license](https://img.shields.io/github/license/Naereen/Parcoursup.py.svg)](https://github.com/Naereen/badges/blob/master/LICENSE)
