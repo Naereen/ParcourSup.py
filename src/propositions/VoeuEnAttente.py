@@ -33,14 +33,14 @@ class VoeuEnAttente(object):
         self.ordreAppel = 0  #: Rang du voeu dans l'ordre d'appel
 
         # autre attributs
-        self.rangInternat = rangInternat  #: Le rang du candidat au classement internat
         self.internat = internat   #: le groupe de classement internat, qui donne accès à la position d'admission
+        self.rangInternat = rangInternat  #: Le rang du candidat au classement internat
         self._aProposer = False  # Résultat du calcul: fait-on une proposition sur ce voeu?
         self.rangListeAttente = 0  #: Rang sur liste attente
         self.rangListeAttenteInternat = 0  #: Rang sur liste attente internat
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.id}, {self.G_TA_COD}, {self.I_RH_COD})"
+        return f"{self.__class__.__name__}({self.id}, {self.groupe}, {self.avecInternat()}, {self.internat}, {self.rangInternat})"
 
     @staticmethod
     def ajouterVoeu(
@@ -51,10 +51,12 @@ class VoeuEnAttente(object):
         internat: Union[None, GroupeAffectation]=None,
         rangInternat: int=0,
     ):
+        avecInternat = (internat is not None) or avecInternat
         voeuuid = VoeuUID(G_CN_COD, groupe.id.G_TA_COD, avecInternat)
-        voeu = VoeuEnAttente(VoeuUID, groupe, internat=internat, rangInternat=rangInternat)
+        voeu = VoeuEnAttente(voeuuid, groupe, avecInternat, internat=internat, rangInternat=rangInternat)
         groupe.ajouterVoeu(voeu)
-        internat.ajouterVoeu(voeu)
+        if internat is not None:
+            internat.ajouterVoeu(voeu, groupe)
         return voeu
 
     def avecInternat(self) -> bool:
