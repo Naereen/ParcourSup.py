@@ -18,3 +18,8 @@ install:	pypenv
 # tests and runners TODO
 test:
 	python3 ./src/tests.py
+
+# Cleaner
+clean:
+	-rm -vfr __pycache__/ */__pycache__/ */*/__pycache__/ */*/*/__pycache__/ */*/*/*/__pycache__/
+	-rm -vf *.pyc */*.pyc */*/*.pyc */*/*/*.pyc */*/*/*/*.pyc */*/*/*/*.pyc

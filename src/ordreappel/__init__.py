@@ -15,7 +15,8 @@ from exemples import tous_les_exemples
 def main():
     for i, exemple in enumerate(tous_les_exemples):
         print(f"\n\n\nPour l'exemple #{i} :")  # DEBUG
-        exemple()
+        ex = exemple()
+        ex.execute()
 
 
 if __name__ == '__main__':

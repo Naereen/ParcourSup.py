@@ -9,11 +9,19 @@
 __author__ = "Lilian Besson, Bastien Trotobas and contributors"
 __version__ = "0.0.1"
 
+import json
 from os import path
+from lxml import etree
 
 from VoeuClasse import VoeuClasse
 from GroupeClassement import GroupeClassement
 from AlgoOrdreAppel import AlgoOrdreAppel
+
+
+#: En mode débug, on affiche juste le résultat
+DEBUG = True
+DEBUG = False
+
 
 # Classe d'un exemple
 
@@ -23,78 +31,52 @@ class Exemple(object):
 
     def __init__(self):
         # tous_les_exemples.append(self)  # XXX Est-ce nécessaire ?
-        self.nom = self.__name__.replace('exemple', 'exemple_')  #: Nom du fichier .xml de test.
+        self.nom = "Unknown"  #: Nom pour le fichier .xml ou .json de test.
         self.initialise()
-        assert hasattr(self, groupe), f"Erreur : cet exemple {self} devrait avoir un attribut groupe. La méthode initialise() doit être mal implémentée."  # DEBUG
+        assert hasattr(self, "groupe"), f"Erreur : cet exemple {self} devrait avoir un attribut 'groupe'. La méthode initialise() doit être mal implémentée."  # DEBUG
 
     def initialise(self):
-        pass
+        """ Construit l'attribut groupe."""
+        raise NotImplementedError
 
-    def to_string(self):
-        return ""
-
-    def exporte(self, contenu, entree=True, xml=True):
+    def exporte(self, contenu, entree=True, xml=False, debug=DEBUG):
+        """ Exporte l'entrée ou la sortie, dans un fichier XML ou JSON."""
         extension = 'xml' if xml else 'json'
         entree_ou_sortie = 'entree' if entree else 'sortie'
         nom_fichier = path.join(['..', '..', 'donnees', f'{self.nom}_{entree_ou_sortie}.{extension}'])
+        if debug:
+            print(f"On devrait sauvegarder le contenu suivant dans le fichier '{nom_fichier}'...\n")  # DEBUG
+            print(contenu)  # DEBUG
+            return False
         if path.exists(nom_fichier):
             print(f"Attention : le fichier de sortie '{nom_fichier}' existe déjà...")  # DEBUG
         with open(nom_fichier, "w") as fichier:
             fichier.write(contenu)
+        return True
 
-    def exporteEntree_XML(self, groupesClassements):
-        # créer le XML
-        root = etree.Element('algoOrdreAppelEntree')
-        groupesXML = etree.Element('groupesClassements')
-        for groupe in groupesClassements:
-            groupesXML.append(etree.Element('C_GP_COD', attrib={'text': groupe.C_GP_COD}))
-            groupesXML.append(etree.Element('tauxMinBoursiersPourcents', attrib={'text': groupe.tauxMinBoursiersPourcents}))
-            groupesXML.append(etree.Element('tauxMinResidentsPourcents', attrib={'text': groupe.tauxMinResidentsPourcents}))
-            for voeu in groupe.voeuxClasses:
-                voeuXML = etree.Element('VoeuxClasses')
-                voeuXML.append(etree.Element('typeCandidat', attrib={'text': voeu.typeCandidat}))
-                voeuXML.append(etree.Element('G_CN_COD', attrib={'text': voeu.G_CN_COD}))
-                voeuXML.append(etree.Element('rang', attrib={'text': voeu.rang}))
-                groupesXML.append(voeuXML)
-        root.append(groupesXML)
-        # et sauve en string
-        contenu = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n"""
-        contenu += etree.tostring(root, pretty_print=True)
-        print(contenu)  # DEBUG
-        # sauve le fichier
-        return self.exporte(contenu, entree=True)
-
-    def exporteSortie_XML(self, sortie):
-        # créer le XML
-        root = etree.Element('algoOrdreAppelSortie')
-        ordresXML = etree.Element('ordresAppel')
-        for numOrdre, ordre in enumerate(ordresClassements):
-            ordreXML = etree.Element('entry')
-            ordreXML.append(key)
-            key = etree.Element('key', attrib={'text': numOrdre})
-            value = etree.Element('value')
-            for voeu in ordre.voeuxClasses:
-                voeuXML = etree.Element('VoeuxClasses')
-                voeuXML.append(etree.Element('typeCandidat', attrib={'text': voeu.typeCandidat}))
-                voeuXML.append(etree.Element('G_CN_COD', attrib={'text': voeu.G_CN_COD}))
-                voeuXML.append(etree.Element('rang', attrib={'text': voeu.rang}))
-                value.append(voeuXML)
-            ordreXML.append(value)
-            ordresXML.append(ordreXML)
-        root.append(ordresXML)
-        # et sauve en string
-        contenu = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n"""
-        contenu += etree.tostring(root, pretty_print=True)
-        print(contenu)  # DEBUG
-        # sauve le fichier
-        return self.exporte(contenu, entree=False)
-
-    def execute(self, xml=True):
+    def execute(self, xml=False):
+        """ Calcule les ordre d'appels et sauvegarde les fichiers."""
+        # crée l'entrée
         liste_groupes = [self.groupe]
         entree = AlgoOrdreAppel(liste_groupes)
-        self.exporteEntree_XML(entree.groupesClassements)
+        # calcule la sortie
         entree.calculeOrdresAppels()
-        self.exporteEntree_XML(entree.ordresAppel)
+        # et sauvegarde les deux, en XML ou en JSON
+        if xml:
+            entete = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n"""
+            entreeXML = entree.exporteEntree_XML()
+            contenu = entete + etree.tostring(entreeXML, pretty_print=True)
+            self.exporte(contenu, entree=True, xml=True)
+            sortieXML = entree.exporteSortie_XML()
+            contenu = entete + etree.tostring(sortieXML, pretty_print=True)
+            self.exporte(contenu, entree=False, xml=True)
+        else:
+            entreeJSON = entree.exporteEntree_JSON()
+            contenu = json.dumps(entreeJSON, sort_keys=True, indent=4)
+            self.exporte(contenu, entree=True, xml=False)
+            sortieJSON = entree.exporteSortie_JSON()
+            contenu = json.dumps(sortieJSON, sort_keys=True, indent=4)
+            self.exporte(contenu, entree=False, xml=False)
 
 
 # Exemples
@@ -104,7 +86,8 @@ class exempleA1(Exemple):
     """ Exemple A1 avec 20% de boursiers et 0% de non-résidents."""
 
     def initialise(self):
-        groupe = GroupeClassement(0, 20, 0)
+        self.nom = 'exemple_A1'
+        groupe = GroupeClassement(1, 20, 0)
         # C1 C2 C3 C4 C5 B6 B7 C8
         for i in range(1, 5 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, False, False))
@@ -118,7 +101,8 @@ class exempleA2(Exemple):
     """ Exemple A2 avec 2% de boursiers et 0% de non-résidents."""
 
     def initialise(self):
-        groupe = GroupeClassement(0, 2, 0)
+        self.nom = 'exemple_A2'
+        groupe = GroupeClassement(1, 2, 0)
         # C1 C2 C3 C4 C5 B6 C7 C8
         for i in range(1, 5 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, False, False))
@@ -132,7 +116,8 @@ class exempleA3(Exemple):
     """ Exemple A3 avec 10% de boursiers et 0% de non-résidents."""
 
     def initialise(self):
-        groupe = GroupeClassement(0, 10, 0)
+        self.nom = 'exemple_A3'
+        groupe = GroupeClassement(1, 10, 0)
         # C1 C2 C3 ...C900 B901 B902 B903 ...B1000
         for i in range(1, 900 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, False, False))
@@ -145,7 +130,8 @@ class exempleA4(Exemple):
     """ Exemple A4 avec 10% de boursiers et 0% de non-résidents."""
 
     def initialise(self):
-        groupe = GroupeClassement(0, 10, 0)
+        self.nom = 'exemple_A4'
+        groupe = GroupeClassement(1, 10, 0)
         # C1 B2 B3 C4 C5 C6 C7 B8 C9 C10
         groupe.ajouterVoeu(VoeuClasse(1, 1, False, False))
         groupe.ajouterVoeu(VoeuClasse(2, 2, True, False))
@@ -164,7 +150,8 @@ class exempleA5(Exemple):
     """ Exemple A5 avec 10% de boursiers et 95% de non-résidents."""
 
     def initialise(self):
-        groupe = GroupeClassement(0, 10, 95)
+        self.nom = 'exemple_A5'
+        groupe = GroupeClassement(1, 10, 95)
         # (BR)1(BR)2R3 . . . R19C20
         # (BR)21(BR)22R23 . . . R39C40
         # (BR)41R42 . . . R50
@@ -173,10 +160,10 @@ class exempleA5(Exemple):
         # B71R72 . . . R80
         # B81R82 . . . R90
         # B91R92 . . . R100.
-        for i in range(0, 1 + 1):
+        for i in range(1, 2 + 1):
             groupe.ajouterVoeu(VoeuClasse(20 * i + 1, 20 * i + 1, True, True))
             groupe.ajouterVoeu(VoeuClasse(20 * i + 2, 20 * i + 2, True, True))
-            for j in range(3, 19 + 1)
+            for j in range(3, 19 + 1):
                 groupe.ajouterVoeu(VoeuClasse(20 * i + j, 20 * i + j, False, True))
             groupe.ajouterVoeu(VoeuClasse(20 * i + 20, 20 * i + 20, False, False))
 
@@ -195,15 +182,20 @@ class exempleA6(Exemple):
     """ Exemple A6 avec 10% de boursiers et 95% de non-résidents."""
 
     def initialise(self):
-        groupe = GroupeClassement(0, 10, 95)
+        self.nom = 'exemple_A6'
+        groupe = GroupeClassement(1, 10, 95)
         # R1 ... R100
         for i in range(1, 100 + 1):
-            groupe.ajouterVoeu(new VoeuClasse(i, i, False, True))
+            groupe.ajouterVoeu(VoeuClasse(i, i, False, True))
         # B101 ... B111
         for i in range(101, 110 + 1):
-            groupe.ajouterVoeu(new VoeuClasse(i, i, True, False))
+            groupe.ajouterVoeu(VoeuClasse(i, i, True, False))
         self.groupe = groupe  #: GroupeClassement de cet exemple.
 
 
 #: Liste de tous les exemples.
-tous_les_exemples = [value for name, value in globals() if name.startswith('exemple')]
+tous_les_exemples = [
+    value
+    for name, value in globals().items()
+    if name.startswith('exemple')
+]

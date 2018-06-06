@@ -25,11 +25,11 @@ class GroupeClassement(object):
         assert C_GP_COD > 0, f"Erreur : {self.__class__.__name__} le paramètre C_GP_COD doit être > 0, et pas {C_GP_COD}..."  # DEBUG
         self.C_GP_COD = C_GP_COD  #: C_GP_COD
 
-        assert 0 <= tauxMinBoursiersPourcents <= 1, f"Erreur : {self.__class__.__name__} le paramètre tauxMinBoursiersPourcents doit être 0<=...<=1 , et pas {tauxMinBoursiersPourcents}..."  # DEBUG
+        assert 0 <= tauxMinBoursiersPourcents <= 100, f"Erreur : {self.__class__.__name__} le paramètre tauxMinBoursiersPourcents doit être 0<=...<=100 , et pas {tauxMinBoursiersPourcents}..."  # DEBUG
         assert isinstance(tauxMinBoursiersPourcents, int), f"Erreur : {self.__class__.__name__} le paramètre tauxMinBoursiersPourcents doit être entier, et pas {tauxMinBoursiersPourcents}..."  # DEBUG
         self.tauxMinBoursiersPourcents = tauxMinBoursiersPourcents  #: tauxMinBoursiersPourcents
 
-        assert 0 <= tauxMinBoursiersPourcents <= 1, f"Erreur : {self.__class__.__name__} le paramètre tauxMinBoursiersPourcents doit être 0<=...<=1 , et pas {tauxMinBoursiersPourcents}..."  # DEBUG
+        assert 0 <= tauxMinBoursiersPourcents <= 100, f"Erreur : {self.__class__.__name__} le paramètre tauxMinBoursiersPourcents doit être 0<=...<=100 , et pas {tauxMinBoursiersPourcents}..."  # DEBUG
         assert isinstance(tauxMinBoursiersPourcents, int), f"Erreur : {self.__class__.__name__} le paramètre tauxMinBoursiersPourcents doit être entier, et pas {tauxMinBoursiersPourcents}..."  # DEBUG
         self.tauxMinResidentsPourcents = tauxMinResidentsPourcents  #: tauxMinResidentsPourcents
         self.voeuxClasses = []  #: La liste des vœux du groupe de classement
