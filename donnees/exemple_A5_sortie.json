@@ -1,0 +1,511 @@
+{
+    "algoOrdreAppelSortie": {
+        "ordresAppel": [
+            {
+                "key": 0,
+                "voeux": [
+                    {
+                        "G_CN_COD": 1,
+                        "rang": 1,
+                        "typeCandidat": "BoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 2,
+                        "rang": 2,
+                        "typeCandidat": "BoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 3,
+                        "rang": 3,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 4,
+                        "rang": 4,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 5,
+                        "rang": 5,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 6,
+                        "rang": 6,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 7,
+                        "rang": 7,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 8,
+                        "rang": 8,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 9,
+                        "rang": 9,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 10,
+                        "rang": 10,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 11,
+                        "rang": 11,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 12,
+                        "rang": 12,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 13,
+                        "rang": 13,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 14,
+                        "rang": 14,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 15,
+                        "rang": 15,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 16,
+                        "rang": 16,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 17,
+                        "rang": 17,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 18,
+                        "rang": 18,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 19,
+                        "rang": 19,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 20,
+                        "rang": 20,
+                        "typeCandidat": "NonBoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 21,
+                        "rang": 21,
+                        "typeCandidat": "BoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 22,
+                        "rang": 22,
+                        "typeCandidat": "BoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 23,
+                        "rang": 23,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 24,
+                        "rang": 24,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 25,
+                        "rang": 25,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 26,
+                        "rang": 26,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 27,
+                        "rang": 27,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 28,
+                        "rang": 28,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 29,
+                        "rang": 29,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 30,
+                        "rang": 30,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 31,
+                        "rang": 31,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 32,
+                        "rang": 32,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 33,
+                        "rang": 33,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 34,
+                        "rang": 34,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 35,
+                        "rang": 35,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 36,
+                        "rang": 36,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 37,
+                        "rang": 37,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 38,
+                        "rang": 38,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 39,
+                        "rang": 39,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 40,
+                        "rang": 40,
+                        "typeCandidat": "NonBoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 41,
+                        "rang": 41,
+                        "typeCandidat": "BoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 42,
+                        "rang": 42,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 43,
+                        "rang": 43,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 44,
+                        "rang": 44,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 45,
+                        "rang": 45,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 46,
+                        "rang": 46,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 47,
+                        "rang": 47,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 48,
+                        "rang": 48,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 49,
+                        "rang": 49,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 50,
+                        "rang": 50,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 51,
+                        "rang": 51,
+                        "typeCandidat": "BoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 52,
+                        "rang": 52,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 53,
+                        "rang": 53,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 54,
+                        "rang": 54,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 55,
+                        "rang": 55,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 56,
+                        "rang": 56,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 57,
+                        "rang": 57,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 58,
+                        "rang": 58,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 59,
+                        "rang": 59,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 60,
+                        "rang": 60,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 61,
+                        "rang": 61,
+                        "typeCandidat": "BoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 62,
+                        "rang": 62,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 63,
+                        "rang": 63,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 64,
+                        "rang": 64,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 65,
+                        "rang": 65,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 66,
+                        "rang": 66,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 67,
+                        "rang": 67,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 68,
+                        "rang": 68,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 69,
+                        "rang": 69,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 70,
+                        "rang": 70,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 71,
+                        "rang": 71,
+                        "typeCandidat": "BoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 72,
+                        "rang": 72,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 73,
+                        "rang": 73,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 74,
+                        "rang": 74,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 75,
+                        "rang": 75,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 76,
+                        "rang": 76,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 77,
+                        "rang": 77,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 78,
+                        "rang": 78,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 79,
+                        "rang": 79,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 80,
+                        "rang": 80,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 81,
+                        "rang": 81,
+                        "typeCandidat": "BoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 82,
+                        "rang": 82,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 83,
+                        "rang": 83,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 84,
+                        "rang": 84,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 85,
+                        "rang": 85,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 86,
+                        "rang": 86,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 87,
+                        "rang": 87,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 88,
+                        "rang": 88,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 89,
+                        "rang": 89,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 90,
+                        "rang": 90,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 91,
+                        "rang": 91,
+                        "typeCandidat": "BoursierNonResident"
+                    },
+                    {
+                        "G_CN_COD": 92,
+                        "rang": 92,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 93,
+                        "rang": 93,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 94,
+                        "rang": 94,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 95,
+                        "rang": 95,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 96,
+                        "rang": 96,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 97,
+                        "rang": 97,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 98,
+                        "rang": 98,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 99,
+                        "rang": 99,
+                        "typeCandidat": "NonBoursierResident"
+                    },
+                    {
+                        "G_CN_COD": 100,
+                        "rang": 100,
+                        "typeCandidat": "NonBoursierResident"
+                    }
+                ]
+            }
+        ]
+    }
+}

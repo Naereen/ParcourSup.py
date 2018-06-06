@@ -9,12 +9,20 @@ Ce dossier contient des données **synthétiques** et de tests.
 
 ## Tests
 
+> [Ce petit script Bash](compare_avec_donnees_references.sh) permet de vérifier que les fichiers XML produit par notre implémentation sont identiques à ceux [des exemples fournis](https://framagit.org/parcoursup/algorithmes-de-parcoursup/tree/master/doc/exemples).
+
+```bash
+$ ./compare_avec_donnees_references.sh
+- Checking exemple_A1_entree.xml ...
+  Perfectly matching algorithmes-de-parcoursup.git/doc/exemples/exemple_A1_entree.xml
+...  # more
+- Checking exemple_A6_sortie.xml ...
+  Perfectly matching algorithmes-de-parcoursup.git/doc/exemples/exemple_A6_sortie.xml
+```
+
 ### Ordre d'appels
 
 Les 6 fichiers de tests pour [l'algorithme de calcul d'ordre d'appel](src/ordreappel/) qui [sont fournis](https://framagit.org/parcoursup/algorithmes-de-parcoursup/tree/master/doc/exemples) pour le code de l'outil officiel sont reproduits par notre implémentation :
-
-* TODO corriger algorithme pour fonctionner sur chaque exemple !
-* TODO corriger algorithme pour même sortie sur chaque exemple !
 
 - Exemple A1 : [entrée en XML](exemple_A1_entree.xml) ([aussi en JSON](exemple_A1_entree.json)), et [sortie en XML](exemple_A1_sortie.xml) ([aussi en JSON](exemple_A1_sortie.json)),
 - Exemple A2 : [entrée en XML](exemple_A2_entree.xml) ([aussi en JSON](exemple_A2_entree.json)), et [sortie en XML](exemple_A2_sortie.xml) ([aussi en JSON](exemple_A2_sortie.json)),

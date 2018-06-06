@@ -88,6 +88,7 @@ class GroupeClassement(object):
                 nbResidentsTotal += 1
                 log(f"    On compte un-e résident-e en plus, c'est le {nbResidentsTotal}ème...")
 
+        nbVoeuxClasses     = len(self.voeuxClasses)
         nbAppeles          = 0
         nbBoursiersAppeles = 0
         nbResidentsAppeles = 0
@@ -97,16 +98,18 @@ class GroupeClassement(object):
         ordreAppel = OrdreAppel()
 
         log(f"\n2. Début de la boucle while, on remplit l'ordre d'appel...")
-        while len(ordreAppel) < len(self.voeuxClasses):
-            log(f"\n  L'ordre d'appel contient {len(ordreAppel)} éléments et il y a {len(self.voeuxClasses)} vœux à classer.")
+        while len(ordreAppel) < nbVoeuxClasses:
+            log(f"\n  L'ordre d'appel contient {len(ordreAppel)} éléments et il y a {nbVoeuxClasses} vœux à classer.")
             # on calcule lequel ou lesquels des critères boursiers et résidents
             # contraignent le choix du prochain candidat dans l'ordre d'appel
 
-            contrainteTauxBoursier = (nbBoursiersAppeles < nbBoursiersTotal) and ((nbBoursiersAppeles * 100) < self.tauxMinBoursiersPourcents * (1 + nbAppeles))
+            contrainteTauxBoursier = (nbBoursiersAppeles < nbBoursiersTotal) and ((nbBoursiersAppeles * 100) < self.tauxMinBoursiersPourcents * (nbAppeles + 1))
             log(f"  La contrainte sur le taux de boursier-es est {contrainteTauxBoursier}...")
+            log(f"      Car il y a pour l'instant {nbBoursiersAppeles} boursier-es appelé-es sur un total de {nbBoursiersTotal}, et ce n'est pas assez pour dépasser le taux de {self.tauxMinBoursiersPourcents}...")
 
-            contrainteTauxResident = (nbResidentsAppeles < nbResidentsTotal) and ((nbResidentsAppeles * 100) < self.tauxMinResidentsPourcents * (1 + nbAppeles))
+            contrainteTauxResident = (nbResidentsAppeles < nbResidentsTotal) and ((nbResidentsAppeles * 100) < self.tauxMinResidentsPourcents * (nbAppeles + 1))
             log(f"  La contrainte sur le taux de résident-es est {contrainteTauxResident}...")
+            log(f"      Car il y a pour l'instant {nbResidentsAppeles} résident-es appelé-es sur un total de {nbResidentsTotal}, et ce n'est pas assez pour dépasser le taux de {self.tauxMinResidentsPourcents}...")
 
             # on fait la liste des voeux satisfaisant
             # les deux contraintes à la fois, ordonnée par rang de classement
@@ -138,12 +141,11 @@ class GroupeClassement(object):
                 # donc il reste au moins un boursier non résident
                 assert contrainteTauxBoursier and contrainteTauxResident, "Erreur : ce cas où la file de priorité est vide mais les deux contraintes ne sont pas vérifiées ne devrait pas arriver."  # DEBUG
 
-                assert filesAttente[TypeCandidat.BoursierResident], "Erreur : ce cas où la file de priorité est vide mais il reste des candidats-es boursiers-ères et résident-es ne devrait pas arriver."  # DEBUG
-                assert not filesAttente[TypeCandidat.BoursierNonResident], "Erreur : ce cas où la file de priorité est vide mais il ne reste pas de candidats-es boursiers-ères et non résident-es ne devrait pas arriver."  # DEBUG
+                assert not filesAttente[TypeCandidat.BoursierResident], "Erreur : ce cas où la file de priorité est vide mais il reste des candidats-es boursiers-ères et résident-es ne devrait pas arriver."  # DEBUG
+                assert filesAttente[TypeCandidat.BoursierNonResident], "Erreur : ce cas où la file de priorité est vide mais il ne reste pas de candidats-es boursiers-ères et non résident-es ne devrait pas arriver."  # DEBUG
 
                 CandidatsBoursierNonResident = filesAttente[TypeCandidat.BoursierNonResident]
-                meilleur = CandidatsBoursierNonResident.get()
-                CandidatsBoursierNonResident.put(meilleur)  # XXX on ne le supprime pas
+                meilleur = max(CandidatsBoursierNonResident)
                 log(f"  La liste des éligibles est pas vide, donc le-la meilleur-e est le-la meilleur-e de la liste des boursier-es non résident-es = {meilleur}")
 
             # suppression du candidat choisi de sa file d'attente

@@ -93,7 +93,7 @@ class Exemple(object):
 
 
 class exempleA1(Exemple):
-    """ Exemple A1 avec 20% de boursiers et 0% de non-résidents."""
+    """ Exemple A1 avec une contrainte de 20% de boursiers-ères et de 0% de non-résidents-es."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A1'
@@ -108,7 +108,7 @@ class exempleA1(Exemple):
 
 
 class exempleA2(Exemple):
-    """ Exemple A2 avec 2% de boursiers et 0% de non-résidents."""
+    """ Exemple A2 avec une contrainte de 2% de boursiers-ères et de 0% de non-résidents-es."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A2'
@@ -123,7 +123,7 @@ class exempleA2(Exemple):
 
 
 class exempleA3(Exemple):
-    """ Exemple A3 avec 10% de boursiers et 0% de non-résidents."""
+    """ Exemple A3 avec une contrainte de 10% de boursiers-ères et de 0% de non-résidents-es."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A3'
@@ -137,7 +137,7 @@ class exempleA3(Exemple):
 
 
 class exempleA4(Exemple):
-    """ Exemple A4 avec 10% de boursiers et 0% de non-résidents."""
+    """ Exemple A4 avec une contrainte de 10% de boursiers-ères et de 0% de non-résidents-es."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A4'
@@ -157,7 +157,7 @@ class exempleA4(Exemple):
 
 
 class exempleA5(Exemple):
-    """ Exemple A5 avec 10% de boursiers et 95% de non-résidents."""
+    """ Exemple A5 avec une contrainte de 10% de boursiers-ères et de 95% de non-résidents-es."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A5'
@@ -170,7 +170,7 @@ class exempleA5(Exemple):
         # B71R72 . . . R80
         # B81R82 . . . R90
         # B91R92 . . . R100.
-        for i in range(1, 2 + 1):
+        for i in range(0, 1 + 1):
             groupe.ajouterVoeu(VoeuClasse(20 * i + 1, 20 * i + 1, True, True))
             groupe.ajouterVoeu(VoeuClasse(20 * i + 2, 20 * i + 2, True, True))
             for j in range(3, 19 + 1):
@@ -189,7 +189,7 @@ class exempleA5(Exemple):
 
 
 class exempleA6(Exemple):
-    """ Exemple A6 avec 10% de boursiers et 95% de non-résidents."""
+    """ Exemple A6 avec une contrainte de 10% de boursiers-ères et de 95% de non-résidents-es."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A6'
@@ -198,7 +198,7 @@ class exempleA6(Exemple):
         for i in range(1, 100 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, False, True))
         # B101 ... B111
-        for i in range(101, 110 + 1):
+        for i in range(101, 111 + 1):
             groupe.ajouterVoeu(VoeuClasse(i, i, True, False))
         self.groupes = [groupe]  #: GroupeClassement de cet exemple.
 
