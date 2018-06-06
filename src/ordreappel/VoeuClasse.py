@@ -9,6 +9,7 @@
 __author__ = "Lilian Besson, Bastien Trotobas and contributors"
 __version__ = "0.0.1"
 
+from functools import total_ordering
 from enum import Enum
 
 
@@ -19,6 +20,10 @@ TypeCandidat = Enum('TypeCandidat', [
     'NonBoursierResident',
     'NonBoursierNonResident',
 ])
+
+
+def typeCandidat_vers_str(typeCandidat: TypeCandidat) -> str:
+    return str(typeCandidat).replace('TypeCandidat.', '')
 
 
 def typeCandidat_si_Boursier_etou_Resident(
@@ -37,6 +42,7 @@ def typeCandidat_si_Boursier_etou_Resident(
     raise ValueError(f"Impossible d'avoir ce cas là dans typeCandidat_si_Boursier_etou_Resident({estBoursier}, {estResident})")
 
 
+@total_ordering
 class VoeuClasse(object):
     """ Classe représentant un vœu d'un candidat."""
     def __init__(self,
@@ -62,6 +68,12 @@ class VoeuClasse(object):
         """ Pour savoir si le candidat est résident-e."""
         return self.typeCandidat == TypeCandidat.BoursierResident or self.typeCandidat == TypeCandidat.NonBoursierResident
 
+    # --- Méthodes magiques
+
     def __lt__(self, voeu) -> bool:
         """ Comparateur permettant de trier les vœux par ordre du groupe de classement."""
-        return self.rang - voeu.rang
+        return self.rang < voeu.rang
+
+    def __eq__(self, voeu) -> bool:
+        """ Comparateur permettant de trier les vœux par ordre du groupe de classement."""
+        return (self.rang == voeu.rang) and (self.G_CN_COD == voeu.G_CN_COD) and (self.typeCandidat == voeu.typeCandidat)

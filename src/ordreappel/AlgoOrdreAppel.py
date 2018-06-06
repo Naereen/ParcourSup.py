@@ -9,7 +9,12 @@
 __author__ = "Lilian Besson, Bastien Trotobas and contributors"
 __version__ = "0.0.1"
 
-from lxml.etree import Element
+try:
+    import xml.etree.cElementTree as ET
+except ImportError:
+    import xml.etree.ElementTree as ET
+
+from VoeuClasse import typeCandidat_vers_str
 
 
 class AlgoOrdreAppel(object):
@@ -35,17 +40,17 @@ class AlgoOrdreAppel(object):
 
     def exporteEntree_XML(self):
         """ Converti l'entrée en un arbre XML."""
-        racine = Element('algoOrdreAppelEntree')
-        groupesXML = Element('groupesClassements')
+        racine = ET.Element('algoOrdreAppelEntree')
+        groupesXML = ET.Element('groupesClassements')
         for groupe in self.groupesClassements:
-            groupesXML.append(Element('C_GP_COD', attrib={'text': groupe.C_GP_COD}))
-            groupesXML.append(Element('tauxMinBoursiersPourcents', attrib={'text': groupe.tauxMinBoursiersPourcents}))
-            groupesXML.append(Element('tauxMinResidentsPourcents', attrib={'text': groupe.tauxMinResidentsPourcents}))
+            ET.SubElement(groupesXML, 'C_GP_COD').text = str(groupe.C_GP_COD)
+            ET.SubElement(groupesXML, 'tauxMinBoursiersPourcents').text = str(groupe.tauxMinBoursiersPourcents)
+            ET.SubElement(groupesXML, 'tauxMinResidentsPourcents').text = str(groupe.tauxMinResidentsPourcents)
             for voeu in groupe.voeuxClasses:
-                voeuXML = Element('voeuxClasses')
-                voeuXML.append(Element('typeCandidat', attrib={'text': voeu.typeCandidat}))
-                voeuXML.append(Element('G_CN_COD', attrib={'text': voeu.G_CN_COD}))
-                voeuXML.append(Element('rang', attrib={'text': voeu.rang}))
+                voeuXML = ET.Element('voeuxClasses')
+                ET.SubElement(voeuXML, 'typeCandidat').text = typeCandidat_vers_str(voeu.typeCandidat)
+                ET.SubElement(voeuXML, 'G_CN_COD').text = str(voeu.G_CN_COD)
+                ET.SubElement(voeuXML, 'rang').text = str(voeu.rang)
                 groupesXML.append(voeuXML)
         racine.append(groupesXML)
         return racine
@@ -61,7 +66,7 @@ class AlgoOrdreAppel(object):
                         'tauxMinResidentsPourcents': groupe.tauxMinResidentsPourcents,
                         'voeuxClasses': [
                             {
-                                'typeCandidat': voeu.typeCandidat,
+                                'typeCandidat': typeCandidat_vers_str(voeu.typeCandidat),
                                 'G_CN_COD': voeu.G_CN_COD,
                                 'rang': voeu.rang,
                             }
@@ -76,18 +81,19 @@ class AlgoOrdreAppel(object):
 
     def exporteSortie_XML(self):
         """ Converti les résultats de la sortie en un arbre XML."""
-        racine = Element('algoOrdreAppelSortie')
-        ordresXML = Element('ordresAppel')
-        for numOrdre, ordre in enumerate(self.ordresAppel):
-            ordreXML = Element('entry')
-            key = Element('key', attrib={'text': numOrdre})
+        racine = ET.Element('algoOrdreAppelSortie')
+        ordresXML = ET.Element('ordresAppel')
+        for C_GP_COD, ordre in self.ordresAppel.items():
+            ordreXML = ET.Element('entry')
+            key = ET.Element('key')
+            key.text = str(C_GP_COD)
             ordreXML.append(key)
-            value = Element('value')
-            for voeu in ordre.voeuxClasses:
-                voeuXML = Element('voeux')
-                voeuXML.append(Element('typeCandidat', attrib={'text': voeu.typeCandidat}))
-                voeuXML.append(Element('G_CN_COD', attrib={'text': voeu.G_CN_COD}))
-                voeuXML.append(Element('rang', attrib={'text': voeu.rang}))
+            value = ET.Element('value')
+            for voeu in ordre:
+                voeuXML = ET.Element('voeux')
+                ET.SubElement(voeuXML, 'typeCandidat').text = typeCandidat_vers_str(voeu.typeCandidat)
+                ET.SubElement(voeuXML, 'G_CN_COD').text = str(voeu.G_CN_COD)
+                ET.SubElement(voeuXML, 'rang').text = str(voeu.rang)
                 value.append(voeuXML)
             ordreXML.append(value)
             ordresXML.append(ordreXML)
@@ -98,17 +104,20 @@ class AlgoOrdreAppel(object):
         """ Converti les résultats de la sortie en un dictionnaire."""
         racine = {
             'algoOrdreAppelSortie': {
-                'ordresAppel': {
-                    'voeux': [
-                        {
-                            'typeCandidat': voeu.typeCandidat,
-                            'G_CN_COD': voeu.G_CN_COD,
-                            'rang': voeu.rang,
-                        }
-                        for voeu in groupe.voeuxClasses
-                    ]
-                    for groupe in self.groupesClassements
-                }
+                'ordresAppel': [
+                    {
+                        'key': C_GP_COD,
+                        'voeux': [
+                            {
+                                'typeCandidat': typeCandidat_vers_str(voeu.typeCandidat),
+                                'G_CN_COD': voeu.G_CN_COD,
+                                'rang': voeu.rang,
+                            }
+                            for voeu in ordre
+                        ]
+                    }
+                    for C_GP_COD, ordre in self.ordresAppel.items()
+                ]
             }
         }
         return racine

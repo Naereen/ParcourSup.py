@@ -15,9 +15,10 @@ pypenv:
 install:	pypenv
 	source env/bin/activate ; pip install -r requirements.txt
 
-# tests and runners TODO
-test:
-	python3 ./src/tests.py
+# tests and runners
+
+test_ordreappel:
+	python3 ./src/ordreappel/__init__.py
 
 # Cleaner
 clean:

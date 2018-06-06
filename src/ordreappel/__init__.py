@@ -12,13 +12,19 @@ __version__ = "0.0.1"
 from exemples import tous_les_exemples
 
 
-def main():
+def main(numeroExemple=None):
     for i, exemple in enumerate(tous_les_exemples):
+        if numeroExemple is not None and i != numeroExemple:
+            continue
         print(f"\n\n\nPour l'exemple #{i} :")  # DEBUG
         ex = exemple()
         ex.execute()
+        if numeroExemple is not None and i == numeroExemple:
+            return
 
 
 if __name__ == '__main__':
-    # lance tous les tests
-    main()
+    from sys import argv
+    # lance tous les tests ou un seul
+    numeroExemple = int(argv[1]) if len(argv) > 1 else None
+    main(numeroExemple=numeroExemple - 1)

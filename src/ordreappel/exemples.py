@@ -11,15 +11,16 @@ __version__ = "0.0.1"
 
 import json
 from os import path
-from lxml import etree
+import xml.etree.ElementTree as ET
+import xml.dom.minidom as DOM
 
 from VoeuClasse import VoeuClasse
 from GroupeClassement import GroupeClassement
 from AlgoOrdreAppel import AlgoOrdreAppel
 
 
-#: En mode débug, on affiche juste le résultat
-DEBUG = True
+#: En mode débug, on affiche juste le résultat.
+# DEBUG = True
 DEBUG = False
 
 
@@ -27,10 +28,8 @@ DEBUG = False
 
 class Exemple(object):
     """ Un exemple."""
-    # tous_les_exemples = []  # XXX Est-ce nécessaire ?
 
     def __init__(self):
-        # tous_les_exemples.append(self)  # XXX Est-ce nécessaire ?
         self.nom = "Unknown"  #: Nom pour le fichier .xml ou .json de test.
         self.initialise()
         assert hasattr(self, "groupe"), f"Erreur : cet exemple {self} devrait avoir un attribut 'groupe'. La méthode initialise() doit être mal implémentée."  # DEBUG
@@ -43,9 +42,9 @@ class Exemple(object):
         """ Exporte l'entrée ou la sortie, dans un fichier XML ou JSON."""
         extension = 'xml' if xml else 'json'
         entree_ou_sortie = 'entree' if entree else 'sortie'
-        nom_fichier = path.join(['..', '..', 'donnees', f'{self.nom}_{entree_ou_sortie}.{extension}'])
+        nom_fichier = path.join('..', '..', 'donnees', f'{self.nom}_{entree_ou_sortie}.{extension}')
         if debug:
-            print(f"On devrait sauvegarder le contenu suivant dans le fichier '{nom_fichier}'...\n")  # DEBUG
+            print(f"On devrait sauvegarder le contenu suivant dans le fichier '{nom_fichier}'...")  # DEBUG
             print(contenu)  # DEBUG
             return False
         if path.exists(nom_fichier):
@@ -54,7 +53,7 @@ class Exemple(object):
             fichier.write(contenu)
         return True
 
-    def execute(self, xml=False):
+    def execute(self, xml=True):
         """ Calcule les ordre d'appels et sauvegarde les fichiers."""
         # crée l'entrée
         liste_groupes = [self.groupe]
@@ -64,12 +63,18 @@ class Exemple(object):
         # et sauvegarde les deux, en XML ou en JSON
         if xml:
             entete = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n"""
+
             entreeXML = entree.exporteEntree_XML()
-            contenu = entete + etree.tostring(entreeXML, pretty_print=True)
-            self.exporte(contenu, entree=True, xml=True)
+            contenu = ET.tostring(entreeXML, encoding='unicode', method='html')
+            contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
+            print("contenu =\n", contenu)
+            self.exporte(entete + contenu, entree=True, xml=True)
+
             sortieXML = entree.exporteSortie_XML()
-            contenu = entete + etree.tostring(sortieXML, pretty_print=True)
-            self.exporte(contenu, entree=False, xml=True)
+            contenu = ET.tostring(sortieXML, encoding='unicode', method='html')
+            contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
+            print("contenu =\n", contenu)
+            self.exporte(entete + contenu, entree=False, xml=True)
         else:
             entreeJSON = entree.exporteEntree_JSON()
             contenu = json.dumps(entreeJSON, sort_keys=True, indent=4)
@@ -195,7 +200,10 @@ class exempleA6(Exemple):
 
 #: Liste de tous les exemples.
 tous_les_exemples = [
-    value
-    for name, value in globals().items()
-    if name.startswith('exemple')
+    exempleA1,
+    exempleA2,
+    exempleA3,
+    exempleA4,
+    exempleA5,
+    exempleA6,
 ]

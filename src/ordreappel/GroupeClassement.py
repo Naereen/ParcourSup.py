@@ -9,7 +9,13 @@
 __author__ = "Lilian Besson, Bastien Trotobas and contributors"
 __version__ = "0.0.1"
 
+
+#: En mode débug, on affiche juste le résultat.
+DEBUG = True
+# DEBUG = False
+
 from queue import Queue, PriorityQueue
+# from collections import deque
 
 from VoeuClasse import VoeuClasse, TypeCandidat
 from OrdreAppel import OrdreAppel
@@ -41,12 +47,19 @@ class GroupeClassement(object):
         """ Ajouter ce voeu à la liste actuelle."""
         self.voeuxClasses.append(voeu)
 
-    def calculerOrdreAppel(self) -> OrdreAppel:
+    def calculerOrdreAppel(self, verbeux: bool= DEBUG) -> OrdreAppel:
         """ Calcule de l'ordre d'appel."""
+        def log(*args, **kwargs):
+            if verbeux:
+                print(*args, **kwargs)
+
+        log(f"\n0. On commence à calculer les ordres d'appel pour cette liste de vœux qui contient {len(self.voeuxClasses)} voeux.")
+
+        log(f"  On crée des listes de vœux pour chaque types de candidats ({list(TypeCandidat)}).")
         # on crée autant de listes de vœux que de types de candidats,
         # triées par ordre de classement
         filesAttente = {
-            t: Queue()
+            t: []
             for t in list(TypeCandidat)
         }
 
@@ -58,15 +71,21 @@ class GroupeClassement(object):
         nbResidentsTotal = 0
 
         # on trie les vœux par classement
+        log("\n1. On trie les vœux par classement...")
+        log(f"  Avant trie : {self.voeuxClasses}...")
         self.voeuxClasses.sort()
+        log(f"  Après trie : {self.voeuxClasses}...")
 
-        for voeu in self.voeuxClasses:
+        for i, voeu in enumerate(self.voeuxClasses):
             # on ajoute le voeu à la fin de la file (FIFO) correspondante
-            filesAttente[voeu.typeCandidat].put(voeu)
+            filesAttente[voeu.typeCandidat].append(voeu)
+            log(f"  On ajoute le voeu {voeu} à la file du type {voeu.typeCandidat}, c'est le {i+1}ème à être ajouté.")
             if voeu.estBoursier():
                 nbBoursiersTotal += 1
+                log(f"    On compte un-e boursier-e en plus, c'est le {nbBoursiersTotal}ème...")
             if voeu.estResident():
                 nbResidentsTotal += 1
+                log(f"    On compte un-e résident-e en plus, c'est le {nbResidentsTotal}ème...")
 
         nbAppeles          = 0
         nbBoursiersAppeles = 0
@@ -76,22 +95,30 @@ class GroupeClassement(object):
         # dans l'ordre d'appel
         ordreAppel = OrdreAppel()
 
+        log(f"\n2. Début de la boucle while, on remplit l'ordre d'appel...")
         while len(ordreAppel) < len(self.voeuxClasses):
+            log(f"\n  L'ordre d'appel contient {len(ordreAppel)} éléments et il y a {len(self.voeuxClasses)} vœux à classer.")
             # on calcule lequel ou lesquels des critères boursiers et résidents
             # contraignent le choix du prochain candidat dans l'ordre d'appel
 
             contrainteTauxBoursier = (nbBoursiersAppeles < nbBoursiersTotal) and ((nbBoursiersAppeles * 100) < self.tauxMinBoursiersPourcents * (1 + nbAppeles))
+            log(f"  La contrainte sur le taux de boursier-es est {contrainteTauxBoursier}...")
 
             contrainteTauxResident = (nbResidentsAppeles < nbResidentsTotal) and ((nbResidentsAppeles * 100) < self.tauxMinResidentsPourcents * (1 + nbAppeles))
+            log(f"  La contrainte sur le taux de résident-es est {contrainteTauxResident}...")
 
             # on fait la liste des voeux satisfaisant
             # les deux contraintes à la fois, ordonnée par rang de classement
+            if verbeux: liste_eligibles = []
             eligibles = PriorityQueue()
             for queue in filesAttente.values():
-                if not queue.empty():
-                    voeu = queue.get()
+                if queue:
+                    voeu = queue[-1]  # le dernier
                     if (voeu.estBoursier() or not contrainteTauxBoursier) and (voeu.estResident() or not contrainteTauxResident):
                         eligibles.put(voeu)
+                        if verbeux: liste_eligibles.append(voeu)
+            log(f"  Les vœux satisfaisant les deux contraintes à la fois, ordonnés par rang de classement sont :\n{liste_eligibles}")
+            if verbeux: del liste_eligibles  # juste pour l'affichier
 
             # stocke le meilleur candidat à appeler tout en respectant
             # les deux contraintes si possible
@@ -100,6 +127,7 @@ class GroupeClassement(object):
 
             if not eligibles.empty():
                 meilleur = eligibles.get()
+                log(f"  La liste des éligibles n'est pas vide, donc le-la meilleur-e est le-la meilleur-e de cette liste = {meilleur}")
             else:
                 # la liste peut être vide dans le cas où les deux contraintes
                 # ne peuvent être satisfaites à la fois.
@@ -109,24 +137,33 @@ class GroupeClassement(object):
                 # donc il reste au moins un boursier non résident
                 assert contrainteTauxBoursier and contrainteTauxResident, "Erreur : ce cas où la file de priorité est vide mais les deux contraintes ne sont pas vérifiées ne devrait pas arriver."  # DEBUG
 
-                assert filesAttente[TypeCandidat.BoursierResident].empty(), "Erreur : ce cas où la file de priorité est vide mais il reste des candidats-es boursiers-ères et résident-es ne devrait pas arriver."  # DEBUG
-                assert not filesAttente[TypeCandidat.BoursierNonResident].empty(), "Erreur : ce cas où la file de priorité est vide mais il ne reste pas de candidats-es boursiers-ères et non résident-es ne devrait pas arriver."  # DEBUG
+                assert filesAttente[TypeCandidat.BoursierResident], "Erreur : ce cas où la file de priorité est vide mais il reste des candidats-es boursiers-ères et résident-es ne devrait pas arriver."  # DEBUG
+                assert not filesAttente[TypeCandidat.BoursierNonResident], "Erreur : ce cas où la file de priorité est vide mais il ne reste pas de candidats-es boursiers-ères et non résident-es ne devrait pas arriver."  # DEBUG
 
                 CandidatsBoursierNonResident = filesAttente[TypeCandidat.BoursierNonResident]
                 meilleur = CandidatsBoursierNonResident.get()
+                CandidatsBoursierNonResident.put(meilleur)  # XXX on ne le supprime pas
+                log(f"  La liste des éligibles est pas vide, donc le-la meilleur-e est le-la meilleur-e de la liste des boursier-es non résident-es = {meilleur}")
 
             # suppression du candidat choisi de sa file d'attente
-            queue = filesAttente[meilleur.typeCandidat]
-            meilleur_de_sa_liste = queue.get()
+            saFileAttente = filesAttente[meilleur.typeCandidat]
+            log(f"  On vérifie si le-la meilleur {meilleur} est aussi le-la meilleur-e de sa liste {saFileAttente} (du type {meilleur.typeCandidat}).")
+            meilleur_de_sa_liste = saFileAttente.pop()
+            # saFileAttente.append(meilleur_de_sa_liste)  # XXX on ne le supprime pas
             assert meilleur == meilleur_de_sa_liste, "Erreur : ce cas où le-la meilleur-e candidat-e n'est pas le meilleur candidat de la liste d'attente des autres candidat-e de sa liste ne devrait pas arriver."  # DEBUG
 
             # ajout du meilleur candidat à l'ordre d'appel
             ordreAppel.append(meilleur)
             nbAppeles += 1
+            log(f"  On ajoute le meilleur {meilleur} à l'ordre d'appel, c'est le-la {nbAppeles}ème à être appelé-e.")
 
             if meilleur.estBoursier():
                 nbBoursiersAppeles += 1
+                log(f"    En plus, c'est le-la {nbBoursiersAppeles}ème boursier-e à être appelé-e.")
             if meilleur.estResident():
                 nbResidentsAppeles += 1
+                log(f"    En plus, c'est le-la {nbResidentsAppeles}ème résident-e à être appelé-e.")
+
         # fin de la boucle while
+        log(f"\n3. On a terminé la boucle, on a remplit l'ordre d'appel.")
         return ordreAppel
