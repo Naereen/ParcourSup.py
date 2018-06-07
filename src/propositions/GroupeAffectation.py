@@ -9,38 +9,91 @@
 __author__ = "Lilian Besson, Bastien Trotobas et al"
 __version__ = "0.0.1"
 
+from typing import Set, Union, List
+
+from VoeuEnAttente import VoeuEnAttente
+from GroupeAffectationUID import GroupeAffectationUID
+
 
 class GroupeAffectation(object):
-    """ Classe comprenant les caractéristiques identifiant de manière unique une affectation dans la base de données."""
+    """ Classe comprenant les caractéristiques identifiant de manière unique un groupe d'affectation dans la base de données."""
 
     def __init__(self,
-        C_GP_COD: int,
-        G_TI_COD: int,
-        G_TA_COD: int,
+        capacite: int,
+        uid: GroupeAffectationUID,
+        rangLimite: int,
     ):
-        assert C_GP_COD >= 0, f"Erreur : {self.__class__.__name__} le paramètre C_GP_COD doit être >= 0, et pas {C_GP_COD}..."  # DEBUG
-        self.C_GP_COD = C_GP_COD  #: L'identifiant unique du groupe de classement pédagogique dans la base de données.
-        assert G_TI_COD >= 0, f"Erreur : {self.__class__.__name__} le paramètre G_TI_COD doit être >= 0 et pas {G_TI_COD}..."  # DEBUG
-        self.G_TI_COD = G_TI_COD  #: L'identifiant unique de la formation d'inscription dans la base de données.
-        assert G_TA_COD >= 0, f"Erreur : {self.__class__.__name__} le paramètre G_TA_COD doit être >= 0 et pas {G_TA_COD}..."  # DEBUG
-        self.G_TA_COD = G_TA_COD  #: L'identifiant unique de la formation d'affectation dans la base de données.
+        self.id = uid   #: Le id d'affectation identifiant de manière unique le groupe dans la base.
 
-    def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.C_GP_COD}, {self.G_TI_COD}, {self.G_TA_COD})"
+        assert capacite > 0, f"Erreur : {self.__class__.__name__} le paramètre capacite doit être > 0, et pas {capacite}..."  # DEBUG
+        self.capacite = capacite   #: La capacité de la formation.
 
-    def __eq__(self, groupeaffectationuid) -> bool:
-        if isinstance(groupeaffectationuid, self.__class__):
-            return (self.C_GP_COD == groupeaffectationuid.C_GP_COD) and (self.G_TI_COD == groupeaffectationuid.G_TI_COD) and (self.G_TA_COD == groupeaffectationuid.G_TA_COD)
-        else:
-            raise RuntimeError(f"Test d'égalité imprévu, entre self = {self} et {groupeaffectationuid} de classe {groupeaffectationuid.__class__}.")
+        assert rangLimite > 0, f"Erreur : {self.__class__.__name__} le paramètre rangLimite doit être > 0, et pas {rangLimite}..."  # DEBUG
+        self.rangLimite = rangLimite   #: Le rang limite des candidats (dans l'ordre d'appel): tous les candidats de rang inférieur reçoivent une proposition.
 
-    def __hash__(self) -> int:
-        """ FIXME il n'y a aucune chance qu'on obtienne les mêmes hashCode qu'en Java...
+        # autres attributs
+        #: la liste initiale des voeux du groupe, triée dans l'ordre d'appel du candidat.
+        #: Remarque: c'est un ordre partiel car il peut y avoir deux voeux du même candidat,
+        #: un avec internat et l'autre sans.
+        self.voeux: List[VoeuEnAttente] = []
 
-        - Je ne crois pas que ça posera problème, mais peut-être...
+        #: ``True`` si et seulement si les vœux ont été triés.
+        self.voeuxsontTries = False
+
+        #: Ensemble des candidats affectés.
+        self.candidatsAffectes: Set[int] = set()
+
+    def ajouterVoeu(self, voe: VoeuEnAttente) -> None:
+        """ Ajoute un voeu dans le groupe."""
+        self.voeux.append(voe)
+        self.voeuxsontTries = False
+
+    def ajouterCandidatAffecte(self, G_CN_COD: int) -> None:
+        """ Ajoute un candidat affecté."""
+        self.candidatsAffectes.add(G_CN_COD)
+
+    def estAffecte(self, G_CN_COD: int) -> bool:
+        """ Teste si un candidat est affecté."""
+        return G_CN_COD in self.candidatsAffectes
+
+    def mettreAJourPropositions(self) -> None:
+        """ Met a jour le statut ``aProposer``, pour chaque voeu du groupe."""
+        aPourvoir = self.nbPlacesVacantes()
+        for voe in self.voeux:
+            voe.conserverEnAttente()
+        # On calcule le nombre de propositions dues au rang limite.
+        # Les voeux désactivés pour cause de demande d'internat impossible à satisfaire
+        # ne sont pas pris en compte.
+
+        dernierCandidatAvecProposition = -1
+        for v in self.voeuxTries():
+            if v.estDesactiveParPositionAdmissionInternat():
+                continue
+            # Deux voeux consécutifs peuvent concerner un même candidat,
+            # ayant deux voeux en attente (un avec et un sans internat).
+            # Cela est pris en compte dans le calcul du nombre de places restantes
+            # et dans les propositions.
+
+            if aPourvoir > 0 or v.ordreAppel <= self.rangLimite or v.formationDejaObtenue() or dernierCandidatAvecProposition == v.id.G_CN_COD:
+                v.proposer()
+                if not v.formationDejaObtenue() and dernierCandidatAvecProposition != v.id.G_CN_COD:
+                    aPourvoir -= 1
+                dernierCandidatAvecProposition = v.id.G_CN_COD
+
+    def nbPlacesVacantes(self) -> int:
+        """ Le nombre de places vacantes au lancement du calcul.
+
+        .. warning:: Peut être négatif en cas de modification à la baisse des paramètres de surréservation.
         """
-        return hash(
-            (self.C_GP_COD)
-            ^ (self.G_TI_COD << 10)
-            ^ (self.G_TA_COD << 20)
-        )
+        return self.capacite - len(self.candidatsAffectes)
+
+    def estInitialementEnSurcapacite(self) -> bool:
+        """ La formation était elle initialement en surcapacité ?"""
+        return self.nbPlacesVacantes() < 0
+
+    def voeuxTries(self) -> List[VoeuEnAttente]:
+        """ Trie les voeux dans l'ordre d'appel."""
+        if not self.voeuxsontTries:
+            self.voeux.sort(key= lambda voeu: voeu.ordreAppel)
+            self.voeuxsontTries = True
+        return self.voeux

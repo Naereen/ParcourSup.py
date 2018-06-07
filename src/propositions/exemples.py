@@ -14,9 +14,7 @@ from os import path
 import xml.etree.ElementTree as ET
 import xml.dom.minidom as DOM
 
-from XXX import XXX
-from XXX import XXX
-from XXX import XXX
+from AlgoProposition import AlgoProposition
 
 
 #: En mode débug, on affiche juste le résultat.
@@ -59,7 +57,7 @@ class Exemple(object):
     def execute(self):
         """ Calcule les ordre d'appels et sauvegarde les fichiers."""
         # crée l'entrée
-        entree = AlgoOrdreAppel(self.groupes)
+        entree = AlgoProposition(self.groupes)
         # calcule la sortie
         entree.calculeOrdresAppels()
         # et sauvegarde les deux, en XML ou en JSON
