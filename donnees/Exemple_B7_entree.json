@@ -8,11 +8,23 @@
                     "G_TI_COD": 1
                 },
                 "nbPlacesVacantes": 40,
-                "rangDernierAppele": -1,
+                "rangDernierAppele": 0,
                 "rangLimite": 0,
                 "voeux": []
             }
         ],
-        "internats": []
+        "internats": [
+            {
+                "candidatsEnAttente": [],
+                "contingentAdmission": 0,
+                "id": {
+                    "C_GI_COD": 1,
+                    "G_TA_COD": 1
+                },
+                "positionAdmission": 0,
+                "positionMaximaleAdmission": 0,
+                "voeux": []
+            }
+        ]
     }
 }

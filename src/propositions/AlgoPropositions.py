@@ -52,20 +52,16 @@ class AlgoPropositions(object):
         assert internats, f"Erreur : {self.__class__.__name__} le paramètre internats doit être non vide, et pas {internats}..."  # DEBUG
         #: La liste des internats, contenant leurs voeux respectifs.
         self.internats: List[GroupeInternat] = internats
-        #: La liste des internats en sortie, contenant leurs voeux respectifs.
+        #: Liste des internats, permettant de récupérer les positions max d'admission
         self.internats_sortie: List[GroupeInternat] = []
 
-        self.groupesAMettreAJour = set()
-        self.ordresAppel = dict()
+        self.groupesAMettreAJour: Set[GroupeInternat] = set()
 
         #: Liste des propositions à faire.
         self.propositions: List[VoeuEnAttente] = []
 
         #: Liste des voeux restant en attente.
         self.enAttentes: List[VoeuEnAttente] = []
-
-        #: Liste des internats, permettant de récupérer les positions max d'admission
-        self.internats: List[GroupeInternat] = []
 
         self.rangsMaxNouvelArrivant: Dict[GroupeAffectation, int] = dict()
 
@@ -84,48 +80,48 @@ class AlgoPropositions(object):
 
         .. warning:: Une exception ``AssertionError`` est lancée avec un message commençant par ``a)`` ou ... ou ``f)``.
         """
+        # intégrité des classements : un classement == un candidat
         for groupeAffectation in tqdm(self.groupesAffectations, desc="groupesAffectations"):
-            # intégrité des classements : un classement == un candidat
             ordreVersCandidat: Dict[int, int] = dict()
             candidatVersOrdre: Dict[int, int] = dict()
             voeuxVus: Set[VoeuUID] = set()
             for voeu in tqdm(groupeAffectation.voeux, desc="voeux"):
-                assert not (voeu.internatDejaObtenu() and voeu.formationDejaObtenue()), "a) ce vœu n'est pas en attente !"
-                assert voeu.id not in voeuxVus, "b) deux vœux avec le même identifiant !"
+                assert not (voeu.internatDejaObtenu() and voeu.formationDejaObtenue()), f"a) ce vœu {voeu} n'est pas en attente !"
+                assert voeu.id not in voeuxVus, f"b) deux vœux avec le même identifiant {voeu.id} !"
                 voeuxVus.add(voeu.id)
 
                 if voeu.ordreAppel in ordreVersCandidat:
-                    assert ordreVersCandidat[voeu.ordreAppel] == voeu.id.G_CN_COD, "c) candidats distincts avec le même classement !"
+                    assert ordreVersCandidat[voeu.ordreAppel] == voeu.id.G_CN_COD, f"c) candidats distincts avec le même classement {voeu.id.G_CN_COD} et {ordreVersCandidat[voeu.ordreAppel]} !"
                 else:
                     ordreVersCandidat[voeu.ordreAppel] = voeu.id.G_CN_COD
                 if voeu.id.G_CN_COD in candidatVersOrdre:
-                    assert candidatVersOrdre[voeu.id.G_CN_COD] == voeu.ordreAppel, "d) candidats distincts avec le même classement !"
+                    assert candidatVersOrdre[voeu.id.G_CN_COD] == voeu.ordreAppel, f"d) candidats distincts avec le même classement { voeu.ordreAppel} et {candidatVersOrdre[voeu.id.G_CN_COD]} !"
                 else:
                     candidatVersOrdre[voeu.id.G_CN_COD] = voeu.ordreAppel
 
-                assert voeu.ordreAppel > 0, "e) ordre appel de la formation est négatif !"
+                assert voeu.ordreAppel > 0, f"e) ordre appel de la formation est négatif = {voeu.ordreAppel} !"
 
                 # remarque le voeu peut-être marqué "avecInternat"
                 # et en même temps internat==None car c'est un internat sans classement
                 # (obligatoire ou non-sélectif)
                 if voeu.avecClassementInternat():
-                    assert voeu in voeu.internat.voeux, "f) erreur intégrité données !"
+                    assert voeu in voeu.internat.voeux, f"f) erreur intégrité données ! Le vœu {voeu} n'est pas dans les vœux de son internat {voeu.internat.voeux} !"
 
+        # intégrité des classements : un classement == un candidat
         for internat in tqdm(self.internats, "internats"):
-            # intégrité des classements : un classement == un candidat
             ordreVersCandidat: Dict[int, int] = dict()
             candidatVersOrdre: Dict[int, int] = dict()
             for voeu in tqdm(internat.voeux, "voeux"):
-                assert voeu.avecInternat(), "g) erreur intégrité données !"
-                assert voeu.internant == internat, "h) erreur intégrité données !"
-                assert voeu.rangInternat <= 0, "e) classement internat négatif !"
+                assert voeu.avecInternat(), f"g) erreur intégrité données ! Le voeu {voeu} est dans les vœux de l'internat {internat} mais n'est pas un vœu avec internat !"
+                assert voeu.internat == internat, f"h) erreur intégrité données ! Le voeu {voeu} est dans les vœux de l'internat {internat} mais n'est pas un vœu de cet internat !"
+                assert voeu.rangInternat > 0, f"e) classement internat négatif !"
 
                 if voeu.rangInternat in ordreVersCandidat:
-                    assert ordreVersCandidat[voeu.rangInternat] == voeu.id.G_CN_COD, "c) candidats distincts avec le même classement !"
+                    assert ordreVersCandidat[voeu.rangInternat] == voeu.id.G_CN_COD, f"c) candidats distincts avec le même classement, {voeu.id.G_CN_COD} et {ordreVersCandidat[voeu.rangInternat]} !"
                 else:
                     ordreVersCandidat[voeu.rangInternat] = voeu.id.G_CN_COD
                 if voeu.id.G_CN_COD in candidatVersOrdre:
-                    assert candidatVersOrdre[voeu.id.G_CN_COD] == voeu.rangInternat, "d) candidats distincts avec le même classement !"
+                    assert candidatVersOrdre[voeu.id.G_CN_COD] == voeu.rangInternat, f"d) candidats distincts avec le même classement {voeu.rangInternat} et {candidatVersOrdre[voeu.id.G_CN_COD]} !"
                 else:
                     candidatVersOrdre[voeu.id.G_CN_COD] = voeu.rangInternat
 
@@ -220,6 +216,7 @@ class AlgoPropositions(object):
 
     def exporteEntree_XML(self) -> ET.Element:
         """ Converti l'entrée en un arbre XML."""
+        raise NotImplementedError
         racine = ET.Element('algoPropositionsEntree')
         groupesXML = ET.Element('groupesAffectations')
         for groupe in self.groupesAffectations:
@@ -249,12 +246,13 @@ class AlgoPropositions(object):
                         'nbPlacesVacantes': groupe.nbPlacesVacantes(),
                         'rangLimite': groupe.rangLimite,
                         'rangDernierAppele': self.rangsMaxNouvelArrivant.get(groupe, -1),
+                        # FIXME pourquoi -1 ? Faut-il sauver l'entrée APRES avoir lancer execute ?
                         'voeux': [
                             {
                                 'id': {
-                                    'G_CN_COD': voeu.id.C_GP_COD,
-                                    'G_TA_COD': voeu.id.G_TI_COD,
-                                    'I_RH_COD': voeu.id.G_TA_COD,
+                                    'G_CN_COD': voeu.id.G_CN_COD,
+                                    'G_TA_COD': voeu.id.G_TA_COD,
+                                    'I_RH_COD': voeu.id.I_RH_COD,
                                 },
                                 'ordreAppel': voeu.ordreAppel,
                                 'rangInternat': voeu.rangInternat,
@@ -277,9 +275,9 @@ class AlgoPropositions(object):
                         'voeux': [
                             {
                                 'id': {
-                                    'G_CN_COD': voeu.id.C_GP_COD,
-                                    'G_TA_COD': voeu.id.G_TI_COD,
-                                    'I_RH_COD': voeu.id.G_TA_COD,
+                                    'G_CN_COD': voeu.id.G_CN_COD,
+                                    'G_TA_COD': voeu.id.G_TA_COD,
+                                    'I_RH_COD': voeu.id.I_RH_COD,
                                 },
                                 'ordreAppel': voeu.ordreAppel,
                                 'rangInternat': voeu.rangInternat,
@@ -288,7 +286,7 @@ class AlgoPropositions(object):
                             for voeu in internat.voeux
                         ],
                         'candidatsEnAttente': [
-                            voeu.id.C_GP_COD
+                            voeu.id.G_CN_COD
                             for voeu in internat.voeux
                         ]
                     }
@@ -301,6 +299,7 @@ class AlgoPropositions(object):
 
     def exporteSortie_XML(self) -> ET.Element:
         """ Converti les résultats de la sortie en un arbre XML."""
+        raise NotImplementedError
         racine = ET.Element('algoPropositionsSortie')
         ordresXML = ET.Element('ordresAppel')
         for numero, ordre in enumerate(self.ordresAppel.values()):
@@ -327,9 +326,9 @@ class AlgoPropositions(object):
                 'propositions': [
                     {
                         'id': {
-                            'G_CN_COD': proposition.id.C_GP_COD,
-                            'G_TA_COD': proposition.id.G_TI_COD,
-                            'I_RH_COD': proposition.id.G_TA_COD,
+                            'G_CN_COD': proposition.id.G_CN_COD,
+                            'G_TA_COD': proposition.id.G_TA_COD,
+                            'I_RH_COD': proposition.id.I_RH_COD,
                         },
                         'ordreAppel': proposition.ordreAppel,
                         'rangInternat': proposition.rangInternat,
@@ -340,9 +339,9 @@ class AlgoPropositions(object):
                 'enAttentes': [
                     {
                         'id': {
-                            'G_CN_COD': enAttente.id.C_GP_COD,
-                            'G_TA_COD': enAttente.id.G_TI_COD,
-                            'I_RH_COD': enAttente.id.G_TA_COD,
+                            'G_CN_COD': enAttente.id.G_CN_COD,
+                            'G_TA_COD': enAttente.id.G_TA_COD,
+                            'I_RH_COD': enAttente.id.I_RH_COD,
                         },
                         'ordreAppel': enAttente.ordreAppel,
                         'rangInternat': enAttente.rangInternat,
@@ -362,9 +361,9 @@ class AlgoPropositions(object):
                         'voeux': [
                             {
                                 'id': {
-                                    'G_CN_COD': voeu.id.C_GP_COD,
-                                    'G_TA_COD': voeu.id.G_TI_COD,
-                                    'I_RH_COD': voeu.id.G_TA_COD,
+                                    'G_CN_COD': voeu.id.G_CN_COD,
+                                    'G_TA_COD': voeu.id.G_TA_COD,
+                                    'I_RH_COD': voeu.id.I_RH_COD,
                                 },
                                 'ordreAppel': voeu.ordreAppel,
                                 'rangInternat': voeu.rangInternat,
@@ -373,7 +372,7 @@ class AlgoPropositions(object):
                             for voeu in internat.voeux
                         ],
                         'candidatsEnAttente': [
-                            voeu.id.C_GP_COD
+                            voeu.id.G_CN_COD
                             for voeu in internat.voeux
                         ]
                     }

@@ -97,12 +97,17 @@ class Exemple(object):
         # crée l'entrée
         entree = AlgoPropositions(self.groupes, self.internats)
 
+        # calcule la sortie
+        entree.calculePropositions()
+        self.sortie = entree
+
         if sauvegarde:
             # et sauvegarde les deux, d'abord en XML
             entreeJSON = entree.exporteEntree_JSON()
             contenu = json.dumps(entreeJSON, sort_keys=True, indent=4)
             self.exporte(contenu, entree=True, xml=False)
 
+            # FIXME terminer de débuguer avec le JSON puis faire la sortie XML aussi
             # # et sauvegarde l'entrée, d'abord en XML
             # entreeXML = entree.exporteEntree_XML()
             # contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
@@ -110,16 +115,13 @@ class Exemple(object):
             # contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
             # self.exporte(contenu, entree=True, xml=True)
 
-        # calcule la sortie
-        entree.calculePropositions()
-        self.sortie = entree
-
         if sauvegarde:
             # et maintenant le JSON
             sortieJSON = entree.exporteSortie_JSON()
             contenu = json.dumps(sortieJSON, sort_keys=True, indent=4)
             self.exporte(contenu, entree=False, xml=False)
 
+            # FIXME terminer de débuguer avec le JSON puis faire la sortie XML aussi
             # # et sauvegarde la sortie, d'abord en XML
             # sortieXML = entree.exporteSortie_XML()
             # contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
@@ -161,10 +163,10 @@ class exempleB7Jour1(exempleB7base):
         groupe = self.groupes[0]
         internat = self.internats[0]
 
-        VoeuEnAttente.ajouterVoeu(1,  groupe, 1,  internat, 28)
-        VoeuEnAttente.ajouterVoeu(2,  groupe, 2,  internat, 15)
-        VoeuEnAttente.ajouterVoeu(20, groupe, 20, internat, 5)
-        VoeuEnAttente.ajouterVoeu(21, groupe, 21, internat, 6)
+        VoeuEnAttente.ajouterVoeu(1,  groupe, 1,  internat=internat, rangInternat=28)
+        VoeuEnAttente.ajouterVoeu(2,  groupe, 2,  internat=internat, rangInternat=15)
+        VoeuEnAttente.ajouterVoeu(20, groupe, 20, internat=internat, rangInternat=5)
+        VoeuEnAttente.ajouterVoeu(21, groupe, 21, internat=internat, rangInternat=6)
 
         for i in range(1, self.n + 1):
             # 1 -- 28
@@ -198,8 +200,8 @@ class exempleB7Jour1(exempleB7base):
             elif i <= 20:
                 rangInternat = i + 1
             elif i <= 28:
-                rangInternat = i + 1
-            VoeuEnAttente.ajouterVoeu(G_CN_COD, groupe, ordreAppel, internat, rangInternat)
+                rangInternat = i - 1
+            VoeuEnAttente.ajouterVoeu(G_CN_COD, groupe, ordreAppel, internat=internat, rangInternat=rangInternat)
 
 
 class exempleB7Jour2(exempleB7base):
@@ -221,17 +223,17 @@ class exempleB7Jour2(exempleB7base):
             if voeu.id.G_CN_COD == 21 or voeu.id.G_CN_COD == 30:
                 continue
             internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
-        for voeu in sortie.enAttente:
+        for voeu in sortie.enAttentes:
             if voeu.id.G_CN_COD == 21 or voeu.id.G_CN_COD == 30:
                 continue
             internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
 
         GroupeInternat.nbJoursCampagne = 2
 
-        for voeu in sortie.enAttente:
+        for voeu in sortie.enAttentes:
             if voeu.id.G_CN_COD == 21 or voeu.id.G_CN_COD == 30:
                 continue
-            VoeuEnAttente.ajouterVoeu(voeu.id.G_CN_COD, groupe, voeu.ordreAppel, internat, voeu.rangInternat)
+            VoeuEnAttente.ajouterVoeu(voeu.id.G_CN_COD, groupe, voeu.ordreAppel, internat=internat, rangInternat=voeu.rangInternat)
 
 
 class exempleB7Jour3(exempleB7base):
@@ -253,23 +255,21 @@ class exempleB7Jour3(exempleB7base):
             if voeu.id.G_CN_COD <= 20:
                 continue
             internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
-        for voeu in sortie.enAttente:
+        for voeu in sortie.enAttentes:
             if voeu.id.G_CN_COD <= 20:
                 continue
             internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
 
         GroupeInternat.nbJoursCampagne = 3
 
-        for voeu in sortie.enAttente:
+        for voeu in sortie.enAttentes:
             if voeu.id.G_CN_COD <= 20:
                 continue
-            VoeuEnAttente.ajouterVoeu(voeu.id.G_CN_COD, groupe, voeu.ordreAppel, internat, voeu.rangInternat)
+            VoeuEnAttente.ajouterVoeu(voeu.id.G_CN_COD, groupe, voeu.ordreAppel, internat=internat, rangInternat=voeu.rangInternat)
 
 
 class exempleAleatoire(exempleB7base):
     """ Exemple aléatoire très complet et compliqué.
-    
-    .. warning:: FIXME à finir !
     """
     maxNbVoeuxParCandidat = 40
 

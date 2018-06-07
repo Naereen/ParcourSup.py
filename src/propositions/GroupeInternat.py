@@ -35,7 +35,7 @@ class GroupeInternat(object):
         self.pourcentageOuverture = pourcentageOuverture  #: Le pourcentage d'ouverture fixé par le chef d'établissement
 
         # autres attributs
-        self.contigentAdmission = 0  #: Le nombre de demandes d'internat considérées Bmax dans le document de spécification
+        self.contingentAdmission = 0  #: Le nombre de demandes d'internat considérées Bmax dans le document de spécification
         self.positionAdmission = 0  #: La position d'admission dans cet internat, calculée par l'algorithme
         self.positionMaximaleAdmission = 0  #: La position maximale d'admission dans cet internat, calculée par l'algorithme
         self.groupesConcernes: Set[GroupeAffectation] = set()  #: La liste des groupes de classement concernés par cet internat
@@ -51,23 +51,23 @@ class GroupeInternat(object):
         self.candidatsEnAttente: Set[int] = set()
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.id}, {self.capacite}, {self.pourcentageOuverture}, {self.contigentAdmission}, {self.positionAdmission}, {self.positionMaximaleAdmission}, {self.groupesConcernes}, {self.voeux})"
+        return f"{self.__class__.__name__}({self.id}, {self.capacite}, {self.pourcentageOuverture}, {self.contingentAdmission}, {self.positionAdmission}, {self.positionMaximaleAdmission}, {self.groupesConcernes}, {self.voeux})"
 
     def nbPlacesVacantes(self) -> int:
         """ Le nombre de places vacantes dans cet internat."""
-        # On seuille à 0,
+        # On utilise un seuil à 0,
         # en cas de réduction du nombre de lits conduisant à une différence négative
         return max(0, self.capacite - len(self.candidatsAffectes))
 
-    def ajouterVoeu(self, voe: VoeuEnAttente, groupe: GroupeAffectation) -> None:
+    def ajouterVoeu(self, voeu: VoeuEnAttente, groupe: GroupeAffectation) -> None:
         """ Ajouter ce vœu à ce groupe d'affectation."""
-        assert voe.avecInternat(), f"Erreur : le vœu {voe} n'est pas avec internat mais vient de demander à être ajouté dans le groupe d'affectation d'internation {groupe}."
+        assert voeu.avecInternat(), f"Erreur : le vœu {voeu} n'est pas avec internat mais vient de demander à être ajouté dans le groupe d'affectation d'internation {groupe}."
         if self.estInitialise:
             raise RuntimeError(f"Groupe déja initialisé.")
-        self.voeux.append(voe)
+        self.voeux.append(voeu)
         self.groupesConcernes.add(groupe)
-        if voe.id.G_CN_COD not in self.candidatsAffectes:
-            self.candidatsEnAttente.add(voe.id.G_CN_COD)
+        if voeu.id.G_CN_COD not in self.candidatsAffectes:
+            self.candidatsEnAttente.add(voeu.id.G_CN_COD)
 
     def ajouterCandidatAffecte(self, G_CN_CODE: int) -> None:
         """ Ajoute un candidat affecté.
@@ -77,8 +77,9 @@ class GroupeInternat(object):
         if G_CN_CODE in self.candidatsEnAttente:
             self.candidatsEnAttente.remove(G_CN_CODE)
 
-    def estAffecte(self) -> bool:
-        return self.G_CN_CODE in self.candidatsAffectes
+    def estAffecte(self, G_CN_CODE: int) -> bool:
+        """ Vérifie si le candidat est affecté."""
+        return G_CN_CODE in self.candidatsAffectes
 
     def initialiserPositionAdmission(self) -> None:
         """ Initialise la position d'admission à son maximum Bmax dans le document de référence."""
@@ -118,7 +119,7 @@ class GroupeInternat(object):
             self.positionMaximaleAdmission = 0
         else:
             # tri des voeux par ordre de classement à l'internat
-            self.voeux.sort(key=lambda voe: voe.rangInternat)
+            self.voeux.sort(key=lambda voeu: voeu.rangInternat)
 
             # on itère les candidats en attente d'internat jusqu'à arriver
             # au contingent calculé. Remarque: il peut y avoir plusieurs voeux pour

@@ -1,7 +1,19 @@
 {
     "algoPropositionsSortie": {
         "enAttentes": [],
-        "internats": [],
+        "internats": [
+            {
+                "candidatsEnAttente": [],
+                "contingentAdmission": 0,
+                "id": {
+                    "C_GI_COD": 1,
+                    "G_TA_COD": 1
+                },
+                "positionAdmission": 0,
+                "positionMaximaleAdmission": 0,
+                "voeux": []
+            }
+        ],
         "propositions": []
     }
 }

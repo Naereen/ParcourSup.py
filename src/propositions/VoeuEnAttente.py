@@ -42,11 +42,11 @@ class VoeuEnAttente(object):
     @staticmethod
     def ajouterVoeu(
         G_CN_COD: int,
-        avecInternat: bool,
         groupe,
         ordreAppel: int,
         internat=None,
         rangInternat: int=0,
+        avecInternat: bool=False,
     ):
         avecInternat = (internat is not None) or avecInternat
         voeuuid = VoeuUID(G_CN_COD, groupe.id.G_TA_COD, avecInternat)
