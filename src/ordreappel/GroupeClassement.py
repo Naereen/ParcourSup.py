@@ -11,15 +11,15 @@ __version__ = "0.0.1"
 
 from typing import List, Dict
 
+# from queue import Queue, PriorityQueue
+
+from VoeuClasse import VoeuClasse, TypeCandidat
+from OrdreAppel import OrdreAppel
+
 
 #: En mode débug, on affiche juste le résultat.
 DEBUG = True
 # DEBUG = False
-
-from queue import Queue, PriorityQueue
-
-from VoeuClasse import VoeuClasse, TypeCandidat
-from OrdreAppel import OrdreAppel
 
 
 class GroupeClassement(object):

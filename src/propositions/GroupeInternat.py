@@ -9,11 +9,10 @@
 __author__ = "Lilian Besson, Bastien Trotobas et al"
 __version__ = "0.0.1"
 
-from typing import Set, Union, List
+from typing import Set, List
 
 from VoeuEnAttente import VoeuEnAttente
 from GroupeAffectation import GroupeAffectation
-from GroupeInternatUID import GroupeInternatUID
 
 
 class GroupeInternat(object):
@@ -50,6 +49,8 @@ class GroupeInternat(object):
 
         #: Ensemble des candidats en attente.
         self.candidatsEnAttente: Set[int] = set()
+
+        self.contingentAdmission = 0
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.G_CN_CODE}, {self.capacite}, {self.pourcentageOuverture})"

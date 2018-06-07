@@ -32,4 +32,3 @@ if __name__ == '__main__':
     # lance tous les tests ou un seul
     numeroExemple = int(argv[1]) if len(argv) > 1 else None
     main(numeroExemple=numeroExemple - 1)
-

@@ -1,0 +1,396 @@
+************* Module src.__init__
+C: 11, 0: Trailing newlines (trailing-newlines)
+************* Module src.ordreappel
+E: 12, 0: Unable to import 'exemples' (import-error)
+W: 15, 9: Redefining name 'numeroExemples' from outer scope (line 36) (redefined-outer-name)
+C: 15, 0: Missing function docstring (missing-docstring)
+************* Module src.ordreappel.VoeuClasse
+C: 30, 0: Wrong hanging indentation (remove 4 spaces).
+        estBoursier: bool,
+    |   ^ (bad-continuation)
+C: 31, 0: Wrong hanging indentation (remove 4 spaces).
+        estResident: bool
+    |   ^ (bad-continuation)
+C: 49, 0: Wrong continued indentation (add 9 spaces).
+        G_CN_COD: int,
+        ^        | (bad-continuation)
+C: 50, 0: Wrong continued indentation (add 9 spaces).
+        rang: int,
+        ^        | (bad-continuation)
+C: 51, 0: Wrong continued indentation (add 9 spaces).
+        estBoursier: bool,
+        ^        | (bad-continuation)
+C: 52, 0: Wrong continued indentation (add 9 spaces).
+        estResident: bool,
+        ^        | (bad-continuation)
+C: 53, 0: Wrong continued indentation (add 12 spaces).
+    ):
+    ^           | (bad-continuation)
+C: 25, 0: Missing function docstring (missing-docstring)
+************* Module src.ordreappel.GroupeClassement
+W:155, 0: XXX on ne le supprime pas (fixme)
+C: 28, 0: Wrong continued indentation (add 9 spaces).
+        C_GP_COD: int,
+        ^        | (bad-continuation)
+C: 29, 0: Wrong continued indentation (add 9 spaces).
+        tauxMinBoursiersPourcents: int,
+        ^        | (bad-continuation)
+C: 30, 0: Wrong continued indentation (add 9 spaces).
+        tauxMinResidentsPourcents: int,
+        ^        | (bad-continuation)
+C: 31, 0: Wrong continued indentation (add 12 spaces).
+    ):
+    ^           | (bad-continuation)
+C: 51, 0: Exactly one space required before keyword argument assignment
+    def calculerOrdreAppel(self, verbeux: bool= DEBUG) -> OrdreAppel:
+                                              ^ (bad-whitespace)
+C: 91, 0: Exactly one space required before assignment
+        nbVoeuxClasses     = len(self.voeuxClasses)
+                           ^ (bad-whitespace)
+C: 92, 0: Exactly one space required before assignment
+        nbAppeles          = 0
+                           ^ (bad-whitespace)
+R: 51, 4: Too many local variables (22/15) (too-many-locals)
+C: 53, 8: Missing function docstring (missing-docstring)
+C:116,24: More than one statement on a single line (multiple-statements)
+C:123,36: More than one statement on a single line (multiple-statements)
+C:125,24: More than one statement on a single line (multiple-statements)
+W: 80,12: Unused variable 'i' (unused-variable)
+R: 51, 4: Too many branches (14/12) (too-many-branches)
+R: 51, 4: Too many statements (69/50) (too-many-statements)
+************* Module src.propositions.Candidat
+R: 13, 0: Too few public methods (0/2) (too-few-public-methods)
+************* Module src.propositions.Etablissement
+W:182, 0: FIXME code de réference différent de ifilles ici (fixme)
+C: 37, 0: Exactly one space required around keyword argument assignment
+    def __init__(self, nbEtudiants: int=100):
+                                       ^ (bad-whitespace)
+C: 45, 0: Exactly one space required around keyword argument assignment
+    def ajouterCandidat(self, c: Candidat, maxEtapes: int=1000) -> int:
+                                                         ^ (bad-whitespace)
+C:142, 0: Exactly one space required around keyword argument assignment
+    def __init__(self, nbEtudiants: int=100):
+                                       ^ (bad-whitespace)
+R: 33, 0: Too few public methods (1/2) (too-few-public-methods)
+R: 62, 0: Too many instance attributes (8/7) (too-many-instance-attributes)
+R:128, 0: Too many instance attributes (9/7) (too-many-instance-attributes)
+W:159,16: Unused variable 'i' (unused-variable)
+W:203,20: Unused variable 'j' (unused-variable)
+************* Module src.propositions.GroupeAffectation
+C: 22, 0: Wrong continued indentation (add 9 spaces).
+        capacite: int,
+        ^        | (bad-continuation)
+C: 23, 0: Wrong continued indentation (add 9 spaces).
+        uid: GroupeAffectationUID,
+        ^        | (bad-continuation)
+C: 24, 0: Wrong continued indentation (add 9 spaces).
+        rangLimite: int,
+        ^        | (bad-continuation)
+C: 25, 0: Wrong continued indentation (add 12 spaces).
+    ):
+    ^           | (bad-continuation)
+C: 97, 0: No space allowed after keyword argument assignment
+            self.voeux.sort(key= lambda voeu: voeu.ordreAppel)
+                               ^ (bad-whitespace)
+************* Module src.propositions.GroupeAffectationUID
+C: 17, 0: Wrong continued indentation (add 9 spaces).
+        C_GP_COD: int,
+        ^        | (bad-continuation)
+C: 18, 0: Wrong continued indentation (add 9 spaces).
+        G_TI_COD: int,
+        ^        | (bad-continuation)
+C: 19, 0: Wrong continued indentation (add 9 spaces).
+        G_TA_COD: int,
+        ^        | (bad-continuation)
+C: 20, 0: Wrong continued indentation (add 12 spaces).
+    ):
+    ^           | (bad-continuation)
+R: 13, 0: Too few public methods (0/2) (too-few-public-methods)
+************* Module src.propositions.GroupeInternat
+C: 24, 0: Wrong continued indentation (add 9 spaces).
+        G_CN_CODE: int,
+        ^        | (bad-continuation)
+C: 25, 0: Wrong continued indentation (add 9 spaces).
+        capacite: int,
+        ^        | (bad-continuation)
+C: 26, 0: Wrong continued indentation (add 9 spaces).
+        pourcentageOuverture: int,
+        ^        | (bad-continuation)
+C: 27, 0: Wrong continued indentation (add 12 spaces).
+    ):
+    ^           | (bad-continuation)
+R: 18, 0: Too many instance attributes (12/7) (too-many-instance-attributes)
+C: 82, 4: Missing method docstring (missing-docstring)
+R:116,11: Too many boolean expressions in if statement (8/5) (too-many-boolean-expressions)
+************* Module src.propositions.GroupeInternatUID
+W: 24, 0: FIXME le code java dit un fois à -1 une fois à 0 ? (fixme)
+C: 17, 0: Wrong continued indentation (add 9 spaces).
+        C_GI_COD: int,
+        ^        | (bad-continuation)
+C: 18, 0: Wrong continued indentation (add 9 spaces).
+        G_TA_COD: int,
+        ^        | (bad-continuation)
+C: 19, 0: Wrong continued indentation (add 12 spaces).
+    ):
+    ^           | (bad-continuation)
+R: 13, 0: Too few public methods (0/2) (too-few-public-methods)
+************* Module src.propositions
+W: 15, 9: Redefining name 'numeroExemple' from outer scope (line 33) (redefined-outer-name)
+C: 15, 0: Missing function docstring (missing-docstring)
+************* Module src.propositions.VoeuEnAttente
+C: 22, 0: Wrong continued indentation (add 9 spaces).
+        uid: VoeuUID,
+        ^        | (bad-continuation)
+C: 23, 0: Wrong continued indentation (add 9 spaces).
+        groupe,
+        ^        | (bad-continuation)
+C: 24, 0: Wrong continued indentation (add 9 spaces).
+        internat=None,
+        ^        | (bad-continuation)
+C: 25, 0: Wrong continued indentation (add 9 spaces).
+        rangInternat: int=0,
+        ^        | (bad-continuation)
+C: 25, 0: Exactly one space required around keyword argument assignment
+        rangInternat: int=0,
+                         ^ (bad-whitespace)
+C: 26, 0: Wrong continued indentation (add 9 spaces).
+        ordreAppel: int=0,
+        ^        | (bad-continuation)
+C: 26, 0: Exactly one space required around keyword argument assignment
+        ordreAppel: int=0,
+                       ^ (bad-whitespace)
+C: 27, 0: Wrong continued indentation (add 12 spaces).
+    ):
+    ^           | (bad-continuation)
+C: 49, 0: Exactly one space required around keyword argument assignment
+        rangInternat: int=0,
+                         ^ (bad-whitespace)
+C: 94, 0: Trailing newlines (trailing-newlines)
+R: 16, 0: Too many instance attributes (8/7) (too-many-instance-attributes)
+C: 43, 4: Missing method docstring (missing-docstring)
+************* Module src.propositions.VoeuUID
+C: 19, 0: Wrong continued indentation (add 9 spaces).
+        G_CN_COD: int,
+        ^        | (bad-continuation)
+C: 20, 0: Wrong continued indentation (add 9 spaces).
+        G_TA_COD: int,
+        ^        | (bad-continuation)
+C: 21, 0: Wrong continued indentation (add 9 spaces).
+        avecInternat: bool,
+        ^        | (bad-continuation)
+C: 22, 0: Wrong continued indentation (add 12 spaces).
+    ):
+    ^           | (bad-continuation)
+R: 13, 0: Too few public methods (1/2) (too-few-public-methods)
+************* Module src.propositions.VerificationsResultats
+C:123, 0: Wrong hanging indentation (remove 4 spaces).
+        internat: GroupeInternat,
+    |   ^ (bad-continuation)
+C:124, 0: Wrong hanging indentation (remove 4 spaces).
+        rangDernierAppeles: Dict[GroupeInternat, int]
+    |   ^ (bad-continuation)
+W:159,41: Unused argument 'internat' (unused-argument)
+************* Module src.propositions.exemples
+C:164, 0: Exactly one space required after comma
+        VoeuEnAttente.ajouterVoeu(1,  groupe, 1,  internat, 28)
+                                   ^ (bad-whitespace)
+C:164, 0: Exactly one space required after comma
+        VoeuEnAttente.ajouterVoeu(1,  groupe, 1,  internat, 28)
+                                               ^ (bad-whitespace)
+C:165, 0: Exactly one space required after comma
+        VoeuEnAttente.ajouterVoeu(2,  groupe, 2,  internat, 15)
+                                   ^ (bad-whitespace)
+C:165, 0: Exactly one space required after comma
+        VoeuEnAttente.ajouterVoeu(2,  groupe, 2,  internat, 15)
+                                               ^ (bad-whitespace)
+C:271, 0: Trailing whitespace (trailing-whitespace)
+C:277, 0: Wrong continued indentation (add 9 spaces).
+        nbEtudiants: int=100
+        ^        | (bad-continuation)
+C:277, 0: Exactly one space required around keyword argument assignment
+        nbEtudiants: int=100
+                        ^ (bad-whitespace)
+C:278, 0: Wrong continued indentation (add 12 spaces).
+    ):
+    ^           | (bad-continuation)
+C: 24, 4: Missing function docstring (missing-docstring)
+W: 24,23: Unused argument 'desc' (unused-argument)
+E: 31, 0: Unable to import 'GroupeInternat' (import-error)
+E: 36, 0: Unable to import 'Etablissement' (import-error)
+
+
+Report
+======
+1007 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |18     |18         |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |27     |27         |=          |100.00      |40.74    |
++---------+-------+-----------+-----------+------------+---------+
+|method   |89     |89         |=          |97.75       |42.70    |
++---------+-------+-----------+-----------+------------+---------+
+|function |17     |17         |=          |70.59       |47.06    |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+External dependencies
+---------------------
+::
+
+    AlgoOrdreAppel (src.ordreappel.exemples)
+    AlgoPropositions (src.propositions.exemples)
+    Candidat (src.propositions.exemples)
+    GroupeAffectation (src.propositions.exemples)
+    GroupeAffectationUID (src.propositions.exemples)
+    GroupeClassement (src.ordreappel.exemples)
+    GroupeInternat (src.propositions.VerificationsResultats)
+    GroupeInternatUID (src.propositions.exemples)
+    OrdreAppel (src.ordreappel.GroupeClassement)
+    VoeuClasse (src.ordreappel.exemples)
+    VoeuEnAttente (src.propositions.exemples)
+    VoeuUID (src.propositions.VoeuEnAttente)
+    exemples (src.propositions)
+    tqdm (src.propositions.exemples)
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |1187   |59.23 |1188     |-1.00      |
++----------+-------+------+---------+-----------+
+|docstring |298    |14.87 |298      |=          |
++----------+-------+------+---------+-----------+
+|comment   |189    |9.43  |188      |+1.00      |
++----------+-------+------+---------+-----------+
+|empty     |330    |16.47 |330      |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |68     |71       |-3.00      |
++-----------+-------+---------+-----------+
+|refactor   |13     |13       |=          |
++-----------+-------+---------+-----------+
+|warning    |10     |18       |-8.00      |
++-----------+-------+---------+-----------+
+|error      |3      |3        |=          |
++-----------+-------+---------+-----------+
+
+
+
+% errors / warnings by module
+-----------------------------
+
++----------------------------------------+------+--------+---------+-----------+
+|module                                  |error |warning |refactor |convention |
++========================================+======+========+=========+===========+
+|src.propositions.exemples               |66.67 |10.00   |0.00     |13.24      |
++----------------------------------------+------+--------+---------+-----------+
+|src.ordreappel.__init__                 |33.33 |10.00   |0.00     |1.47       |
++----------------------------------------+------+--------+---------+-----------+
+|src.propositions.Etablissement          |0.00  |30.00   |23.08    |4.41       |
++----------------------------------------+------+--------+---------+-----------+
+|src.ordreappel.GroupeClassement         |0.00  |20.00   |23.08    |16.18      |
++----------------------------------------+------+--------+---------+-----------+
+|src.propositions.GroupeInternatUID      |0.00  |10.00   |7.69     |4.41       |
++----------------------------------------+------+--------+---------+-----------+
+|src.propositions.VerificationsResultats |0.00  |10.00   |0.00     |2.94       |
++----------------------------------------+------+--------+---------+-----------+
+|src.propositions.__init__               |0.00  |10.00   |0.00     |1.47       |
++----------------------------------------+------+--------+---------+-----------+
+|src.propositions.GroupeInternat         |0.00  |0.00    |15.38    |7.35       |
++----------------------------------------+------+--------+---------+-----------+
+|src.propositions.VoeuEnAttente          |0.00  |0.00    |7.69     |16.18      |
++----------------------------------------+------+--------+---------+-----------+
+|src.propositions.VoeuUID                |0.00  |0.00    |7.69     |5.88       |
++----------------------------------------+------+--------+---------+-----------+
+|src.propositions.GroupeAffectationUID   |0.00  |0.00    |7.69     |5.88       |
++----------------------------------------+------+--------+---------+-----------+
+|src.propositions.Candidat               |0.00  |0.00    |7.69     |0.00       |
++----------------------------------------+------+--------+---------+-----------+
+|src.ordreappel.VoeuClasse               |0.00  |0.00    |0.00     |11.76      |
++----------------------------------------+------+--------+---------+-----------+
+|src.propositions.GroupeAffectation      |0.00  |0.00    |0.00     |7.35       |
++----------------------------------------+------+--------+---------+-----------+
+|src.__init__                            |0.00  |0.00    |0.00     |1.47       |
++----------------------------------------+------+--------+---------+-----------+
+
+
+
+Messages
+--------
+
++-----------------------------+------------+
+|message id                   |occurrences |
++=============================+============+
+|bad-continuation             |40          |
++-----------------------------+------------+
+|bad-whitespace               |15          |
++-----------------------------+------------+
+|missing-docstring            |7           |
++-----------------------------+------------+
+|too-few-public-methods       |5           |
++-----------------------------+------------+
+|too-many-instance-attributes |4           |
++-----------------------------+------------+
+|unused-variable              |3           |
++-----------------------------+------------+
+|multiple-statements          |3           |
++-----------------------------+------------+
+|import-error                 |3           |
++-----------------------------+------------+
+|fixme                        |3           |
++-----------------------------+------------+
+|unused-argument              |2           |
++-----------------------------+------------+
+|trailing-newlines            |2           |
++-----------------------------+------------+
+|redefined-outer-name         |2           |
++-----------------------------+------------+
+|trailing-whitespace          |1           |
++-----------------------------+------------+
+|too-many-statements          |1           |
++-----------------------------+------------+
+|too-many-locals              |1           |
++-----------------------------+------------+
+|too-many-branches            |1           |
++-----------------------------+------------+
+|too-many-boolean-expressions |1           |
++-----------------------------+------------+
+
+
+
+
+------------------------------------------------------------------
+Your code has been rated at 8.95/10 (previous run: 8.84/10, +0.11)
+

@@ -21,13 +21,13 @@ class VoeuEnAttente(object):
     def __init__(self,
         uid: VoeuUID,
         groupe,
-        avecInternat: bool,
         internat=None,
         rangInternat: int=0,
+        ordreAppel: int=0,
     ):
         self.id = uid  #: Caractéristiques identifiant de manière unique le voeu dans la base de données
         self.groupe = groupe  #: Groupe d'affectation du voeu
-        self.ordreAppel = 0  #: Rang du voeu dans l'ordre d'appel
+        self.ordreAppel = ordreAppel  #: Rang du voeu dans l'ordre d'appel
 
         # autre attributs
         self.internat = internat   #: le groupe de classement internat, qui donne accès à la position d'admission
@@ -50,7 +50,7 @@ class VoeuEnAttente(object):
     ):
         avecInternat = (internat is not None) or avecInternat
         voeuuid = VoeuUID(G_CN_COD, groupe.id.G_TA_COD, avecInternat)
-        voeu = VoeuEnAttente(voeuuid, groupe, avecInternat, internat=internat, rangInternat=rangInternat)
+        voeu = VoeuEnAttente(voeuuid, groupe, internat=internat, rangInternat=rangInternat, ordreAppel=ordreAppel)
         groupe.ajouterVoeu(voeu)
         if internat is not None:
             internat.ajouterVoeu(voeu, groupe)

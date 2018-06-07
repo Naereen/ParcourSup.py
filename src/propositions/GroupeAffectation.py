@@ -9,7 +9,7 @@
 __author__ = "Lilian Besson, Bastien Trotobas et al"
 __version__ = "0.0.1"
 
-from typing import Set, Union, List
+from typing import Set, List
 
 from VoeuEnAttente import VoeuEnAttente
 from GroupeAffectationUID import GroupeAffectationUID

@@ -30,3 +30,12 @@ tests_propositions:
 clean:
 	-rm -vfr __pycache__/ */__pycache__/ */*/__pycache__/ */*/*/__pycache__/ */*/*/*/__pycache__/
 	-rm -vf *.pyc */*.pyc */*/*.pyc */*/*/*.pyc */*/*/*/*.pyc */*/*/*/*.pyc
+
+# Linters
+# NPROC = `nproc`
+# NPROC = 1
+NPROC = `getconf _NPROCESSORS_ONLN`
+
+lint:
+	cd src/ ; pylint -j $(NPROC) *.py */*.py | tee ../logs/pylint_log.txt
+	cd src/ ; pylint --py3k -j $(NPROC) *.py */*.py | tee ../logs/pylint3_log.txt
