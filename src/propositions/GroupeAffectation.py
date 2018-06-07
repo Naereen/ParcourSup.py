@@ -38,15 +38,18 @@ class GroupeAffectation(object):
         self.voeux: List[VoeuEnAttente] = []
 
         #: ``True`` si et seulement si les vœux ont été triés.
-        self.voeuxsontTries = False
+        self.voeuxSontTries = False
 
         #: Ensemble des candidats affectés.
         self.candidatsAffectes: Set[int] = set()
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self.id}, {self.capacite}, {self.rangLimite}, {self.voeux}, {self.voeuxSontTries})"
+
     def ajouterVoeu(self, voe: VoeuEnAttente) -> None:
         """ Ajoute un voeu dans le groupe."""
         self.voeux.append(voe)
-        self.voeuxsontTries = False
+        self.voeuxSontTries = False
 
     def ajouterCandidatAffecte(self, G_CN_COD: int) -> None:
         """ Ajoute un candidat affecté."""
@@ -93,7 +96,7 @@ class GroupeAffectation(object):
 
     def voeuxTries(self) -> List[VoeuEnAttente]:
         """ Trie les voeux dans l'ordre d'appel."""
-        if not self.voeuxsontTries:
+        if not self.voeuxSontTries:
             self.voeux.sort(key= lambda voeu: voeu.ordreAppel)
-            self.voeuxsontTries = True
+            self.voeuxSontTries = True
         return self.voeux

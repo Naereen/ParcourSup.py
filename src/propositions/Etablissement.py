@@ -42,6 +42,9 @@ class GroupeClassement(object):
         self.plusHautRangAffecte = randint(1, int(nbEtudiants / 4))
         self.rangs: Dict[Candidat, int] = dict()
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self.C_G_COD}, {self.nbEtudiants}, {self.plusHautRangAffecte})"
+
     def ajouterCandidat(self, c: Candidat, maxEtapes: int=1000) -> int:
         """ Ajoute un candidat et renvoie son rang.
 
@@ -76,6 +79,9 @@ class FormationAffectation(object):
         self.groupes: List[GroupeAffectation] = []
         self.vusAvecInternat: Set[Candidat] = set()
         self.vusSansInternat: Set[Candidat] = set()
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self.G_TA_COD}, {self.internat}, {self.juryInternat}, {self.classements}, {self.groupes}, {self.vusAvecInternat}, {self.vusSansInternat})"
 
     def ajouterGroupe(self, c: GroupeClassement, G_TI_COD: int, G_TA_COD: int, isConcoursCommun: bool) -> None:
         """ Ajoute un groupe de classement."""
@@ -204,6 +210,9 @@ class Etablissement(object):
                     groupe = GroupeClassement(nbEtudiants=self.nbEtudiants)
                     formation.ajouterGroupe(groupe, self.G_TI_COD, formation.G_TA_COD, self.isConcoursCommun)
                     self.jurys.append(groupe)
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self.G_TI_COD}, {self.nbEtudiants}, {self.isConcoursCommun}, {self.formations}, {self.jurys}, {self.internatsCommuns})"
 
     def capacite(self) -> int:
         """ Capacité d'un établissement = somme des capacités de ses formations."""

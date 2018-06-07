@@ -12,23 +12,26 @@ __version__ = "0.0.1"
 from exemples import tous_les_exemples
 
 
-def main(numeroExemple=None):
-    if numeroExemple is not None:
-        max_numero = len(tous_les_exemples)
-        if not 0 <= numeroExemple < max_numero:
-            print(f"Erreur, l'exemple numéro #{numeroExemple + 1} n'est pas disponible.")
-    for i, exemple in enumerate(tous_les_exemples):
-        if numeroExemple is not None and i != numeroExemple:
-            continue
+def main(numeroExemples=None):
+    nombreExemples = len(tous_les_exemples)
+    # on fait tous les exemples ?
+    tousNumeroExemples = list(range(nombreExemples))
+    if numeroExemples is not None and len(numeroExemples) > 0:
+        for i in numeroExemples.copy():
+            if not i in tousNumeroExemples:
+                print(f"Erreur, l'exemple numéro #{i} n'est pas disponible.")
+                numeroExemples.remove(i)  # on le traite pas
+    if numeroExemples is None or len(numeroExemples) == 0:  # si on en a donné aucun
+        numeroExemples = tousNumeroExemples
+    for i in numeroExemples:
+        exemple = tous_les_exemples[i]
         print(f"\n\n\nPour l'exemple #{i} :")  # DEBUG
         ex = exemple()
         ex.execute()
-        if numeroExemple is not None and i == numeroExemple:
-            return
 
 
 if __name__ == '__main__':
     from sys import argv
     # lance tous les tests ou un seul
-    numeroExemple = int(argv[1]) if len(argv) > 1 else None
-    main(numeroExemple=numeroExemple - 1)
+    nums = [int(a) - 1 for a in argv[1:]] if len(argv) > 1 else None
+    main(numeroExemples=nums)

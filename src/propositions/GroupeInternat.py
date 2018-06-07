@@ -13,6 +13,7 @@ from typing import Set, List
 
 from VoeuEnAttente import VoeuEnAttente
 from GroupeAffectation import GroupeAffectation
+from GroupeInternatUID import GroupeInternatUID
 
 
 class GroupeInternat(object):
@@ -21,12 +22,12 @@ class GroupeInternat(object):
     nbJoursCampagne: int = 1  #: Le nombre de jours depuis l'ouverture de la campagne, 1 le premier jour.
 
     def __init__(self,
-        G_CN_CODE: int,
+        uid: GroupeInternatUID,
         capacite: int,
         pourcentageOuverture: int,
     ):
-        assert G_CN_CODE >= 0, f"Erreur : {self.__class__.__name__} le paramètre G_CN_CODE doit être >= 0, et pas {G_CN_CODE}..."  # DEBUG
-        self.G_CN_CODE = G_CN_CODE  #: L'identifiant unique de l'internat dans la base de données
+        assert isinstance(uid, GroupeInternatUID), f"Erreur : {self.__class__.__name__} le paramètre uid doit être instance de GroupeInternatUID, et pas {uid} instance de {type(uid)}..."  # DEBUG
+        self.id = uid  #: L'identifiant unique de l'internat dans la base de données
 
         assert capacite > 0, f"Erreur : {self.__class__.__name__} le paramètre capacite doit être > 0, et pas {capacite}..."  # DEBUG
         self.capacite = capacite  #: Le nombre total de places
@@ -38,22 +39,19 @@ class GroupeInternat(object):
         self.positionAdmission = 0  #: La position d'admission dans cet internat, calculée par l'algorithme
         self.positionMaximaleAdmission = 0  #: La position maximale d'admission dans cet internat, calculée par l'algorithme
         self.groupesConcernes: Set[GroupeAffectation] = set()  #: La liste des groupes de classement concernés par cet internat
-        self.voeux: List[VoeuEnAttente] = []  #: La liste des voeux du groupe. Après le calcul de la position initiale d'admission cette liste est triée par ordre de classement internat
 
+        self.voeux: List[VoeuEnAttente] = []  #: La liste des voeux du groupe. Après le calcul de la position initiale d'admission cette liste est triée par ordre de classement internat
         #: ``True`` si et seulement si la position maximale d'admission a été calculée,
         #: ce qui implique que la liste des voeux est triée par ordre de classement internat.
         self.estInitialise = False
 
         #: Ensemble des candidats affectés.
         self.candidatsAffectes: Set[int] = set()
-
         #: Ensemble des candidats en attente.
         self.candidatsEnAttente: Set[int] = set()
 
-        self.contingentAdmission = 0
-
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.G_CN_CODE}, {self.capacite}, {self.pourcentageOuverture})"
+        return f"{self.__class__.__name__}({self.id}, {self.capacite}, {self.pourcentageOuverture}, {self.contigentAdmission}, {self.positionAdmission}, {self.positionMaximaleAdmission}, {self.groupesConcernes}, {self.voeux})"
 
     def nbPlacesVacantes(self) -> int:
         """ Le nombre de places vacantes dans cet internat."""

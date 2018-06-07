@@ -1,0 +1,18 @@
+{
+    "algoPropositionsEntree": {
+        "groupesAffectations": [
+            {
+                "id": {
+                    "C_GP_COD": 1,
+                    "G_TA_COD": 1,
+                    "G_TI_COD": 1
+                },
+                "nbPlacesVacantes": 40,
+                "rangDernierAppele": -1,
+                "rangLimite": 0,
+                "voeux": []
+            }
+        ],
+        "internats": []
+    }
+}

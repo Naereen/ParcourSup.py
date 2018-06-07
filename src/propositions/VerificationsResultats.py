@@ -121,9 +121,9 @@ def verifierSurcapaciteEtRemplissage(formation: GroupeAffectation):
 
 def verifierSurcapaciteEtRemplissage_avec_rangDernierAppeles(
         internat: GroupeInternat,
-        rangDernierAppeles: Dict[GroupeInternat, int]
+        rangsMaxNouvelArrivant: Dict[GroupeInternat, int]
     ):
-    """ P5  (remplissage maximal des internats dans le respect des ordres d'appel)
+    """ P5 remplissage maximal des internats dans le respect des ordres d'appel.
 
     Le nombre de propositions doit être inférieur au nombre de places vacantes.
 
@@ -153,7 +153,7 @@ def verifierSurcapaciteEtRemplissage_avec_rangDernierAppeles(
                 assert formation in internat.groupesConcernes, "formation inconnue (?)"
                 assert not(
                     (voeu.internatDejaObtenu() or voeu.rangInternat <= internat.positionAdmission)
-                    and (voeu.formationDejaObtenue() or voeu.ordreAppel <= rangDernierAppeles.get(voeu.groupe))
+                    and (voeu.formationDejaObtenue() or voeu.ordreAppel <= rangsMaxNouvelArrivant[voeu.groupe])
                 ), "Souscapacité internat compensable par un voeu classé sous la position d'admission internat et classé sous le rang du dernier appelé dans la formation"
 
 def verifierMaximalitePositionsAdmission(internat: GroupeInternat):

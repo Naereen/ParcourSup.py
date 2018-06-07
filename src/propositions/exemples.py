@@ -64,9 +64,9 @@ class Exemple(object):
         self.sortie: Union[None, AlgoPropositions] = None
 
         self.donneesEntree()
-        assert hasattr(self, "groupe"), f"Erreur : cet exemple {self} devrait avoir un attribut 'groupe'. La méthode donneesEntree() doit être mal implémentée."  # DEBUG
-        assert hasattr(self, "internat"), f"Erreur : cet exemple {self} devrait avoir un attribut 'internat'. La méthode donneesEntree() doit être mal implémentée."  # DEBUG
         assert hasattr(self, "nbPlacesTotalInternat"), f"Erreur : cet exemple {self} devrait avoir un attribut 'nbPlacesTotalInternat'. La méthode donneesEntree() doit être mal implémentée."  # DEBUG
+        assert hasattr(self, "groupes"), f"Erreur : cet exemple {self} devrait avoir un attribut 'groupes'. La méthode donneesEntree() doit être mal implémentée."  # DEBUG
+        assert hasattr(self, "internats"), f"Erreur : cet exemple {self} devrait avoir un attribut 'internats'. La méthode donneesEntree() doit être mal implémentée."  # DEBUG
 
     def donneesEntree(self):
         """ Construit l'attribut groupes et internat, il ne doit pas être vide."""
@@ -98,17 +98,17 @@ class Exemple(object):
         entree = AlgoPropositions(self.groupes, self.internats)
 
         if sauvegarde:
-            # et sauvegarde l'entrée, d'abord en XML
-            entreeXML = entree.exporteEntree_XML()
-            contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
-            contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
-            contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
-            self.exporte(contenu, entree=True, xml=True)
-
             # et sauvegarde les deux, d'abord en XML
             entreeJSON = entree.exporteEntree_JSON()
             contenu = json.dumps(entreeJSON, sort_keys=True, indent=4)
             self.exporte(contenu, entree=True, xml=False)
+
+            # # et sauvegarde l'entrée, d'abord en XML
+            # entreeXML = entree.exporteEntree_XML()
+            # contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
+            # contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
+            # contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
+            # self.exporte(contenu, entree=True, xml=True)
 
         # calcule la sortie
         entree.calculePropositions()
@@ -120,12 +120,12 @@ class Exemple(object):
             contenu = json.dumps(sortieJSON, sort_keys=True, indent=4)
             self.exporte(contenu, entree=False, xml=False)
 
-            # et sauvegarde la sortie, d'abord en XML
-            sortieXML = entree.exporteSortie_XML()
-            contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
-            contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
-            contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
-            self.exporte(contenu, entree=False, xml=True)
+            # # et sauvegarde la sortie, d'abord en XML
+            # sortieXML = entree.exporteSortie_XML()
+            # contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
+            # contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
+            # contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
+            # self.exporte(contenu, entree=False, xml=True)
 
 
 # Exemples

@@ -10,6 +10,7 @@ __author__ = "Lilian Besson, Bastien Trotobas et al"
 __version__ = "0.0.1"
 
 import xml.etree.ElementTree as ET
+# from pprint import pprint  # DEBUG
 from typing import Dict, List, Set
 from datetime import datetime
 
@@ -40,8 +41,8 @@ class AlgoPropositions(object):
     """ Stocke les entrées et sorties de l'algorithme de calcul d'ordre d'appel. """
 
     def __init__(self,
-        groupesAffectations: List[GroupeAffectation],
-        internats: List[GroupeInternat],
+        groupesAffectations: List[GroupeAffectation]=[],
+        internats: List[GroupeInternat]=[],
     ):
         """ Stocke la liste non-vide de classements."""
         assert groupesAffectations, f"Erreur : {self.__class__.__name__} le paramètre groupesAffectations doit être non vide, et pas {groupesAffectations}..."  # DEBUG
@@ -61,10 +62,13 @@ class AlgoPropositions(object):
         self.propositions: List[VoeuEnAttente] = []
 
         #: Liste des voeux restant en attente.
-        self.enAttente: List[VoeuEnAttente] = []
+        self.enAttentes: List[VoeuEnAttente] = []
 
         #: Liste des internats, permettant de récupérer les positions max d'admission
         self.internats: List[GroupeInternat] = []
+
+        self.rangsMaxNouvelArrivant: Dict[GroupeAffectation, int] = dict()
+
 
     def verifierIntegrite(self) -> bool:
         """ Vérifie l'intégrité des données d'entrée, et lève une exception si nécessaire.
@@ -188,18 +192,17 @@ class AlgoPropositions(object):
         log("Vérifications ok (1/2)...")
 
         # précalcul des rangs d'appel maximum dans chaque groupe parmi les nouveaux entrants
-        rangsMaxNouvelArrivant: Dict[GroupeAffectation, int] = dict()
         for groupe in tqdm(self.groupesAffectations, desc="groupesAffectations"):
             rangMax = 0
             for voeu in groupe.voeuxTries():
                 if voeu.estAProposer() and not voeu.formationDejaObtenue():
                     rangMax = max(rangMax, voeu.ordreAppel)
-            rangsMaxNouvelArrivant[groupe] = rangMax
+            self.rangsMaxNouvelArrivant[groupe] = rangMax
 
         log(f"Vérification des propriétés attendues des propositions d'un des {len(self.internats)} internats.")
         for internat in tqdm(self.internats, desc="internats"):
             verifierRespectClassementInternat(internat)
-            verifierSurcapaciteEtRemplissage_avec_rangDernierAppeles(internat, rangsMaxNouvelArrivant)
+            verifierSurcapaciteEtRemplissage_avec_rangDernierAppeles(internat, self.rangsMaxNouvelArrivant)
         log("Vérifications ok (2/2)...")
 
         log("\n\nPréparation données de sortie...")
@@ -207,17 +210,17 @@ class AlgoPropositions(object):
         for groupeAffectation in tqdm(self.groupesAffectations, desc="groupesAffectations"):
             for voeu in groupeAffectation.voeux:
                 if voeu.estAProposer():
-                    self.propositions.add(voeu)
+                    self.propositions.append(voeu)
                 else:
-                    self.enAttente.add(voeu)
+                    self.enAttentes.append(voeu)
 
-        self.internats_sortie.update(self.internats)
+        self.internats_sortie.extend(self.internats)
 
     # --- Exporte vers des arbres XML ou un dictionnaire JSON
 
     def exporteEntree_XML(self) -> ET.Element:
         """ Converti l'entrée en un arbre XML."""
-        racine = ET.Element('algoOrdreAppelEntree')
+        racine = ET.Element('algoPropositionsEntree')
         groupesXML = ET.Element('groupesAffectations')
         for groupe in self.groupesAffectations:
             ET.SubElement(groupesXML, 'C_GP_COD').text = str(groupe.C_GP_COD)
@@ -235,30 +238,70 @@ class AlgoPropositions(object):
     def exporteEntree_JSON(self) -> Dict:
         """ Converti l'entrée en un dictionnaire."""
         racine = {
-            'algoOrdreAppelEntree': {
+            'algoPropositionsEntree': {
                 'groupesAffectations': [
                     {
-                        'C_GP_COD': groupe.C_GP_COD,
-                        'tauxMinBoursiersPourcents': groupe.tauxMinBoursiersPourcents,
-                        'tauxMinResidentsPourcents': groupe.tauxMinResidentsPourcents,
-                        'voeuxClasses': [
+                        'id': {
+                            'C_GP_COD': groupe.id.C_GP_COD,
+                            'G_TI_COD': groupe.id.G_TI_COD,
+                            'G_TA_COD': groupe.id.G_TA_COD,
+                        },
+                        'nbPlacesVacantes': groupe.nbPlacesVacantes(),
+                        'rangLimite': groupe.rangLimite,
+                        'rangDernierAppele': self.rangsMaxNouvelArrivant.get(groupe, -1),
+                        'voeux': [
                             {
-                                'typeCandidat': str(voeu.typeCandidat),
-                                'G_CN_COD': voeu.G_CN_COD,
-                                'rang': voeu.rang,
+                                'id': {
+                                    'G_CN_COD': voeu.id.C_GP_COD,
+                                    'G_TA_COD': voeu.id.G_TI_COD,
+                                    'I_RH_COD': voeu.id.G_TA_COD,
+                                },
+                                'ordreAppel': voeu.ordreAppel,
+                                'rangInternat': voeu.rangInternat,
+                                'rangListeAttente': voeu.rangListeAttente,
                             }
-                            for voeu in groupe.voeuxClasses
+                            for voeu in groupe.voeux
                         ]
                     }
                     for groupe in self.groupesAffectations
-                ]
+                ],
+                'internats': [
+                    {
+                        'id': {
+                            'C_GI_COD': internat.id.C_GI_COD,
+                            'G_TA_COD': internat.id.G_TA_COD,
+                        },
+                        'contingentAdmission': internat.contingentAdmission,
+                        'positionAdmission': internat.positionAdmission,
+                        'positionMaximaleAdmission': internat.positionMaximaleAdmission,
+                        'voeux': [
+                            {
+                                'id': {
+                                    'G_CN_COD': voeu.id.C_GP_COD,
+                                    'G_TA_COD': voeu.id.G_TI_COD,
+                                    'I_RH_COD': voeu.id.G_TA_COD,
+                                },
+                                'ordreAppel': voeu.ordreAppel,
+                                'rangInternat': voeu.rangInternat,
+                                'rangListeAttente': voeu.rangListeAttente,
+                            }
+                            for voeu in internat.voeux
+                        ],
+                        'candidatsEnAttente': [
+                            voeu.id.C_GP_COD
+                            for voeu in internat.voeux
+                        ]
+                    }
+                    for internat in self.internats
+                ],
             }
         }
+        # pprint(racine)  # DEBUG
         return racine
 
     def exporteSortie_XML(self) -> ET.Element:
         """ Converti les résultats de la sortie en un arbre XML."""
-        racine = ET.Element('algoOrdreAppelSortie')
+        racine = ET.Element('algoPropositionsSortie')
         ordresXML = ET.Element('ordresAppel')
         for numero, ordre in enumerate(self.ordresAppel.values()):
             ordreXML = ET.Element('entry')
@@ -280,21 +323,63 @@ class AlgoPropositions(object):
     def exporteSortie_JSON(self) -> Dict:
         """ Converti les résultats de la sortie en un dictionnaire."""
         racine = {
-            'algoOrdreAppelSortie': {
-                'ordresAppel': [
+            'algoPropositionsSortie': {
+                'propositions': [
                     {
-                        'key': numero,
+                        'id': {
+                            'G_CN_COD': proposition.id.C_GP_COD,
+                            'G_TA_COD': proposition.id.G_TI_COD,
+                            'I_RH_COD': proposition.id.G_TA_COD,
+                        },
+                        'ordreAppel': proposition.ordreAppel,
+                        'rangInternat': proposition.rangInternat,
+                        'rangListeAttente': proposition.rangListeAttente,
+                    }
+                    for proposition in self.propositions
+                ],
+                'enAttentes': [
+                    {
+                        'id': {
+                            'G_CN_COD': enAttente.id.C_GP_COD,
+                            'G_TA_COD': enAttente.id.G_TI_COD,
+                            'I_RH_COD': enAttente.id.G_TA_COD,
+                        },
+                        'ordreAppel': enAttente.ordreAppel,
+                        'rangInternat': enAttente.rangInternat,
+                        'rangListeAttente': enAttente.rangListeAttente,
+                    }
+                    for enAttente in self.enAttentes
+                ],
+                'internats': [
+                    {
+                        'id': {
+                            'C_GI_COD': internat.id.C_GI_COD,
+                            'G_TA_COD': internat.id.G_TA_COD,
+                        },
+                        'contingentAdmission': internat.contingentAdmission,
+                        'positionAdmission': internat.positionAdmission,
+                        'positionMaximaleAdmission': internat.positionMaximaleAdmission,
                         'voeux': [
                             {
-                                'typeCandidat': str(voeu.typeCandidat),
-                                'G_CN_COD': voeu.G_CN_COD,
-                                'rang': voeu.rang,
+                                'id': {
+                                    'G_CN_COD': voeu.id.C_GP_COD,
+                                    'G_TA_COD': voeu.id.G_TI_COD,
+                                    'I_RH_COD': voeu.id.G_TA_COD,
+                                },
+                                'ordreAppel': voeu.ordreAppel,
+                                'rangInternat': voeu.rangInternat,
+                                'rangListeAttente': voeu.rangListeAttente,
                             }
-                            for voeu in ordre
+                            for voeu in internat.voeux
+                        ],
+                        'candidatsEnAttente': [
+                            voeu.id.C_GP_COD
+                            for voeu in internat.voeux
                         ]
                     }
-                    for numero, ordre in enumerate(self.ordresAppel.values())
-                ]
+                    for internat in self.internats
+                ],
             }
         }
+        # pprint(racine)  # DEBUG
         return racine
