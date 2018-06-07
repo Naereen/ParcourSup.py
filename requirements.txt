@@ -1,5 +1,6 @@
 numpy>=1.14
 matplotlib>=2.0
 pandas>=0.23
+tqdm>=4.0
 jupyter
 ipython

@@ -59,7 +59,7 @@ class GroupeClassement(object):
         log(f"  On crée des listes de vœux pour chaque types de candidats ({list(TypeCandidat)}).")
         # on crée autant de listes de vœux que de types de candidats,
         # triées par ordre de classement
-        filesAttente: Dict[List[VoeuClasse]] = {
+        filesAttente: Dict[TypeCandidat, List[VoeuClasse]] = {
             t: []
             for t in list(TypeCandidat)
         }

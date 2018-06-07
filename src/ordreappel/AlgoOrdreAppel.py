@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8; mode: python -*-
-""" AlgoOrdreAppelEntree, pour https://github.com/Naereen/ParcourSup.py.
+""" AlgoOrdreAppel, pour https://github.com/Naereen/ParcourSup.py.
 
 - Auteurs: Lilian Besson, Bastien Trotobas et al, (C) 2018.
 - Adresse: https://github.com/Naereen/ParcourSup.py
@@ -17,8 +17,7 @@ from VoeuClasse import typeCandidat_vers_str
 
 
 class AlgoOrdreAppel(object):
-    """ Stocke les entrées et sorties de l'algorithme de calcul d'ordre d'appel.
-    """
+    """ Stocke les entrées et sorties de l'algorithme de calcul d'ordre d'appel. """
 
     def __init__(self, groupesClassements: List[GroupeClassement]):
         """ Stocke la liste non-vide de classements."""
