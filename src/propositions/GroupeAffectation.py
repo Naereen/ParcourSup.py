@@ -28,7 +28,7 @@ class GroupeAffectation(object):
         assert capacite > 0, f"Erreur : {self.__class__.__name__} le paramètre capacite doit être > 0, et pas {capacite}..."  # DEBUG
         self.capacite = capacite   #: La capacité de la formation.
 
-        assert rangLimite > 0, f"Erreur : {self.__class__.__name__} le paramètre rangLimite doit être > 0, et pas {rangLimite}..."  # DEBUG
+        assert rangLimite >= 0, f"Erreur : {self.__class__.__name__} le paramètre rangLimite doit être >= 0, et pas {rangLimite}..."  # DEBUG
         self.rangLimite = rangLimite   #: Le rang limite des candidats (dans l'ordre d'appel): tous les candidats de rang inférieur reçoivent une proposition.
 
         # autres attributs
