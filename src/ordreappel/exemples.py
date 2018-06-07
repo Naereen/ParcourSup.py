@@ -61,7 +61,7 @@ class Exemple(object):
         # crée l'entrée
         entree = AlgoOrdreAppel(self.groupes)
 
-        # et sauvegarde les deux, d'abord en XML
+        # et sauvegarde l'entrée, d'abord en XML
         entreeXML = entree.exporteEntree_XML()
         contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
         contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
@@ -76,7 +76,7 @@ class Exemple(object):
         # calcule la sortie
         entree.calculeOrdresAppels()
 
-        # et sauvegarde les deux, d'abord en XML
+        # et sauvegarde la sortie, d'abord en XML
         sortieXML = entree.exporteSortie_XML()
         contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
         contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)

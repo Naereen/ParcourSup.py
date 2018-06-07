@@ -19,6 +19,8 @@ from GroupeInternatUID import GroupeInternatUID
 class GroupeInternat(object):
     """ Classe comprenant les caractéristiques identifiant de manière unique un internat dans la base de données."""
 
+    nbJoursCampagne: int = 1  #: Le nombre de jours depuis l'ouverture de la campagne, 1 le premier jour.
+
     def __init__(self,
         G_CN_CODE: int,
         capacite: int,
@@ -36,7 +38,6 @@ class GroupeInternat(object):
         self.contigentAdmission = 0  #: Le nombre de demandes d'internat considérées Bmax dans le document de spécification
         self.positionAdmission = 0  #: La position d'admission dans cet internat, calculée par l'algorithme
         self.positionMaximaleAdmission = 0  #: La position maximale d'admission dans cet internat, calculée par l'algorithme
-        self.nbJoursCampagne: Union[None, int] = None  #: Le nombre de jours depuis l'ouverture de la campagne, 1 le premier jour
         self.groupesConcernes: Set[GroupeAffectation] = set()  #: La liste des groupes de classement concernés par cet internat
         self.voeux: List[VoeuEnAttente] = []  #: La liste des voeux du groupe. Après le calcul de la position initiale d'admission cette liste est triée par ordre de classement internat
 
