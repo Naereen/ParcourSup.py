@@ -11,9 +11,6 @@ __version__ = "0.0.1"
 
 from typing import Union
 from VoeuUID import VoeuUID
-from GroupeAffectation import GroupeAffectation
-from GroupeInternat import GroupeInternat
-from GroupeInternatUID import GroupeInternatUID
 
 
 class VoeuEnAttente(object):
@@ -23,9 +20,9 @@ class VoeuEnAttente(object):
 
     def __init__(self,
         uid: VoeuUID,
-        groupe: GroupeAffectation,
+        groupe,
         avecInternat: bool,
-        internat: Union[None, GroupeAffectation]=None,
+        internat=None,
         rangInternat: int=0,
     ):
         self.id = uid  #: Caractéristiques identifiant de manière unique le voeu dans la base de données
@@ -46,9 +43,9 @@ class VoeuEnAttente(object):
     def ajouterVoeu(
         G_CN_COD: int,
         avecInternat: bool,
-        groupe: GroupeAffectation,
+        groupe,
         ordreAppel: int,
-        internat: Union[None, GroupeAffectation]=None,
+        internat=None,
         rangInternat: int=0,
     ):
         avecInternat = (internat is not None) or avecInternat

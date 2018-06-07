@@ -17,7 +17,8 @@ try:
     from tqdm import tqdm  # DEBUG Cf. https://github.com/tqdm/tqdm#usage
 except ImportError:
     print("Attention : le module 'tqdm' n'a pas été trouvé, installez le avec :\nsudo pip3 install tqdm")
-    tqdm = lambda iterator: iterator
+    def tqdm(iterator, desc=None):
+        return iterator
 
 
 from GroupeAffectation import GroupeAffectation
@@ -79,12 +80,12 @@ class AlgoPropositions(object):
 
         .. warning:: Une exception ``AssertionError`` est lancée avec un message commençant par ``a)`` ou ... ou ``f)``.
         """
-        for groupeAffectation in tqdm(self.groupesAffectations):
+        for groupeAffectation in tqdm(self.groupesAffectations, desc="groupesAffectations"):
             # intégrité des classements : un classement == un candidat
             ordreVersCandidat: Dict[int, int] = dict()
             candidatVersOrdre: Dict[int, int] = dict()
             voeuxVus: Set[VoeuUID] = set()
-            for voeu in tqdm(groupeAffectation.voeux):
+            for voeu in tqdm(groupeAffectation.voeux, desc="voeux"):
                 assert not (voeu.internatDejaObtenu() and voeu.formationDejaObtenue()), "a) ce vœu n'est pas en attente !"
                 assert voeu.id not in voeuxVus, "b) deux vœux avec le même identifiant !"
                 voeuxVus.add(voeu.id)
@@ -106,11 +107,11 @@ class AlgoPropositions(object):
                 if voeu.avecClassementInternat():
                     assert voeu in voeu.internat.voeux, "f) erreur intégrité données !"
 
-        for internat in tqdm(self.internats):
+        for internat in tqdm(self.internats, "internats"):
             # intégrité des classements : un classement == un candidat
             ordreVersCandidat: Dict[int, int] = dict()
             candidatVersOrdre: Dict[int, int] = dict()
-            for voeu in tqdm(internat.voeux):
+            for voeu in tqdm(internat.voeux, "voeux"):
                 assert voeu.avecInternat(), "g) erreur intégrité données !"
                 assert voeu.internant == internat, "h) erreur intégrité données !"
                 assert voeu.rangInternat <= 0, "e) classement internat négatif !"
@@ -177,10 +178,10 @@ class AlgoPropositions(object):
                     self.groupesAMettreAJour.update(internat.groupesConcernes)
             compteurBoucle += 1
 
-        log(f"Calcul terminé après {compteurBoucle} itération{"(s)" if compteurBoucle > 1 else ""}.")
+        log(f"Calcul terminé après {compteurBoucle} itération{'(s)' if compteurBoucle > 1 else ''}.")
 
         log(f"Vérification des propriétés attendues des propositions pour un des {len(self.groupesAffectations)} groupes d'affectation.")
-        for groupe in tqdm(self.groupesAffectations):
+        for groupe in tqdm(self.groupesAffectations, desc="groupesAffectations"):
             verifierRespectOrdreAppelVoeuxSansInternat(groupe)
             verifierVoeuxAvecInternat(groupe)
             verifierSurcapaciteEtRemplissage(groupe)
@@ -188,7 +189,7 @@ class AlgoPropositions(object):
 
         # précalcul des rangs d'appel maximum dans chaque groupe parmi les nouveaux entrants
         rangsMaxNouvelArrivant: Dict[GroupeAffectation, int] = dict()
-        for groupe in tqdm(self.groupesAffectations):
+        for groupe in tqdm(self.groupesAffectations, desc="groupesAffectations"):
             rangMax = 0
             for voeu in groupe.voeuxTries():
                 if voeu.estAProposer() and not voeu.formationDejaObtenue():
@@ -196,14 +197,14 @@ class AlgoPropositions(object):
             rangsMaxNouvelArrivant[groupe] = rangMax
 
         log(f"Vérification des propriétés attendues des propositions d'un des {len(self.internats)} internats.")
-        for internat in tqdm(self.internats):
+        for internat in tqdm(self.internats, desc="internats"):
             verifierRespectClassementInternat(internat)
             verifierSurcapaciteEtRemplissage_avec_rangDernierAppeles(internat, rangsMaxNouvelArrivant)
         log("Vérifications ok (2/2)...")
 
         log("\n\nPréparation données de sortie...")
 
-        for groupeAffectation in tqdm(self.groupesAffectations):
+        for groupeAffectation in tqdm(self.groupesAffectations, desc="groupesAffectations"):
             for voeu in groupeAffectation.voeux:
                 if voeu.estAProposer():
                     self.propositions.add(voeu)

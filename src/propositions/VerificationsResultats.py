@@ -14,15 +14,17 @@
 __author__ = "Lilian Besson, Bastien Trotobas et al"
 __version__ = "0.0.1"
 
-from typing import Dict, List, Set
-
+from typing import Dict, Set
+from datetime import datetime
 
 from GroupeAffectation import GroupeAffectation
-from GroupeAffectationUID import GroupeAffectationUID
 from GroupeInternat import GroupeInternat
-from GroupeInternatUID import GroupeInternatUID
-from VoeuEnAttente import VoeuEnAttente
-from VoeuUID import VoeuUID
+
+
+def log(*args, **kwargs):
+    """ Affiche avec une heure."""
+    now = datetime.now()
+    print(f"{now:%d-%m-%Y %H:%M:%S}", *args, **kwargs)
 
 
 
@@ -103,7 +105,7 @@ def verifierSurcapaciteEtRemplissage(formation: GroupeAffectation):
     nbPropositions = len(candidatsProposes)
 
     if nbPropositions > formation.nbPlacesVacantes() and rangDernierNouvelAppele > formation.rangLimite:
-        log(f"Surcapacité formation non expliquée par le rang limite, veuillez vérifier qu'une diminution de la surréseravation a eu lieu pour le groupe de classement C_GP_COD = {formation.id.C_GP_COD}, G_TA_COD = {formation.id.G_TA_COD}, G_TI_COD {formation= .id.G_TI_COD}.")
+        log(f"Surcapacité formation non expliquée par le rang limite, veuillez vérifier qu'une diminution de la surréseravation a eu lieu pour le groupe de classement C_GP_COD = {formation.id.C_GP_COD}, G_TA_COD = {formation.id.G_TA_COD}, G_TI_COD = {formation.id.G_TI_COD}.")
     assert not(
         nbPropositions > formation.nbPlacesVacantes()
         and not formation.estInitialementEnSurcapacite()
@@ -111,15 +113,15 @@ def verifierSurcapaciteEtRemplissage(formation: GroupeAffectation):
     ), f"Surcapacité de la formation C_GP_COD = {formation.id.C_GP_COD}, G_TA_COD = {formation.id.G_TA_COD}, G_TI_COD = {formation.id.G_TI_COD}."
 
     if nbPropositions < formation.nbPlacesVacantes():
-        for v in formation.voeux:
+        for voeu in formation.voeux:
             if not voeu.estAProposer():
                 assert voeu.avecClassementInternat(), "Souscapacité formation compensable par un voeu sans classement internat."
                 assert voeu.estDesactiveParPositionAdmissionInternat(), "Souscapacité compensable par un voeu avec classement internat classé sous la position d'admission internat."
 
 
 def verifierSurcapaciteEtRemplissage_avec_rangDernierAppeles(
-        formation: GroupeAffectation,
-        rangDernierAppeles: Dict[GroupeAffectation, int]
+        internat: GroupeInternat,
+        rangDernierAppeles: Dict[GroupeInternat, int]
     ):
     """ P5  (remplissage maximal des internats dans le respect des ordres d'appel)
 
@@ -151,10 +153,10 @@ def verifierSurcapaciteEtRemplissage_avec_rangDernierAppeles(
                 assert formation in internat.groupesConcernes, "formation inconnue (?)"
                 assert not(
                     (voeu.internatDejaObtenu() or voeu.rangInternat <= internat.positionAdmission)
-                    and (voeu.formationDejaObtenue() or voeu.ordreAppel <=  rangDernierAppeles.get(voeu.groupe))
+                    and (voeu.formationDejaObtenue() or voeu.ordreAppel <= rangDernierAppeles.get(voeu.groupe))
                 ), "Souscapacité internat compensable par un voeu classé sous la position d'admission internat et classé sous le rang du dernier appelé dans la formation"
 
-def verifierMaximalitePositionsAdmission(formation: GroupeAffectation):
+def verifierMaximalitePositionsAdmission(internat: GroupeInternat):
     """ P6 : maximalité des positions d'admission.
 
     Pour tout internat, la position d'admission est inférieure ou égale à la position maximale d'admission.
@@ -164,4 +166,3 @@ def verifierMaximalitePositionsAdmission(formation: GroupeAffectation):
     .. warning:: FIXME le code de référence ne l'a pas fait ("Non-implémenté."), mais nous pouvons essayer ?
     """
     raise NotImplementedError
-

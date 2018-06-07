@@ -13,7 +13,16 @@ import json
 from os import path
 import xml.etree.ElementTree as ET
 import xml.dom.minidom as DOM
+from datetime import datetime
 from typing import List, Union
+from random import randint, random, choice
+
+try:
+    from tqdm import tqdm  # DEBUG Cf. https://github.com/tqdm/tqdm#usage
+except ImportError:
+    print("Attention : le module 'tqdm' n'a pas été trouvé, installez le avec :\nsudo pip3 install tqdm")
+    def tqdm(iterator, desc=None):
+        return iterator
 
 from AlgoPropositions import AlgoPropositions
 
@@ -22,7 +31,21 @@ from GroupeAffectationUID import GroupeAffectationUID
 from GroupeInternat import GroupeInternat
 from GroupeInternatUID import GroupeInternatUID
 from VoeuEnAttente import VoeuEnAttente
-from VoeuUID import VoeuUID
+
+from Candidat import Candidat
+from Etablissement import Etablissement
+
+
+def log(*args, **kwargs):
+    """ Affiche avec une heure."""
+    now = datetime.now()
+    print(f"{now:%d-%m-%Y %H:%M:%S}", *args, **kwargs)
+
+
+
+def randbool() -> bool:
+    """ Pile ou face, True avec probabilité 1/2 et False avec probabilité 1/2."""
+    return random() <= 0.5
 
 
 #: En mode débug, on affiche juste le résultat.
@@ -88,7 +111,7 @@ class Exemple(object):
             self.exporte(contenu, entree=True, xml=False)
 
         # calcule la sortie
-        entree.calculeOrdresAppels()
+        entree.calculePropositions()
         self.sortie = entree
 
         if sauvegarde:
@@ -112,7 +135,7 @@ class exempleB7base(Exemple):
     """ Exemple B7 de base."""
 
     def donneesEntree(self):
-        self.nom = 'exemple_B7'
+        self.nom = 'Exemple_B7'
         groupe = GroupeAffectation(
             40,
             GroupeAffectationUID(1, 1, 1),
@@ -134,12 +157,12 @@ class exempleB7Jour1(exempleB7base):
         GroupeInternat.nbJoursCampagne = 1
         super().donneesEntree()
         self.n = 332  #: Nombre total de candidats
-        self.nom = 'exemple_B7Jour1'
+        self.nom = 'Exemple_B7Jour1'
         groupe = self.groupes[0]
         internat = self.internats[0]
 
-        VoeuEnAttente.ajouterVoeu(1, groupe, 1, internat, 28)
-        VoeuEnAttente.ajouterVoeu(2, groupe, 2, internat, 15)
+        VoeuEnAttente.ajouterVoeu(1,  groupe, 1,  internat, 28)
+        VoeuEnAttente.ajouterVoeu(2,  groupe, 2,  internat, 15)
         VoeuEnAttente.ajouterVoeu(20, groupe, 20, internat, 5)
         VoeuEnAttente.ajouterVoeu(21, groupe, 21, internat, 6)
 
@@ -168,12 +191,15 @@ class exempleB7Jour1(exempleB7base):
             G_CN_COD = i
             ordreAppel = i
             rangInternat = i
-            if i <= 6: rangInternat = i - 2
-            elif i <= 14: rangInternat = i
-            elif i <= 20: rangInternat = i + 1
-            elif i <= 28: rangInternat = i + 1
-
-            VoeuEnAttente.ajouterVoeu(G_CN_COD, groupe, internat, rangInternat)
+            if i <= 6:
+                rangInternat = i - 2
+            elif i <= 14:
+                rangInternat = i
+            elif i <= 20:
+                rangInternat = i + 1
+            elif i <= 28:
+                rangInternat = i + 1
+            VoeuEnAttente.ajouterVoeu(G_CN_COD, groupe, ordreAppel, internat, rangInternat)
 
 
 class exempleB7Jour2(exempleB7base):
@@ -186,7 +212,7 @@ class exempleB7Jour2(exempleB7base):
 
         super().donneesEntree()
         self.n = 332  #: Nombre total de candidats
-        self.nom = 'exemple_B7Jour2'
+        self.nom = 'Exemple_B7Jour2'
         groupe = self.groupes[0]
         internat = self.internats[0]
 
@@ -205,7 +231,7 @@ class exempleB7Jour2(exempleB7base):
         for voeu in sortie.enAttente:
             if voeu.id.G_CN_COD == 21 or voeu.id.G_CN_COD == 30:
                 continue
-            VoeuEnAttente.ajouterVoeu(voeu.id.G_CN_COD, groupe, internat, voeu.rangInternat)
+            VoeuEnAttente.ajouterVoeu(voeu.id.G_CN_COD, groupe, voeu.ordreAppel, internat, voeu.rangInternat)
 
 
 class exempleB7Jour3(exempleB7base):
@@ -218,7 +244,7 @@ class exempleB7Jour3(exempleB7base):
 
         super().donneesEntree()
         self.n = 332  #: Nombre total de candidats
-        self.nom = 'exemple_B7Jour3'
+        self.nom = 'Exemple_B7Jour3'
         groupe = self.groupes[0]
         internat = self.internats[0]
 
@@ -237,8 +263,61 @@ class exempleB7Jour3(exempleB7base):
         for voeu in sortie.enAttente:
             if voeu.id.G_CN_COD <= 20:
                 continue
-            VoeuEnAttente.ajouterVoeu(voeu.id.G_CN_COD, groupe, internat, voeu.rangInternat)
+            VoeuEnAttente.ajouterVoeu(voeu.id.G_CN_COD, groupe, voeu.ordreAppel, internat, voeu.rangInternat)
 
+
+class exempleAleatoire(exempleB7base):
+    """ Exemple aléatoire très complet et compliqué.
+    
+    .. warning:: FIXME à finir !
+    """
+    maxNbVoeuxParCandidat = 40
+
+    def __init__(self,
+        nbEtudiants: int=100
+    ):
+        super().__init__()
+        nbEtudiants = min(nbEtudiants, 100)
+        self.nbEtudiants = nbEtudiants
+
+    def donneesEntree(self) -> None:
+        Etablissement.last_G_TI_COD = 1
+        etablissements: List[Etablissement] = []
+
+        GroupeInternat.nbJoursCampagne = 1 + randint(1, 70)
+        log(f"Jours de campagne : {GroupeInternat.nbJoursCampagne}")
+
+        log("\n\nGénération aléatoire des établissements et formations...")
+        capacite_totale = 0
+        while capacite_totale < self.nbEtudiants:
+            etablissement = Etablissement(self.nbEtudiants)
+            etablissements.append(etablissement)
+            capacite_totale += etablissement.capacite()
+            log(f"  Un nouvel établissement de capacité {etablissement.capacite()} ajouté. Capacité total {capacite_totale}...")
+
+        log("\n\nGénération aléatoire des vœux et classements...")
+        for etudiant in tqdm(range(self.nbEtudiants), "Etudiants"):
+            candidat = Candidat()
+            nbVoeux = randint(0, self.maxNbVoeuxParCandidat)
+            while nbVoeux > 0:
+                etablissement = choice(etablissements)
+                nbVoeux -= etablissement.ajouterVoeux(candidat)
+            if (etudiant + 1) % 1000 == 0:
+                log(f"{etudiant + 1} nouveaux-elles étudiant-es généré-es ...")
+
+        log("\n\nGénération données entrée algorithme...")
+
+        entree = AlgoPropositions([], [])
+
+        for etablissement in tqdm(etablissements, desc="Etablissements"):
+            for fa in tqdm(etablissement.formations, desc="Formations"):
+                entree.groupesAffectations.update(fa.groupes)
+                if fa.internat is not None and fa.internat.candidatsEnAttente:
+                    entree.internats.append(fa.internat)
+
+            for internat in tqdm(etablissement.internatsCommuns.values(), desc="InternatsCommuns"):
+                if internat.candidatsEnAttente:
+                    entree.internats.append(internat)
 
 
 #: Liste de tous les exemples.
