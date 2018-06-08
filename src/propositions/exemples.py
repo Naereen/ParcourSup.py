@@ -108,12 +108,12 @@ class Exemple(object):
             self.exporte(contenu, entree=True, xml=False)
 
             # FIXME terminer de débuguer avec le JSON puis faire la sortie XML aussi
-            # # et sauvegarde l'entrée, d'abord en XML
-            # entreeXML = entree.exporteEntree_XML()
-            # contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
-            # contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
-            # contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
-            # self.exporte(contenu, entree=True, xml=True)
+            # et sauvegarde l'entrée, d'abord en XML
+            entreeXML = entree.exporteEntree_XML()
+            contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
+            contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
+            contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
+            self.exporte(contenu, entree=True, xml=True)
 
         if sauvegarde:
             # et maintenant le JSON
@@ -122,12 +122,12 @@ class Exemple(object):
             self.exporte(contenu, entree=False, xml=False)
 
             # FIXME terminer de débuguer avec le JSON puis faire la sortie XML aussi
-            # # et sauvegarde la sortie, d'abord en XML
-            # sortieXML = entree.exporteSortie_XML()
-            # contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
-            # contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
-            # contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
-            # self.exporte(contenu, entree=False, xml=True)
+            # et sauvegarde la sortie, d'abord en XML
+            sortieXML = entree.exporteSortie_XML()
+            contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
+            contenu = DOM.parseString(contenu).toprettyxml(indent=' '*4)
+            contenu = contenu.replace('version="1.0" ', 'version="1.0" encoding="UTF-8" standalone="yes"')
+            self.exporte(contenu, entree=False, xml=True)
 
 
 # Exemples
@@ -159,7 +159,7 @@ class exempleB7Jour1(exempleB7base):
         GroupeInternat.nbJoursCampagne = 1
         super().donneesEntree()
         self.n = 332  #: Nombre total de candidats
-        self.nom = 'Exemple_B7Jour1'
+        self.nom = 'ExempleB7Jour1'
         groupe = self.groupes[0]
         internat = self.internats[0]
 
@@ -214,7 +214,7 @@ class exempleB7Jour2(exempleB7base):
 
         super().donneesEntree()
         self.n = 332  #: Nombre total de candidats
-        self.nom = 'Exemple_B7Jour2'
+        self.nom = 'ExempleB7Jour2'
         groupe = self.groupes[0]
         internat = self.internats[0]
 
@@ -246,7 +246,7 @@ class exempleB7Jour3(exempleB7base):
 
         super().donneesEntree()
         self.n = 332  #: Nombre total de candidats
-        self.nom = 'Exemple_B7Jour3'
+        self.nom = 'ExempleB7Jour3'
         groupe = self.groupes[0]
         internat = self.internats[0]
 

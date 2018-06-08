@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<algoPropositionsEntree>
+    <groupesAffectations>
+        <id>
+            <C_GP_COD>1</C_GP_COD>
+            <G_TI_COD>1</G_TI_COD>
+            <G_TA_COD>1</G_TA_COD>
+        </id>
+        <nbPlacesVacantes>40</nbPlacesVacantes>
+        <rangLimite>0</rangLimite>
+        <rangDernierAppele>0</rangDernierAppele>
+    </groupesAffectations>
+    <internats>
+        <id>
+            <C_GI_COD>1</C_GI_COD>
+            <G_TA_COD>1</G_TA_COD>
+        </id>
+        <contingentAdmission>0</contingentAdmission>
+        <positionAdmission>0</positionAdmission>
+        <positionMaximaleAdmission>0</positionMaximaleAdmission>
+    </internats>
+</algoPropositionsEntree>

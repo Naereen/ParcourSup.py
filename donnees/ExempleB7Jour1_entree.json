@@ -8,7 +8,7 @@
                     "G_TI_COD": 1
                 },
                 "nbPlacesVacantes": 40,
-                "rangDernierAppele": 51,
+                "rangDernierAppele": 21,
                 "rangLimite": 0,
                 "voeux": [
                     {
@@ -29,6 +29,86 @@
                         },
                         "ordreAppel": 2,
                         "rangInternat": 15,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 3,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 3,
+                        "rangInternat": 1,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 4,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 4,
+                        "rangInternat": 2,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 5,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 5,
+                        "rangInternat": 3,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 6,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 6,
+                        "rangInternat": 4,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 7,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 7,
+                        "rangInternat": 7,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 8,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 8,
+                        "rangInternat": 8,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 9,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 9,
+                        "rangInternat": 9,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 10,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 10,
+                        "rangInternat": 10,
                         "rangListeAttente": 0
                     },
                     {
@@ -123,6 +203,26 @@
                     },
                     {
                         "id": {
+                            "G_CN_COD": 20,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 20,
+                        "rangInternat": 5,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 21,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 21,
+                        "rangInternat": 6,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
                             "G_CN_COD": 22,
                             "G_TA_COD": 1,
                             "I_RH_COD": true
@@ -199,6 +299,16 @@
                         },
                         "ordreAppel": 29,
                         "rangInternat": 29,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 30,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 30,
+                        "rangInternat": 30,
                         "rangListeAttente": 0
                     },
                     {
@@ -3229,6 +3339,14 @@
                 "candidatsEnAttente": [
                     1,
                     2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
                     11,
                     12,
                     13,
@@ -3238,6 +3356,8 @@
                     17,
                     18,
                     19,
+                    20,
+                    21,
                     22,
                     23,
                     24,
@@ -3246,6 +3366,7 @@
                     27,
                     28,
                     29,
+                    30,
                     31,
                     32,
                     33,
@@ -3549,32 +3670,112 @@
                     331,
                     332
                 ],
-                "contingentAdmission": 0,
+                "contingentAdmission": 10,
                 "id": {
                     "C_GI_COD": 1,
                     "G_TA_COD": 1
                 },
-                "positionAdmission": 0,
-                "positionMaximaleAdmission": 0,
+                "positionAdmission": 10,
+                "positionMaximaleAdmission": 10,
                 "voeux": [
                     {
                         "id": {
-                            "G_CN_COD": 1,
+                            "G_CN_COD": 3,
                             "G_TA_COD": 1,
                             "I_RH_COD": true
                         },
-                        "ordreAppel": 1,
-                        "rangInternat": 28,
+                        "ordreAppel": 3,
+                        "rangInternat": 1,
                         "rangListeAttente": 0
                     },
                     {
                         "id": {
-                            "G_CN_COD": 2,
+                            "G_CN_COD": 4,
                             "G_TA_COD": 1,
                             "I_RH_COD": true
                         },
-                        "ordreAppel": 2,
-                        "rangInternat": 15,
+                        "ordreAppel": 4,
+                        "rangInternat": 2,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 5,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 5,
+                        "rangInternat": 3,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 6,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 6,
+                        "rangInternat": 4,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 20,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 20,
+                        "rangInternat": 5,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 21,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 21,
+                        "rangInternat": 6,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 7,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 7,
+                        "rangInternat": 7,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 8,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 8,
+                        "rangInternat": 8,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 9,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 9,
+                        "rangInternat": 9,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 10,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 10,
+                        "rangInternat": 10,
                         "rangListeAttente": 0
                     },
                     {
@@ -3615,6 +3816,16 @@
                         },
                         "ordreAppel": 14,
                         "rangInternat": 14,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 2,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 2,
+                        "rangInternat": 15,
                         "rangListeAttente": 0
                     },
                     {
@@ -3739,12 +3950,32 @@
                     },
                     {
                         "id": {
+                            "G_CN_COD": 1,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 1,
+                        "rangInternat": 28,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
                             "G_CN_COD": 29,
                             "G_TA_COD": 1,
                             "I_RH_COD": true
                         },
                         "ordreAppel": 29,
                         "rangInternat": 29,
+                        "rangListeAttente": 0
+                    },
+                    {
+                        "id": {
+                            "G_CN_COD": 30,
+                            "G_TA_COD": 1,
+                            "I_RH_COD": true
+                        },
+                        "ordreAppel": 30,
+                        "rangInternat": 30,
                         "rangListeAttente": 0
                     },
                     {

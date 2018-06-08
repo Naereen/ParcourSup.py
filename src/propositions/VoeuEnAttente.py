@@ -33,6 +33,7 @@ class VoeuEnAttente(object):
         self.internat = internat   #: le groupe de classement internat, qui donne accès à la position d'admission
         self.rangInternat = rangInternat  #: Le rang du candidat au classement internat
         self._aProposer = False  # Résultat du calcul : fait-on une proposition sur ce voeu ?
+        # FIXME ces deux quantités ne sont pas utilisées ?
         self.rangListeAttente = 0  #: Rang sur liste attente
         self.rangListeAttenteInternat = 0  #: Rang sur liste attente internat
 

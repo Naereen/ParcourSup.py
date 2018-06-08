@@ -17,6 +17,7 @@ for i in *.xml; do
     echo "- Checking $i ..."
     output="$($difftool {./,"$dossierref/"}"$i")"
     if [ ! -z "$output" ]; then
+        echo -e "$output"
         read  # DEBUG
     else
         echo "  Perfectly matching $dossierref/$i"

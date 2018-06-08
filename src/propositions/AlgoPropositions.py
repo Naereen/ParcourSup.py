@@ -37,6 +37,10 @@ def log(*args, **kwargs):
     print(f"{now:%d-%m-%Y %H:%M:%S}", *args, **kwargs)
 
 
+def str_de_bool(b: bool) -> str:
+    """ ``True`` ou ``False`` en minuscule."""
+    return "true" if b else "false"
+
 class AlgoPropositions(object):
     """ Stocke les entrées et sorties de l'algorithme de calcul d'ordre d'appel. """
 
@@ -216,20 +220,61 @@ class AlgoPropositions(object):
 
     def exporteEntree_XML(self) -> ET.Element:
         """ Converti l'entrée en un arbre XML."""
-        raise NotImplementedError
         racine = ET.Element('algoPropositionsEntree')
-        groupesXML = ET.Element('groupesAffectations')
+
+        groupesAffectationsXML = ET.Element('groupesAffectations')
         for groupe in self.groupesAffectations:
-            ET.SubElement(groupesXML, 'C_GP_COD').text = str(groupe.C_GP_COD)
-            ET.SubElement(groupesXML, 'tauxMinBoursiersPourcents').text = str(groupe.tauxMinBoursiersPourcents)
-            ET.SubElement(groupesXML, 'tauxMinResidentsPourcents').text = str(groupe.tauxMinResidentsPourcents)
-            for voeu in groupe.voeuxClasses:
-                voeuXML = ET.Element('voeuxClasses')
-                ET.SubElement(voeuXML, 'typeCandidat').text = str(voeu.typeCandidat)
-                ET.SubElement(voeuXML, 'G_CN_COD').text = str(voeu.G_CN_COD)
-                ET.SubElement(voeuXML, 'rang').text = str(voeu.rang)
-                groupesXML.append(voeuXML)
-        racine.append(groupesXML)
+            uid = ET.SubElement(groupesAffectationsXML, 'id')
+            ET.SubElement(uid, 'C_GP_COD').text = str(groupe.id.C_GP_COD)
+            ET.SubElement(uid, 'G_TI_COD').text = str(groupe.id.G_TI_COD)
+            ET.SubElement(uid, 'G_TA_COD').text = str(groupe.id.G_TA_COD)
+
+            ET.SubElement(groupesAffectationsXML, 'nbPlacesVacantes').text = str(groupe.nbPlacesVacantes())
+            ET.SubElement(groupesAffectationsXML, 'rangLimite').text = str(groupe.rangLimite)
+            ET.SubElement(groupesAffectationsXML, 'rangDernierAppele').text = str(self.rangsMaxNouvelArrivant.get(groupe, -1))
+
+            for voeu in groupe.voeux:
+                voeuXML = ET.Element('voeux')
+                uid = ET.SubElement(voeuXML, 'id')
+                ET.SubElement(uid, 'G_CN_COD').text = str(voeu.id.G_CN_COD)
+                ET.SubElement(uid, 'G_TA_COD').text = str(voeu.id.G_TA_COD)
+                ET.SubElement(uid, 'I_RH_COD').text = str_de_bool(voeu.id.I_RH_COD)
+
+                ET.SubElement(voeuXML, 'ordreAppel').text = str(voeu.ordreAppel)
+                ET.SubElement(voeuXML, 'rangInternat').text = str(voeu.rangInternat)
+                ET.SubElement(voeuXML, 'rangListeAttente').text = str(voeu.rangListeAttente)
+
+                groupesAffectationsXML.append(voeuXML)
+        racine.append(groupesAffectationsXML)
+
+        internatsXML = ET.Element('internats')
+        for internat in self.internats:
+            uid = ET.SubElement(internatsXML, 'id')
+            ET.SubElement(uid, 'C_GI_COD').text = str(internat.id.C_GI_COD)
+            ET.SubElement(uid, 'G_TA_COD').text = str(internat.id.G_TA_COD)
+
+            ET.SubElement(internatsXML, 'contingentAdmission').text = str(internat.contingentAdmission)
+            ET.SubElement(internatsXML, 'positionAdmission').text = str(internat.positionAdmission)
+            ET.SubElement(internatsXML, 'positionMaximaleAdmission').text = str(internat.positionMaximaleAdmission)
+
+            for voeu in internat.voeux:
+                voeuXML = ET.Element('voeux')
+                uid = ET.SubElement(voeuXML, 'id')
+                ET.SubElement(uid, 'G_CN_COD').text = str(voeu.id.G_CN_COD)
+                ET.SubElement(uid, 'G_TA_COD').text = str(voeu.id.G_TA_COD)
+                ET.SubElement(uid, 'I_RH_COD').text = str_de_bool(voeu.id.I_RH_COD)
+
+                ET.SubElement(voeuXML, 'ordreAppel').text = str(voeu.ordreAppel)
+                ET.SubElement(voeuXML, 'rangInternat').text = str(voeu.rangInternat)
+                ET.SubElement(voeuXML, 'rangListeAttente').text = str(voeu.rangListeAttente)
+
+                internatsXML.append(voeuXML)
+
+            for G_CN_COD in sorted(list(internat.candidatsEnAttente)):
+                ET.SubElement(internatsXML, 'candidatsEnAttente').text = str(G_CN_COD)
+
+        racine.append(internatsXML)
+
         return racine
 
     def exporteEntree_JSON(self) -> Dict:
@@ -246,7 +291,7 @@ class AlgoPropositions(object):
                         'nbPlacesVacantes': groupe.nbPlacesVacantes(),
                         'rangLimite': groupe.rangLimite,
                         'rangDernierAppele': self.rangsMaxNouvelArrivant.get(groupe, -1),
-                        # FIXME pourquoi -1 ? Faut-il sauver l'entrée APRES avoir lancer execute ?
+                        # XXX pourquoi -1 par défaut ? Il faut sauver l'entrée APRES avoir lancer execute.
                         'voeux': [
                             {
                                 'id': {
@@ -286,8 +331,8 @@ class AlgoPropositions(object):
                             for voeu in internat.voeux
                         ],
                         'candidatsEnAttente': [
-                            voeu.id.G_CN_COD
-                            for voeu in internat.voeux
+                            G_CN_COD
+                            for G_CN_COD in sorted(list(internat.candidatsEnAttente))
                         ]
                     }
                     for internat in self.internats
@@ -299,24 +344,55 @@ class AlgoPropositions(object):
 
     def exporteSortie_XML(self) -> ET.Element:
         """ Converti les résultats de la sortie en un arbre XML."""
-        raise NotImplementedError
         racine = ET.Element('algoPropositionsSortie')
-        ordresXML = ET.Element('ordresAppel')
-        for numero, ordre in enumerate(self.ordresAppel.values()):
-            ordreXML = ET.Element('entry')
-            key = ET.Element('key')
-            key.text = str(numero)
-            ordreXML.append(key)
-            value = ET.Element('value')
-            for voeu in ordre:
+
+        propositionsXML = ET.Element('propositions')
+        enAttentesXML = ET.Element('propositions')
+        for els, elXML in zip(
+            [self.propositions, self.enAttentes],
+            [propositionsXML, enAttentesXML]
+        ):
+            for el in els:
+                uid = ET.SubElement(elXML, 'id')
+                ET.SubElement(uid, 'G_CN_COD').text = str(el.id.G_CN_COD)
+                ET.SubElement(uid, 'G_TA_COD').text = str(el.id.G_TA_COD)
+                ET.SubElement(uid, 'I_RH_COD').text = str_de_bool(el.id.I_RH_COD)
+
+                ET.SubElement(elXML, 'ordreAppel').text = str(el.ordreAppel)
+                ET.SubElement(elXML, 'rangInternat').text = str(el.rangInternat)
+                ET.SubElement(elXML, 'rangListeAttente').text = str(el.rangListeAttente)
+
+            racine.append(elXML)
+
+        internatsXML = ET.Element('internats')
+        for internat in self.internats:
+            uid = ET.SubElement(internatsXML, 'id')
+            ET.SubElement(uid, 'C_GI_COD').text = str(internat.id.C_GI_COD)
+            ET.SubElement(uid, 'G_TA_COD').text = str(internat.id.G_TA_COD)
+
+            ET.SubElement(internatsXML, 'contingentAdmission').text = str(internat.contingentAdmission)
+            ET.SubElement(internatsXML, 'positionAdmission').text = str(internat.positionAdmission)
+            ET.SubElement(internatsXML, 'positionMaximaleAdmission').text = str(internat.positionMaximaleAdmission)
+
+            for voeu in internat.voeux:
                 voeuXML = ET.Element('voeux')
-                ET.SubElement(voeuXML, 'typeCandidat').text = str(voeu.typeCandidat)
-                ET.SubElement(voeuXML, 'G_CN_COD').text = str(voeu.G_CN_COD)
-                ET.SubElement(voeuXML, 'rang').text = str(voeu.rang)
-                value.append(voeuXML)
-            ordreXML.append(value)
-            ordresXML.append(ordreXML)
-        racine.append(ordresXML)
+
+                uid = ET.SubElement(voeuXML, 'id')
+                ET.SubElement(uid, 'G_CN_COD').text = str(voeu.id.G_CN_COD)
+                ET.SubElement(uid, 'G_TA_COD').text = str(voeu.id.G_TA_COD)
+                ET.SubElement(uid, 'I_RH_COD').text = str_de_bool(voeu.id.I_RH_COD)
+
+                ET.SubElement(voeuXML, 'ordreAppel').text = str(voeu.ordreAppel)
+                ET.SubElement(voeuXML, 'rangInternat').text = str(voeu.rangInternat)
+                ET.SubElement(voeuXML, 'rangListeAttente').text = str(voeu.rangListeAttente)
+
+                internatsXML.append(voeuXML)
+
+            for G_CN_COD in sorted(list(internat.candidatsEnAttente)):
+                ET.SubElement(internatsXML, 'candidatsEnAttente').text = str(G_CN_COD)
+
+        racine.append(internatsXML)
+
         return racine
 
     def exporteSortie_JSON(self) -> Dict:
@@ -372,8 +448,8 @@ class AlgoPropositions(object):
                             for voeu in internat.voeux
                         ],
                         'candidatsEnAttente': [
-                            voeu.id.G_CN_COD
-                            for voeu in internat.voeux
+                            G_CN_COD
+                            for G_CN_COD in sorted(list(internat.candidatsEnAttente))
                         ]
                     }
                     for internat in self.internats
