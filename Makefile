@@ -8,20 +8,21 @@ send_zamok:
 	CP --exclude=.git ./ ${Szam}publis/ParcoursSup.py.git/
 
 # environment
+# TODO bring back this!
 pypenv:
 	virtualenv env
-	source env/bin/activate ; type pip python
-
+	source ./env/bin/activate ; type pip python
 install:	pypenv
-	source env/bin/activate ; pip install -r requirements.txt
+	source ./env/bin/activate ; pip install -r requirements.txt
 
 # tests and runners
+tests:	tests_ordreappel tests_propositions tests_donnes_xml
 
 tests_ordreappel:
 	cd ./src/ordreappel/ ; python3 ./__init__.py
 
-tests_ordreappel.xml:
-	cd donnees/ ; ./compare_avec_donnees_references.sh
+tests_donnes_xml:
+	cd ./donnees/ ; ./compare_avec_donnees_references.sh
 
 tests_propositions:
 	cd ./src/propositions/ ; python3 ./__init__.py
@@ -37,5 +38,5 @@ clean:
 NPROC = `getconf _NPROCESSORS_ONLN`
 
 lint:
-	cd src/ ; pylint -j $(NPROC) *.py */*.py | tee ../logs/pylint_log.txt
-	cd src/ ; pylint --py3k -j $(NPROC) *.py */*.py | tee ../logs/pylint3_log.txt
+	cd ./src/ ; pylint -j $(NPROC) *.py */*.py | tee ../logs/pylint_log.txt
+	cd ./src/ ; pylint --py3k -j $(NPROC) *.py */*.py | tee ../logs/pylint3_log.txt
