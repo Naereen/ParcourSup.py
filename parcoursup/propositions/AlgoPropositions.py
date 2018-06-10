@@ -27,13 +27,22 @@ except ImportError:
 DEBUG = False
 
 
-from GroupeAffectation import GroupeAffectation
-from GroupeAffectationUID import GroupeAffectationUID
-from GroupeInternat import GroupeInternat
-from GroupeInternatUID import GroupeInternatUID
-from VerificationsResultats import verifierRespectOrdreAppelVoeuxSansInternat, verifierVoeuxAvecInternat, verifierRespectClassementInternat, verifierSurcapaciteEtRemplissage, verifierSurcapaciteEtRemplissage_avec_rangDernierAppeles, verifierMaximalitePositionsAdmission
-from VoeuEnAttente import VoeuEnAttente
-from VoeuUID import VoeuUID
+try:
+    from .GroupeAffectation import GroupeAffectation
+    from .GroupeAffectationUID import GroupeAffectationUID
+    from .GroupeInternat import GroupeInternat
+    from .GroupeInternatUID import GroupeInternatUID
+    from .VerificationsResultats import *
+    from .VoeuEnAttente import VoeuEnAttente
+    from .VoeuUID import VoeuUID
+except ImportError:
+    from GroupeAffectation import GroupeAffectation
+    from GroupeAffectationUID import GroupeAffectationUID
+    from GroupeInternat import GroupeInternat
+    from GroupeInternatUID import GroupeInternatUID
+    from VerificationsResultats import *
+    from VoeuEnAttente import VoeuEnAttente
+    from VoeuUID import VoeuUID
 
 
 def log(*args, **kwargs):

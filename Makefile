@@ -19,13 +19,13 @@ install:	pypenv
 tests:	tests_ordreappel tests_propositions tests_donnees_xml
 
 tests_ordreappel:
-	cd ./parcoursup/ordreappel/ ; python3 ./__init__.py
+	python3 ./parcoursup/ordreappel/__init__.py
 
 tests_donnees_xml:
 	cd ./donnees/ ; ./compare_avec_donnees_references.sh
 
 tests_propositions:
-	cd ./parcoursup/propositions/ ; python3 ./__init__.py
+	python3 ./parcoursup/propositions/__init__.py
 
 # Cleaner
 clean:
@@ -54,8 +54,8 @@ SOURCEDIR     = docs
 BUILDDIR      = build
 
 apidoc:
-	# cd src ; sphinx-apidoc -f -o ../docs -e -M .
-	sphinx-apidoc -f -o ./docs -e -M ./parcoursup
+	# cd ./parcoursup/ ; sphinx-apidoc -f -o ../docs -e -M .
+	sphinx-apidoc -f -o ./docs -e -M ./parcoursup/
 
 html:
 	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

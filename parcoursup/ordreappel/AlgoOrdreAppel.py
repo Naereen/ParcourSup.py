@@ -12,8 +12,12 @@ __version__ = "0.0.1"
 import xml.etree.ElementTree as ET
 from typing import Dict, List
 
-from GroupeClassement import GroupeClassement
-from VoeuClasse import typeCandidat_vers_str
+try:
+    from GroupeClassement import GroupeClassement
+    from VoeuClasse import typeCandidat_vers_str
+except ImportError:
+    from .GroupeClassement import GroupeClassement
+    from .VoeuClasse import typeCandidat_vers_str
 
 
 class AlgoOrdreAppel(object):

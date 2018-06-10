@@ -10,7 +10,10 @@ __author__ = "Lilian Besson, Bastien Trotobas et al"
 __version__ = "0.0.1"
 
 from typing import Union
-from VoeuUID import VoeuUID
+try:
+    from .VoeuUID import VoeuUID
+except ImportError:
+    from VoeuUID import VoeuUID
 
 
 class VoeuEnAttente(object):

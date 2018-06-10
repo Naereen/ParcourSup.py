@@ -15,9 +15,14 @@ import xml.etree.ElementTree as ET
 import xml.dom.minidom as DOM
 
 
-from VoeuClasse import VoeuClasse
-from GroupeClassement import GroupeClassement
-from AlgoOrdreAppel import AlgoOrdreAppel
+try:
+    from .VoeuClasse import VoeuClasse
+    from .GroupeClassement import GroupeClassement
+    from .AlgoOrdreAppel import AlgoOrdreAppel
+except ImportError:
+    from VoeuClasse import VoeuClasse
+    from GroupeClassement import GroupeClassement
+    from AlgoOrdreAppel import AlgoOrdreAppel
 
 
 #: En mode débug, on affiche juste le résultat, on n'écrase pas les fichiers de tests.
@@ -44,7 +49,7 @@ class Exemple(object):
         """ Exporte l'entrée ou la sortie, dans un fichier XML ou JSON."""
         extension = 'xml' if xml else 'json'
         entree_ou_sortie = 'entree' if entree else 'sortie'
-        nom_fichier = path.join('..', '..', 'donnees', f'{self.nom}_{entree_ou_sortie}.{extension}')
+        nom_fichier = path.join(path.dirname(__file__), '..', '..', 'donnees', f'{self.nom}_{entree_ou_sortie}.{extension}')
         if debug:
             print(f"On devrait sauvegarder le contenu suivant dans le fichier '{nom_fichier}'...")  # DEBUG
             print(contenu)  # DEBUG

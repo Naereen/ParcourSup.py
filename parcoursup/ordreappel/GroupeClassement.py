@@ -11,8 +11,12 @@ __version__ = "0.0.1"
 
 from typing import List, Dict
 
-from VoeuClasse import VoeuClasse, TypeCandidat
-from OrdreAppel import OrdreAppel
+try:
+    from .VoeuClasse import VoeuClasse, TypeCandidat
+    from .OrdreAppel import OrdreAppel
+except ImportError:
+    from VoeuClasse import VoeuClasse, TypeCandidat
+    from OrdreAppel import OrdreAppel
 
 
 #: En mode débug, on affiche juste le résultat.

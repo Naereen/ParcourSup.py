@@ -24,16 +24,29 @@ except ImportError:
     def tqdm(iterable=None, desc=None):
         return iterable
 
-from AlgoPropositions import AlgoPropositions
+try:
+    from .AlgoPropositions import AlgoPropositions
 
-from GroupeAffectation import GroupeAffectation
-from GroupeAffectationUID import GroupeAffectationUID
-from GroupeInternat import GroupeInternat
-from GroupeInternatUID import GroupeInternatUID
-from VoeuEnAttente import VoeuEnAttente
+    from .GroupeAffectation import GroupeAffectation
+    from .GroupeAffectationUID import GroupeAffectationUID
+    from .GroupeInternat import GroupeInternat
+    from .GroupeInternatUID import GroupeInternatUID
+    from .VoeuEnAttente import VoeuEnAttente
 
-from Candidat import Candidat
-from Etablissement import Etablissement
+    from .Candidat import Candidat
+    from .Etablissement import Etablissement
+except ImportError:
+    from AlgoPropositions import AlgoPropositions
+
+    from GroupeAffectation import GroupeAffectation
+    from GroupeAffectationUID import GroupeAffectationUID
+    from GroupeInternat import GroupeInternat
+    from GroupeInternatUID import GroupeInternatUID
+    from VoeuEnAttente import VoeuEnAttente
+
+    from Candidat import Candidat
+    from Etablissement import Etablissement
+
 
 
 def log(*args, **kwargs):
@@ -79,7 +92,7 @@ class Exemple(object):
         """ Exporte l'entrée ou la sortie, dans un fichier XML ou JSON."""
         extension = 'xml' if xml else 'json'
         entree_ou_sortie = 'entree' if entree else 'sortie'
-        nom_fichier = path.join('..', '..', 'donnees', f'{self.nom}_{entree_ou_sortie}.{extension}')
+        nom_fichier = path.join(path.dirname(__file__), '..', '..', 'donnees', f'{self.nom}_{entree_ou_sortie}.{extension}')
         if debug:
             print(f"On devrait sauvegarder le contenu suivant dans le fichier '{nom_fichier}'...")  # DEBUG
             print(contenu)  # DEBUG

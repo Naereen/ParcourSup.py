@@ -11,9 +11,15 @@ __version__ = "0.0.1"
 
 from typing import Set, List
 
-from VoeuEnAttente import VoeuEnAttente
-from GroupeAffectation import GroupeAffectation
-from GroupeInternatUID import GroupeInternatUID
+
+try:
+    from .VoeuEnAttente import VoeuEnAttente
+    from .GroupeAffectation import GroupeAffectation
+    from .GroupeInternatUID import GroupeInternatUID
+except ImportError:
+    from VoeuEnAttente import VoeuEnAttente
+    from GroupeAffectation import GroupeAffectation
+    from GroupeInternatUID import GroupeInternatUID
 
 
 class GroupeInternat(object):

@@ -12,13 +12,20 @@ __version__ = "0.0.1"
 from typing import List, Dict, Union, Set
 from random import random, randint, choice
 
-
-from GroupeAffectation import GroupeAffectation
-from GroupeAffectationUID import GroupeAffectationUID
-from GroupeInternat import GroupeInternat
-from GroupeInternatUID import GroupeInternatUID
-from VoeuEnAttente import VoeuEnAttente
-from Candidat import Candidat
+try:
+    from .GroupeAffectation import GroupeAffectation
+    from .GroupeAffectationUID import GroupeAffectationUID
+    from .GroupeInternat import GroupeInternat
+    from .GroupeInternatUID import GroupeInternatUID
+    from .VoeuEnAttente import VoeuEnAttente
+    from .Candidat import Candidat
+except ImportError:
+    from GroupeAffectation import GroupeAffectation
+    from GroupeAffectationUID import GroupeAffectationUID
+    from GroupeInternat import GroupeInternat
+    from GroupeInternatUID import GroupeInternatUID
+    from VoeuEnAttente import VoeuEnAttente
+    from Candidat import Candidat
 
 
 def randbool() -> bool:

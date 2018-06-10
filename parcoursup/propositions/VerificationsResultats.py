@@ -17,8 +17,12 @@ __version__ = "0.0.1"
 from typing import Dict, Set
 from datetime import datetime
 
-from GroupeAffectation import GroupeAffectation
-from GroupeInternat import GroupeInternat
+try:
+    from .GroupeAffectation import GroupeAffectation
+    from .GroupeInternat import GroupeInternat
+except ImportError:
+    from GroupeAffectation import GroupeAffectation
+    from GroupeInternat import GroupeInternat
 
 
 def log(*args, **kwargs):
