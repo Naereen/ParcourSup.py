@@ -21,8 +21,8 @@ try:
     from tqdm import tqdm  # DEBUG Cf. https://github.com/tqdm/tqdm#usage
 except ImportError:
     print("Attention : le module 'tqdm' n'a pas été trouvé, installez le avec :\nsudo pip3 install tqdm")
-    def tqdm(iterator, desc=None):
-        return iterator
+    def tqdm(iterable=None, desc=None):
+        return iterable
 
 from AlgoPropositions import AlgoPropositions
 
@@ -75,7 +75,7 @@ class Exemple(object):
         self.internats: List[GroupeInternat] = []  #: List des groupes des internats
         raise NotImplementedError
 
-    def exporte(self, contenu, entree=True, xml=False, debug=False):
+    def exporte(self, contenu, entree=True, xml=False, debug=DEBUG):
         """ Exporte l'entrée ou la sortie, dans un fichier XML ou JSON."""
         extension = 'xml' if xml else 'json'
         entree_ou_sortie = 'entree' if entree else 'sortie'
@@ -85,10 +85,10 @@ class Exemple(object):
             print(contenu)  # DEBUG
             return False
         if path.exists(nom_fichier):
-            print(f"Attention : le fichier de sortie '{nom_fichier}' existe déjà...")  # DEBUG
+            print(f"\nAttention : le fichier de sortie '{nom_fichier}' existe déjà...")  # DEBUG
         with open(nom_fichier, "w") as fichier:
-            print(f"\nContenu écrit dans le fichier {nom_fichier}...")  # DEBUG
-            print(contenu)  # DEBUG
+            print(f"Contenu écrit dans le fichier {nom_fichier}...")  # DEBUG
+            # print(contenu)  # DEBUG
             fichier.write(contenu)
         return True
 
@@ -107,7 +107,6 @@ class Exemple(object):
             contenu = json.dumps(entreeJSON, sort_keys=True, indent=4)
             self.exporte(contenu, entree=True, xml=False)
 
-            # FIXME terminer de débuguer avec le JSON puis faire la sortie XML aussi
             # et sauvegarde l'entrée, d'abord en XML
             entreeXML = entree.exporteEntree_XML()
             contenu = ET.tostring(entreeXML, encoding='unicode', method='xml')
@@ -121,7 +120,6 @@ class Exemple(object):
             contenu = json.dumps(sortieJSON, sort_keys=True, indent=4)
             self.exporte(contenu, entree=False, xml=False)
 
-            # FIXME terminer de débuguer avec le JSON puis faire la sortie XML aussi
             # et sauvegarde la sortie, d'abord en XML
             sortieXML = entree.exporteSortie_XML()
             contenu = ET.tostring(sortieXML, encoding='unicode', method='xml')
@@ -220,20 +218,21 @@ class exempleB7Jour2(exempleB7base):
 
         # C21 et C30 déclinent.
         for voeu in sortie.propositions:
-            if voeu.id.G_CN_COD == 21 or voeu.id.G_CN_COD == 30:
+            if voeu.id.G_CN_COD in {21, 30}:
                 continue
             internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
-        for voeu in sortie.enAttentes:
-            if voeu.id.G_CN_COD == 21 or voeu.id.G_CN_COD == 30:
-                continue
-            # FIXME dans le code de référence, cette ligne n'est pas là !
-            # Cf. https://framagit.org/parcoursup/algorithmes-de-parcoursup/blob/9ef555/java/parcoursup/propositions/exemples/ExempleB7Jour2.java#L48
-            # internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
+
+        # for voeu in sortie.enAttentes:
+        #     if voeu.id.G_CN_COD in {21, 30}:
+        #         continue
+        #     # FIXME dans le code de référence, cette ligne n'est pas là !
+        #     # Cf. https://framagit.org/parcoursup/algorithmes-de-parcoursup/blob/9ef555/java/parcoursup/propositions/exemples/ExempleB7Jour2.java#L48
+        #     internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
 
         GroupeInternat.nbJoursCampagne = 2
 
         for voeu in sortie.enAttentes:
-            if voeu.id.G_CN_COD == 21 or voeu.id.G_CN_COD == 30:
+            if voeu.id.G_CN_COD in {21, 30}:
                 continue
             VoeuEnAttente.ajouterVoeu(voeu.id.G_CN_COD, groupe, voeu.ordreAppel, internat=internat, rangInternat=voeu.rangInternat)
 
@@ -257,6 +256,8 @@ class exempleB7Jour3(exempleB7base):
             if voeu.id.G_CN_COD <= 20:
                 continue
             internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
+        # FIXME dans le code de référence, cette ligne est là mais ne devrait pas !
+        # Cf. https://framagit.org/parcoursup/algorithmes-de-parcoursup/blob/9ef555/java/parcoursup/propositions/exemples/ExempleB7Jour3.java#L57
         for voeu in sortie.enAttentes:
             if voeu.id.G_CN_COD <= 20:
                 continue
@@ -298,7 +299,7 @@ class exempleAleatoire(exempleB7base):
             log(f"  Un nouvel établissement de capacité {etablissement.capacite()} ajouté. Capacité total {capacite_totale}...")
 
         log("\n\nGénération aléatoire des vœux et classements...")
-        for etudiant in tqdm(range(self.nbEtudiants), "Etudiants"):
+        for etudiant in tqdm(iterable=range(self.nbEtudiants), desc="Etudiants"):
             candidat = Candidat()
             nbVoeux = randint(0, self.maxNbVoeuxParCandidat)
             while nbVoeux > 0:
@@ -311,13 +312,13 @@ class exempleAleatoire(exempleB7base):
 
         entree = AlgoPropositions([], [])
 
-        for etablissement in tqdm(etablissements, desc="Etablissements"):
-            for fa in tqdm(etablissement.formations, desc="Formations"):
+        for etablissement in tqdm(iterable=etablissements, desc="Etablissements"):
+            for fa in tqdm(iterable=etablissement.formations, desc="Formations"):
                 entree.groupesAffectations.update(fa.groupes)
                 if fa.internat is not None and fa.internat.candidatsEnAttente:
                     entree.internats.append(fa.internat)
 
-            for internat in tqdm(etablissement.internatsCommuns.values(), desc="InternatsCommuns"):
+            for internat in tqdm(iterable=etablissement.internatsCommuns.values(), desc="InternatsCommuns"):
                 if internat.candidatsEnAttente:
                     entree.internats.append(internat)
 
