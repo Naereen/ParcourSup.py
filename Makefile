@@ -19,13 +19,13 @@ install:	pypenv
 tests:	tests_ordreappel tests_propositions tests_donnees_xml
 
 tests_ordreappel:
-	cd ./src/ordreappel/ ; python3 ./__init__.py
+	cd ./parcoursup/ordreappel/ ; python3 ./__init__.py
 
 tests_donnees_xml:
 	cd ./donnees/ ; ./compare_avec_donnees_references.sh
 
 tests_propositions:
-	cd ./src/propositions/ ; python3 ./__init__.py
+	cd ./parcoursup/propositions/ ; python3 ./__init__.py
 
 # Cleaner
 clean:
@@ -38,5 +38,24 @@ clean:
 NPROC = `getconf _NPROCESSORS_ONLN`
 
 lint:
-	cd ./src/ ; pylint -j $(NPROC) *.py */*.py | tee ../logs/pylint_log.txt
-	cd ./src/ ; pylint --py3k -j $(NPROC) *.py */*.py | tee ../logs/pylint3_log.txt
+	cd ./parcoursup/ ; pylint -j $(NPROC) *.py */*.py | tee ../logs/pylint_log.txt
+	cd ./parcoursup/ ; pylint --py3k -j $(NPROC) *.py */*.py | tee ../logs/pylint3_log.txt
+
+
+#-----------------------------------------------------------------
+#
+# Minimal makefile for Sphinx documentation
+#
+# You can set these variables from the command line.
+SPHINXOPTS    =
+SPHINXBUILD   = sphinx-build
+SPHINXPROJ    = ParcourSup.py
+SOURCEDIR     = docs
+BUILDDIR      = build
+
+apidoc:
+	# cd src ; sphinx-apidoc -f -o ../docs -e -M .
+	sphinx-apidoc -f -o ./docs -e -M ./parcoursup
+
+html:
+	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

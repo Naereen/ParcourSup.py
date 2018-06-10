@@ -4,3 +4,9 @@ matplotlib>=2.0
 # pandas>=0.23
 # jupyter
 # ipython
+
+# --- For the documentation
+sphinx            # sphinx
+sphinx_rtd_theme  # better sphinx theme
+recommonmark      # parser to read Markdown files
+# nbsphinx          # to include the notebooks as Sphinx pages

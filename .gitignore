@@ -11,7 +11,9 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-.Python
+docs/parcoursup.*.rst
+docs/parcoursup.rst
+
 build/
 develop-eggs/
 dist/

@@ -39,7 +39,7 @@ Les algorithmes et l'implémentation officielle (en Java) ont été distribué e
 
 ## Organisation de ce dépôt
 
-- Le code des algorithmes est [dans le dossier `src/`](src/), comme le code Java initial, c'est découpé en deux modules, [`ordreappel`](src/ordreappel) et [`propositions`](src/propositions),
+- Le code des algorithmes est [dans le dossier `parcoursup/`](parcoursup/), comme le code Java initial, c'est découpé en deux modules, [`ordreappel`](parcoursup/ordreappel) et [`propositions`](parcoursup/propositions),
 - Les (exemples de) données synthétiques générées sont [dans le dossier `donnees/`](donnees/),
 - TODO Des visualisations sont dans [le dossier `notebooks/`](notebooks/),
 - TODO Enfin, une documentation est disponible dans [le dossier `docs/`](docs/),
@@ -92,13 +92,13 @@ Les tests qui reproduisent [les données d'exemples](donnees) peuvent être exé
 
 - Ordres d'appel :
 ```bash
-$ . env/bin/activate ; python3 ./src/ordreappel/__init__.py
+$ . env/bin/activate ; python3 ./parcoursup/ordreappel/__init__.py
 ...
 ```
 
 - Proposition de vœux :
 ```bash
-$ . env/bin/activate ; python3 ./src/propositions/__init__.py
+$ . env/bin/activate ; python3 ./parcoursup/propositions/__init__.py
 ...
 ```
 - Ces deux tests prennent environ 30 secondes chacun.
