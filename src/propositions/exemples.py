@@ -226,7 +226,9 @@ class exempleB7Jour2(exempleB7base):
         for voeu in sortie.enAttentes:
             if voeu.id.G_CN_COD == 21 or voeu.id.G_CN_COD == 30:
                 continue
-            internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
+            # FIXME dans le code de référence, cette ligne n'est pas là !
+            # Cf. https://framagit.org/parcoursup/algorithmes-de-parcoursup/blob/9ef555/java/parcoursup/propositions/exemples/ExempleB7Jour2.java#L48
+            # internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
 
         GroupeInternat.nbJoursCampagne = 2
 
