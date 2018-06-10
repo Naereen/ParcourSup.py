@@ -22,7 +22,7 @@ tests_ordreappel:
 	python3 ./parcoursup/ordreappel/__init__.py
 
 tests_donnees_xml:
-	cd ./donnees/ ; ./compare_avec_donnees_references.sh
+	cd ./donnees/ ; ./compare_avec_donnees_references.sh --batch
 
 tests_propositions:
 	python3 ./parcoursup/propositions/__init__.py
