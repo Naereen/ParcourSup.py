@@ -22,6 +22,11 @@ except ImportError:
         return iterator
 
 
+#: En mode débug, on affiche juste le résultat, on n'écrase pas les fichiers de tests.
+# DEBUG = True
+DEBUG = False
+
+
 from GroupeAffectation import GroupeAffectation
 from GroupeAffectationUID import GroupeAffectationUID
 from GroupeInternat import GroupeInternat
@@ -40,6 +45,7 @@ def log(*args, **kwargs):
 def str_de_bool(b: bool) -> str:
     """ ``True`` ou ``False`` en minuscule."""
     return "true" if b else "false"
+
 
 class AlgoPropositions(object):
     """ Stocke les entrées et sorties de l'algorithme de calcul d'ordre d'appel. """
@@ -274,7 +280,6 @@ class AlgoPropositions(object):
                 ET.SubElement(internatsXML, 'candidatsEnAttente').text = str(G_CN_COD)
 
         racine.append(internatsXML)
-
         return racine
 
     def exporteEntree_JSON(self) -> Dict:
@@ -339,7 +344,7 @@ class AlgoPropositions(object):
                 ],
             }
         }
-        # pprint(racine)  # DEBUG
+        if DEBUG: pprint(racine)  # DEBUG
         return racine
 
     def exporteSortie_XML(self) -> ET.Element:
@@ -392,7 +397,6 @@ class AlgoPropositions(object):
                 ET.SubElement(internatsXML, 'candidatsEnAttente').text = str(G_CN_COD)
 
         racine.append(internatsXML)
-
         return racine
 
     def exporteSortie_JSON(self) -> Dict:
@@ -456,5 +460,5 @@ class AlgoPropositions(object):
                 ],
             }
         }
-        # pprint(racine)  # DEBUG
+        if DEBUG: pprint(racine)  # DEBUG
         return racine

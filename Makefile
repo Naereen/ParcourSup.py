@@ -16,12 +16,12 @@ install:	pypenv
 	source ./env/bin/activate ; pip install -r requirements.txt
 
 # tests and runners
-tests:	tests_ordreappel tests_propositions tests_donnes_xml
+tests:	tests_ordreappel tests_propositions tests_donnees_xml
 
 tests_ordreappel:
 	cd ./src/ordreappel/ ; python3 ./__init__.py
 
-tests_donnes_xml:
+tests_donnees_xml:
 	cd ./donnees/ ; ./compare_avec_donnees_references.sh
 
 tests_propositions:

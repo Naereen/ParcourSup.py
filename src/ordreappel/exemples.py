@@ -14,12 +14,13 @@ from os import path
 import xml.etree.ElementTree as ET
 import xml.dom.minidom as DOM
 
+
 from VoeuClasse import VoeuClasse
 from GroupeClassement import GroupeClassement
 from AlgoOrdreAppel import AlgoOrdreAppel
 
 
-#: En mode débug, on affiche juste le résultat.
+#: En mode débug, on affiche juste le résultat, on n'écrase pas les fichiers de tests.
 # DEBUG = True
 DEBUG = False
 
@@ -39,7 +40,7 @@ class Exemple(object):
         self.groupes = []
         raise NotImplementedError
 
-    def exporte(self, contenu, entree=True, xml=False, debug=False) -> bool:
+    def exporte(self, contenu, entree=True, xml=False, debug=DEBUG) -> bool:
         """ Exporte l'entrée ou la sortie, dans un fichier XML ou JSON."""
         extension = 'xml' if xml else 'json'
         entree_ou_sortie = 'entree' if entree else 'sortie'
@@ -49,10 +50,10 @@ class Exemple(object):
             print(contenu)  # DEBUG
             return False
         if path.exists(nom_fichier):
-            print(f"Attention : le fichier de sortie '{nom_fichier}' existe déjà...")  # DEBUG
+            print(f"\nAttention : le fichier de sortie '{nom_fichier}' existe déjà...")  # DEBUG
         with open(nom_fichier, "w") as fichier:
-            print(f"\nContenu écrit dans le fichier {nom_fichier}...")  # DEBUG
-            print(contenu)  # DEBUG
+            print(f"Contenu écrit dans le fichier {nom_fichier}...")  # DEBUG
+            # print(contenu)  # DEBUG
             fichier.write(contenu)
         return True
 

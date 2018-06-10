@@ -11,15 +11,13 @@ __version__ = "0.0.1"
 
 from typing import List, Dict
 
-# from queue import Queue, PriorityQueue
-
 from VoeuClasse import VoeuClasse, TypeCandidat
 from OrdreAppel import OrdreAppel
 
 
 #: En mode débug, on affiche juste le résultat.
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
 
 class GroupeClassement(object):
@@ -98,6 +96,7 @@ class GroupeClassement(object):
         ordreAppel = OrdreAppel()
 
         log(f"\n2. Début de la boucle while, on remplit l'ordre d'appel...")
+
         while len(ordreAppel) < nbVoeuxClasses:
             log(f"\n  L'ordre d'appel contient {len(ordreAppel)} éléments et il y a {nbVoeuxClasses} vœux à classer.")
             # on calcule lequel ou lesquels des critères boursiers et résidents
@@ -122,7 +121,7 @@ class GroupeClassement(object):
                     if (voeu.estBoursier() or not contrainteTauxBoursier) and (voeu.estResident() or not contrainteTauxResident):
                         eligibles.append(voeu)
                         if verbeux: liste_eligibles.append(voeu)
-            log(f"  Les vœux satisfaisant les deux contraintes à la fois, ordonnés par rang de classement sont :\n{liste_eligibles}")
+            if verbeux: log(f"  Les vœux satisfaisant les deux contraintes à la fois, ordonnés par rang de classement sont :\n{liste_eligibles}")
             if verbeux: del liste_eligibles  # juste pour l'afficher
 
             # stocke le meilleur candidat à appeler tout en respectant
@@ -151,7 +150,7 @@ class GroupeClassement(object):
 
             # suppression du candidat choisi de sa file d'attente
             saFileAttente = filesAttente[meilleur.typeCandidat]
-            log(f"  On vérifie si le-la meilleur {meilleur} est aussi le-la meilleur-e de sa liste {saFileAttente} (du type {meilleur.typeCandidat}).")
+            log(f"  On vérifie si le-la meilleur {meilleur} est aussi le-la meilleur-e de sa liste contenant {len(saFileAttente)} candidat-es (du type {meilleur.typeCandidat}).")
             meilleur_de_sa_liste = saFileAttente.pop()
             # saFileAttente.append(meilleur_de_sa_liste)  # XXX on ne le supprime pas ? si il faut !
             assert meilleur == meilleur_de_sa_liste, "Erreur : ce cas où le-la meilleur-e candidat-e n'est pas le meilleur candidat de la liste d'attente des autres candidat-e de sa liste ne devrait pas arriver."  # DEBUG
@@ -170,4 +169,5 @@ class GroupeClassement(object):
 
         # fin de la boucle while
         log(f"\n3. On a terminé la boucle, on a remplit l'ordre d'appel.")
+
         return ordreAppel
