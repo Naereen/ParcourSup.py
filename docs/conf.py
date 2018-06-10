@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('..'))
 
 print("Using python, version %s on %s." % (sys.version, sys.platform))
-print("Using path:", sys.path)
+# print("Using path:", sys.path)
 
 # on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
@@ -179,3 +179,10 @@ html_static_path = ['_static']
 # 'searchbox.html']``.
 #
 # html_sidebars = {}
+
+
+# If given, this must be the name of an image file
+# (path relative to the configuration directory) that is the logo of the docs.
+# It is placed at the top of the sidebar; its width should therefore not exceed 200 pixels. Default: None.
+html_logo = "_static/logo_parcoursuppy.png"
+# html_logo = "_static/logo_parcoursuppy_small.png"

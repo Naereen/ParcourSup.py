@@ -1,11 +1,11 @@
 # Makefile for https://github.com/Naereen/ParcourSup.py
 SHELL=/usr/bin/env /bin/bash
-all:	test
+all:	tests
 
 # sender
 send:	send_zamok
 send_zamok:
-	CP --exclude=.git ./ ${Szam}publis/ParcoursSup.py.git/
+	CP --exclude=.git ./_build/html/ ${Szam}publis/ParcourSup.py/
 
 # environment
 # TODO bring back this!

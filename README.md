@@ -1,23 +1,9 @@
 # :baby: :fr: Un clone en Python 3 de [Parcoursup](http://www.parcoursup.fr/), écrit à but didactique
 > [Écrit par](AUTHORS) [Lilian Besson (@Naereen)](https://github.com/Naereen) et [Bastien Trotobas (@BastienTr)](https://github.com/BastienTr), et d'[autres collaborateurs](https://github.com/Naereen/ParcourSup.py/graphs/contributors).
 
-## Table des matières
-- [:baby: :fr: Un clone en Python 3 de Parcoursup, écrit à but didactique](#baby---fr--un-clone-en-python-3-de-parcoursuphttp---wwwparcoursupfr---ecrit-a-but-didactique)
-    - [Table des matières](#table-des-matieres)
-    - [Présentation](#presentation)
-    - [Plan de bataille](#plan-de-batailletodomd)
-    - [Explications](#explications)
-    - [Organisation de ce dépôt](#organisation-de-ce-depot)
-    - [Démonstration dans un notebook Jupyter ?](#demonstration-dans-un-notebook-jupyterhttps---wwwjupyterorg)
-    - [Documentation et ressources](#documentation-et-ressources)
-    - [Exemples](#exemples)
-        - [Installation](#installation)
-        - [Tests](#tests)
-    - [À propos](#a-propos)
-        - [Language ?](#language)
-        - [:scroll: Licence ? ![GitHub license](https://github.com/Naereen/ParcourSup.py/blob/master/LICENSE)](#scroll--licence-github-licensehttps---imgshieldsio-github-license-naereen-parcoursuppysvghttps---githubcom-naereen-parcoursuppy-blob-master-license)
-
 ## Présentation
+
+<a href="https://perso.crans.org/besson/publis/ParcourSup.py/"><img align="right"  src="docs/_static/logo_parcoursuppy.png" alt="Lien vers la documentation Sphinx du projet" width="30%"/></a>
 
 Ce dépôt contient un clone (presque complet) des algorithmes régissant la [plateforme Parcoursup](http://www.parcoursup.fr/), qui gère depuis 2018 les affectations des élèves de classe de Terminale (🇫🇷 dans les lycées en France) dans leurs formations dans l'enseignement supérieur.
 
