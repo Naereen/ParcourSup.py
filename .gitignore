@@ -15,6 +15,7 @@ docs/parcoursup.*.rst
 docs/parcoursup.rst
 
 build/
+_build/
 develop-eggs/
 dist/
 downloads/

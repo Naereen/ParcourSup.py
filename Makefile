@@ -51,7 +51,9 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = ParcourSup.py
 SOURCEDIR     = docs
-BUILDDIR      = build
+BUILDDIR      = _build
+
+docs:	apidoc html
 
 apidoc:
 	# cd ./parcoursup/ ; sphinx-apidoc -f -o ../docs -e -M .
@@ -59,3 +61,4 @@ apidoc:
 
 html:
 	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	-./.fixes_html_in_doc.sh
