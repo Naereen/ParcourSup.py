@@ -1,9 +1,9 @@
 # :baby: :fr: Un clone en Python 3 de [Parcoursup](http://www.parcoursup.fr/), écrit à but didactique
+<a href="https://perso.crans.org/besson/publis/ParcourSup.py/"><img align="right" src="docs/_static/logo_parcoursuppy.png" alt="Lien vers la documentation Sphinx du projet" width="40%"/></a>
+
 > [Écrit par](AUTHORS) [Lilian Besson (@Naereen)](https://github.com/Naereen) et [Bastien Trotobas (@BastienTr)](https://github.com/BastienTr), et d'[autres collaborateurs](https://github.com/Naereen/ParcourSup.py/graphs/contributors).
 
 ## Présentation
-
-<a href="https://perso.crans.org/besson/publis/ParcourSup.py/"><img align="right"  src="docs/_static/logo_parcoursuppy.png" alt="Lien vers la documentation Sphinx du projet" width="30%"/></a>
 
 Ce dépôt contient un clone (presque complet) des algorithmes régissant la [plateforme Parcoursup](http://www.parcoursup.fr/), qui gère depuis 2018 les affectations des élèves de classe de Terminale (🇫🇷 dans les lycées en France) dans leurs formations dans l'enseignement supérieur.
 
@@ -95,8 +95,8 @@ $ . env/bin/activate ; python3 ./parcoursup/propositions/__init__.py
 ### Language et versions ?
 [Python v3.6+](https://docs.python.org/3.6/).  Avec les [modules suivants](requirements.txt) :
 
-- [Numpy](http://numpy.org/) pour les tableaux, (TODO enlever si pas nécessaire),
-- [matplotlib](http://matplotlib.org/) pour les affichages, (TODO enlever si pas nécessaire),
+- [Numpy](http://numpy.org/) pour les tableaux,
+- [matplotlib](http://matplotlib.org/) pour les affichages,
 - [pandas](http://pandas.pydata.org/) pour les statistiques, (TODO enlever si pas nécessaire),
 - [La bibliothèque standard](https://docs.python.org/3.6/) pour tout le reste.
 
