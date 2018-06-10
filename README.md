@@ -15,7 +15,7 @@
         - [Tests](#tests)
     - [À propos](#a-propos)
         - [Language ?](#language)
-        - [:scroll: Licence ? ![GitHub license](https://github.com/Naereen/badges/blob/master/LICENSE)](#scroll--licence-github-licensehttps---imgshieldsio-github-license-naereen-parcoursuppysvghttps---githubcom-naereen-badges-blob-master-license)
+        - [:scroll: Licence ? ![GitHub license](https://github.com/Naereen/ParcourSup.py/blob/master/LICENSE)](#scroll--licence-github-licensehttps---imgshieldsio-github-license-naereen-parcoursuppysvghttps---githubcom-naereen-parcoursuppy-blob-master-license)
 
 ## Présentation
 
@@ -114,7 +114,7 @@ $ . env/bin/activate ; python3 ./src/propositions/__init__.py
 - [pandas](http://pandas.pydata.org/) pour les statistiques, (TODO enlever si pas nécessaire),
 - [La bibliothèque standard](https://docs.python.org/3.6/) pour tout le reste.
 
-### :scroll: Licence ? [![GitHub license](https://img.shields.io/github/license/Naereen/Parcoursup.py.svg)](https://github.com/Naereen/badges/blob/master/LICENSE)
+### :scroll: Licence ? [![GitHub license](https://img.shields.io/github/license/Naereen/Parcoursup.py.svg)](https://github.com/Naereen/Parcoursup.py/blob/master/LICENSE)
 Code libre, [sous licence MIT](https://lbesson.mit-license.org/) (file [LICENSE](LICENSE)).
 © [Lilian Besson](https://GitHub.com/Naereen) et [Bastien Trotobas](https://github.com/BastienTr) et collaborateurs, 2018.
 

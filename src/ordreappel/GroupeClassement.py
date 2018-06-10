@@ -118,6 +118,7 @@ class GroupeClassement(object):
             for queue in filesAttente.values():
                 if queue:
                     voeu = queue[-1]  # le meilleur a été ajouté en dernier
+                    # assert voeu == max(queue), f"Erreur : ce candidat-e {voeu} est sensé-e être le-la meilleur-e de sa liste, mais ce n'est pas le cas."
                     if (voeu.estBoursier() or not contrainteTauxBoursier) and (voeu.estResident() or not contrainteTauxResident):
                         eligibles.append(voeu)
                         if verbeux: liste_eligibles.append(voeu)
@@ -152,7 +153,7 @@ class GroupeClassement(object):
             saFileAttente = filesAttente[meilleur.typeCandidat]
             log(f"  On vérifie si le-la meilleur {meilleur} est aussi le-la meilleur-e de sa liste {saFileAttente} (du type {meilleur.typeCandidat}).")
             meilleur_de_sa_liste = saFileAttente.pop()
-            # saFileAttente.append(meilleur_de_sa_liste)  # XXX on ne le supprime pas
+            # saFileAttente.append(meilleur_de_sa_liste)  # XXX on ne le supprime pas ? si il faut !
             assert meilleur == meilleur_de_sa_liste, "Erreur : ce cas où le-la meilleur-e candidat-e n'est pas le meilleur candidat de la liste d'attente des autres candidat-e de sa liste ne devrait pas arriver."  # DEBUG
 
             # ajout du meilleur candidat à l'ordre d'appel
