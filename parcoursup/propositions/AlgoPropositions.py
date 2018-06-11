@@ -10,7 +10,7 @@ __author__ = "Lilian Besson, Bastien Trotobas et al"
 __version__ = "0.0.1"
 
 import xml.etree.ElementTree as ET
-# from pprint import pprint  # DEBUG
+from pprint import pprint  # DEBUG
 from typing import Dict, List, Set
 from datetime import datetime
 
@@ -69,7 +69,7 @@ class AlgoPropositions(object):
         self.groupesAffectations: List[GroupeAffectation] = groupesAffectations
 
         assert internats, f"Erreur : {self.__class__.__name__} le paramètre internats doit être non vide, et pas {internats}..."  # DEBUG
-        #: La liste des internats, contenant leurs voeux respectifs.
+        #: La liste des internats, contenant leurs vœux respectifs.
         self.internats: List[GroupeInternat] = internats
         #: Liste des internats, permettant de récupérer les positions max d'admission
         self.internats_sortie: List[GroupeInternat] = []
@@ -79,7 +79,7 @@ class AlgoPropositions(object):
         #: Liste des propositions à faire.
         self.propositions: List[VoeuEnAttente] = []
 
-        #: Liste des voeux restant en attente.
+        #: Liste des vœux restant en attente.
         self.enAttentes: List[VoeuEnAttente] = []
 
         self.rangsMaxNouvelArrivant: Dict[GroupeAffectation, int] = dict()
@@ -222,12 +222,27 @@ class AlgoPropositions(object):
 
         log("\n\nPréparation données de sortie...")
 
-        for groupeAffectation in tqdm(self.groupesAffectations, desc="groupesAffectations"):
-            for voeu in groupeAffectation.voeux:
+        for groupe in tqdm(self.groupesAffectations, desc="groupesAffectations"):
+            # FIXED? voeu.rangListeAttente ne sont pas mis à jour !
+            for voeu in groupe.voeux:
                 if voeu.estAProposer():
+                    voeu.rangListeAttente = 0
                     self.propositions.append(voeu)
                 else:
                     self.enAttentes.append(voeu)
+
+        for position, voeu in enumerate(sorted(self.enAttentes, key= lambda voeu: voeu.ordreAppel)):
+            voeu.rangListeAttente = position + 1
+
+        rangListeAttenteInternat = 0
+        for internat in tqdm(self.internats, desc="internats"):
+            # FIXED? voeu.rangListeAttenteInternat ne sont pas mis à jour !
+            for voeu in sorted(internat.voeux, key= lambda voeu: voeu.ordreAppel):
+                if voeu.rangInternat <= internat.positionAdmission:
+                    voeu.rangListeAttenteInternat = 0
+                else:
+                    rangListeAttenteInternat += 1
+                    voeu.rangListeAttenteInternat = rangListeAttenteInternat
 
         self.internats_sortie.extend(self.internats)
 
@@ -257,6 +272,7 @@ class AlgoPropositions(object):
 
                 ET.SubElement(voeuXML, 'ordreAppel').text = str(voeu.ordreAppel)
                 ET.SubElement(voeuXML, 'rangInternat').text = str(voeu.rangInternat)
+                # FIXME
                 ET.SubElement(voeuXML, 'rangListeAttente').text = str(voeu.rangListeAttente)
 
                 groupesAffectationsXML.append(voeuXML)
@@ -264,6 +280,8 @@ class AlgoPropositions(object):
 
         internatsXML = ET.Element('internats')
         for internat in self.internats:
+            candidatsEnAttente_tries = sorted(list(internat.candidatsEnAttente))
+
             uid = ET.SubElement(internatsXML, 'id')
             ET.SubElement(uid, 'C_GI_COD').text = str(internat.id.C_GI_COD)
             ET.SubElement(uid, 'G_TA_COD').text = str(internat.id.G_TA_COD)
@@ -281,11 +299,13 @@ class AlgoPropositions(object):
 
                 ET.SubElement(voeuXML, 'ordreAppel').text = str(voeu.ordreAppel)
                 ET.SubElement(voeuXML, 'rangInternat').text = str(voeu.rangInternat)
-                ET.SubElement(voeuXML, 'rangListeAttente').text = str(voeu.rangListeAttente)
+                # FIXME
+                ET.SubElement(voeuXML, 'rangListeAttente').text = str(voeu.rangListeAttenteInternat)
 
                 internatsXML.append(voeuXML)
 
-            for G_CN_COD in sorted(list(internat.candidatsEnAttente)):
+            # FIXME
+            for G_CN_COD in candidatsEnAttente_tries:
                 ET.SubElement(internatsXML, 'candidatsEnAttente').text = str(G_CN_COD)
 
         racine.append(internatsXML)
@@ -340,13 +360,14 @@ class AlgoPropositions(object):
                                 },
                                 'ordreAppel': voeu.ordreAppel,
                                 'rangInternat': voeu.rangInternat,
-                                'rangListeAttente': voeu.rangListeAttente,
+                                'rangListeAttente': voeu.rangListeAttenteInternat,
                             }
                             for voeu in internat.voeux
                         ],
                         'candidatsEnAttente': [
                             G_CN_COD
                             for G_CN_COD in sorted(list(internat.candidatsEnAttente))
+                            # FIXME
                         ]
                     }
                     for internat in self.internats
@@ -360,13 +381,13 @@ class AlgoPropositions(object):
         """ Converti les résultats de la sortie en un arbre XML."""
         racine = ET.Element('algoPropositionsSortie')
 
-        propositionsXML = ET.Element('propositions')
-        enAttentesXML = ET.Element('propositions')
-        for els, elXML in zip(
+        for els, nom_elXML in zip(
             [self.propositions, self.enAttentes],
-            [propositionsXML, enAttentesXML]
+            ['propositions', 'enAttente']
         ):
             for el in els:
+                elXML = ET.Element(nom_elXML)
+
                 uid = ET.SubElement(elXML, 'id')
                 ET.SubElement(uid, 'G_CN_COD').text = str(el.id.G_CN_COD)
                 ET.SubElement(uid, 'G_TA_COD').text = str(el.id.G_TA_COD)
@@ -376,7 +397,7 @@ class AlgoPropositions(object):
                 ET.SubElement(elXML, 'rangInternat').text = str(el.rangInternat)
                 ET.SubElement(elXML, 'rangListeAttente').text = str(el.rangListeAttente)
 
-            racine.append(elXML)
+                racine.append(elXML)
 
         internatsXML = ET.Element('internats')
         for internat in self.internats:
@@ -398,10 +419,11 @@ class AlgoPropositions(object):
 
                 ET.SubElement(voeuXML, 'ordreAppel').text = str(voeu.ordreAppel)
                 ET.SubElement(voeuXML, 'rangInternat').text = str(voeu.rangInternat)
-                ET.SubElement(voeuXML, 'rangListeAttente').text = str(voeu.rangListeAttente)
+                ET.SubElement(voeuXML, 'rangListeAttente').text = str(voeu.rangListeAttenteInternat)
 
                 internatsXML.append(voeuXML)
 
+            # FIXME
             for G_CN_COD in sorted(list(internat.candidatsEnAttente)):
                 ET.SubElement(internatsXML, 'candidatsEnAttente').text = str(G_CN_COD)
 
@@ -456,13 +478,14 @@ class AlgoPropositions(object):
                                 },
                                 'ordreAppel': voeu.ordreAppel,
                                 'rangInternat': voeu.rangInternat,
-                                'rangListeAttente': voeu.rangListeAttente,
+                                'rangListeAttente': voeu.rangListeAttenteInternat,
                             }
                             for voeu in internat.voeux
                         ],
                         'candidatsEnAttente': [
                             G_CN_COD
                             for G_CN_COD in sorted(list(internat.candidatsEnAttente))
+                            # FIXME
                         ]
                     }
                     for internat in self.internats

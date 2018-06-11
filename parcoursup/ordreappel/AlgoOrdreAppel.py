@@ -10,6 +10,7 @@ __author__ = "Lilian Besson, Bastien Trotobas et al"
 __version__ = "0.0.1"
 
 import xml.etree.ElementTree as ET
+from pprint import pprint  # DEBUG
 from typing import Dict, List
 
 try:
@@ -18,6 +19,11 @@ try:
 except ImportError:
     from .GroupeClassement import GroupeClassement
     from .VoeuClasse import typeCandidat_vers_str
+
+
+#: En mode débug, on affiche juste le résultat, on n'écrase pas les fichiers de tests.
+# DEBUG = True
+DEBUG = False
 
 
 class AlgoOrdreAppel(object):
@@ -79,6 +85,7 @@ class AlgoOrdreAppel(object):
                 ]
             }
         }
+        if DEBUG: pprint(racine)  # DEBUG
         return racine
 
     def exporteSortie_XML(self) -> ET.Element:
@@ -122,4 +129,5 @@ class AlgoOrdreAppel(object):
                 ]
             }
         }
+        if DEBUG: pprint(racine)  # DEBUG
         return racine

@@ -235,6 +235,7 @@ class exempleB7Jour2(exempleB7base):
                 continue
             internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
 
+        # Cf. https://framagit.org/parcoursup/algorithmes-de-parcoursup/issues/13
         # for voeu in sortie.enAttentes:
         #     if voeu.id.G_CN_COD in {21, 30}:
         #         continue
@@ -269,12 +270,14 @@ class exempleB7Jour3(exempleB7base):
             if voeu.id.G_CN_COD <= 20:
                 continue
             internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
+
+        # Cf. https://framagit.org/parcoursup/algorithmes-de-parcoursup/issues/13
         # FIXME dans le code de référence, cette ligne est là mais ne devrait pas !
-        # Cf. https://framagit.org/parcoursup/algorithmes-de-parcoursup/blob/9ef555/java/parcoursup/propositions/exemples/ExempleB7Jour3.java#L57
-        for voeu in sortie.enAttentes:
-            if voeu.id.G_CN_COD <= 20:
-                continue
-            internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
+        # # Cf. https://framagit.org/parcoursup/algorithmes-de-parcoursup/blob/9ef555/java/parcoursup/propositions/exemples/ExempleB7Jour3.java#L57
+        # for voeu in sortie.enAttentes:
+        #     if voeu.id.G_CN_COD <= 20:
+        #         continue
+        #     internat.ajouterCandidatAffecte(voeu.id.G_CN_COD)
 
         GroupeInternat.nbJoursCampagne = 3
 

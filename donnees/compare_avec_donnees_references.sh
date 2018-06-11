@@ -29,7 +29,10 @@ for i in *.xml; do
     output="$($difftool {./,"$dossierref/"}"$i")"
     if [ ! -z "$output" ]; then
         echo -e "$output"
-        [ ! X"$1" = X"--batch" ] && read  # DEBUG
+        echo "- Checking $i ..."
+        if [ ! X"$1" = X"--batch" ]; then
+            read  # DEBUG
+        fi
     else
         echo "  Perfectly matching $dossierref/$i"
     fi
