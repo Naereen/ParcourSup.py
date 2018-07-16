@@ -6,6 +6,7 @@ all:	tests
 send:	send_zamok
 send_zamok:
 	CP --exclude=.git ./_build/html/ ${Szam}publis/ParcourSup.py/
+	CP --exclude=.git ./notebooks/ ${Szam}publis/ParcourSup.py/notebooks/
 
 # environment
 # TODO bring back this!
