@@ -75,9 +75,9 @@ class GroupeClassement(object):
 
         # on trie les vœux par classement
         log("\n1. On trie les vœux par classement...")
-        log(f"  Avant trie : {self.voeuxClasses}...")
+        log(f"  Avant tri : {self.voeuxClasses}...")
         self.voeuxClasses.sort()
-        log(f"  Après trie : {self.voeuxClasses}...")
+        log(f"  Après tri : {self.voeuxClasses}...")
 
         for i, voeu in enumerate(self.voeuxClasses):
             # on ajoute le voeu à la fin de la file (FIFO) correspondante
