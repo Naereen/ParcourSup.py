@@ -3,10 +3,42 @@
 
 ## Notebooks
 
-Ce dossier contiendra des ressources supplémentaires pour expliquer les algorithmes de Parcoursup sous forme de [Notebooks Jupyter](https://jupyter.org/).
+Ce dossier contient des ressources supplémentaires pour expliquer les algorithmes de Parcoursup sous forme de [Notebooks Jupyter](https://jupyter.org/).
 
-* TODO trouver quelque chose d'intéressant et de pédagogique à écrire sous forme de notebooks
-* TODO rédiger un notebook !
+## Version simplifiée des algorithmes de ParcourSup
+
+### 1) Calcul de l'ordre d'appel
+> C'est la partie qui est implémentée [dans ce dossier `parcoursup/ordreappel`](../parcoursup/ordreappel/).
+
+- [Ce notebook](ParcourSup.py_version_simplifiee.ipynb) étudie l'algorithme 1 de calcul des ordres d'appels. Pour une formation, avec N candidats-es l'ayant demandés, les professeurs de la formation classent les N candidats-es, et ensuite l'algorithme s'occupe de réordonner certains vœux en fonction du taux minimum de boursiers-ères et du taux minimum de résidents-entes.
+
+  + L'algorithme est assez simple s'il n'y a que la contrainte du taux de boursiers-ères à respecter :
+    ![](images/Algorithme_CalculOrdreAppelJusteTauxBoursiers.png)
+
+  + L'algorithme est assez simple s'il n'y a que la contrainte du taux de boursiers-ères à respecter :
+    ![](images/Algorithme_CalculOrdreAppel.png)
+
+- Les deux exemples suivants de visualisations montrent l'interface de visualisation interactive que l'on est en train de construire dans cet exemple
+
+  + Si on regarde une liste de vœux, on représente en gris les vœux ni boursiers ni résidents, en rouge les boursiers, en bleu les résidents et en violet les boursiers résidents. La vidéo montre que l'interface interactive permet de créer des listes de vœux triées aléatoirement, et montre l'influence des deux taux (minimum de boursiers et minimum de résidents) sur le classement final.
+    ![](images/Visualisation_OrdreAppel_avec_couleurs.gif)
+
+  + Cette fois on a aussi le contrôle d'un vœu en particulier, représenté en couleur plus vive. La vidéo montre l'influence des deux taux (minimum de boursiers et minimum de résidents) sur le classement final de ce vœu en comparaison à d'autres.
+    ![](images/Visualisation_OrdreAppel_focus_sur_un_voeu.gif)
+
+- Voici un lien qui lance [MyBinder](https://mybinder.org/) sur le notebook, pour vous laisser exécuter le code par vous-même.
+  [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks%2FParcourSup.py_version_simplifiee.ipynb)
+
+### 2) Calcul des propositions
+> C'est la partie qui est implémentée [dans ce dossier `parcoursup/propositions`](../parcoursup/propositions/).
+
+- TODO
+
+---
+
+## Exemples d'utilisation de l'implémentation complète de ParcourSup.py
+
+- TODO
 
 ---
 

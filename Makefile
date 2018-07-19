@@ -15,6 +15,8 @@ pypenv:
 	source ./env/bin/activate ; type pip python
 install:	pypenv
 	source ./env/bin/activate ; pip install -r requirements.txt
+install_requirements:
+	pip3 install -r requirements.txt
 
 # tests and runners
 tests:	tests_ordreappel tests_propositions tests_donnees_xml

@@ -20,19 +20,21 @@ Les algorithmes et l'implémentation officielle (en Java) ont été distribué e
 
 ## Explications
 
-* TODO expliquer un peu ce qu'on a implémenté et pas encore fait.
+- Pour l'instant, nous avons implémenté dans le dossier [`parcoursup/`](parcoursup/) un clone complet du code Java initial, écrit en Python 3.
+- Et dans le dossier [`notebooks/`](notebooks/) nous proposons des implémentations simplifiées des principaux algorithmes, écrites sans dépendances et dans un style très didactique, avec des visualisations interactives afin de permettre à tout le monde d'expérimenter un peu et de visualiser le comportement des algorithmes. L'accent est mis sur la compréhension rapide de l'influence des différents paramètres numériques.
+
 * TODO expliquer l'algorithme dans les grandes lignes.
 
 ## Organisation de ce dépôt
 
+- Des visualisations sont dans [le dossier `notebooks/`](notebooks/). TODO encore à travailler !
 - Le code des algorithmes est [dans le dossier `parcoursup/`](parcoursup/), comme le code Java initial, c'est découpé en deux modules, [`ordreappel`](parcoursup/ordreappel) et [`propositions`](parcoursup/propositions),
 - Les (exemples de) données synthétiques générées sont [dans le dossier `donnees/`](donnees/),
-- TODO Des visualisations sont dans [le dossier `notebooks/`](notebooks/),
-- TODO Enfin, une documentation est disponible dans [le dossier `docs/`](docs/),
+- Une documentation de notre implémentation complète est disponible en ligne, [sur la page suivante](https://perso.crans.org/besson/publis/ParcourSup.py/), construite avec Sphinx à partir des fichiers présents dans [le dossier `docs/`](docs/),
 - Des utilitaires sont [dans le dossier `utils/`](utils/),
 
 ## Démonstration dans un [notebook Jupyter](https://www.Jupyter.org/) ?
-* TODO si besoin ?
+- Des visualisations sont dans [le dossier `notebooks/`](notebooks/). TODO encore à travailler !
 
 ---
 
@@ -70,6 +72,8 @@ cd Parcoursup.py/
 make install
 ```
 
+> Note : Il n'est pas nécessaire d'utiliser un `virtualenv`, mais c'est recommandé. Vous pouvez simplement installer les modules requis avec `sudo pip install -r requirements.txt`.
+
 > Note : notre code n'est pas spécifiquement écrit pour une machine utilisant GNU/Linux, et il devrait fonctionner sur n'importe quelle plateforme qui supporte Python 3.6 (Microsoft Windows et Mac OS X notamment). [N'hésitez pas à signaler un problème](https://github.com/Naereen/ParcourSup.py/issues/new), si besoin. :clap: Merci d'avance !
 
 ### Tests
@@ -89,6 +93,8 @@ $ . env/bin/activate ; python3 ./parcoursup/propositions/__init__.py
 ```
 - Ces deux tests prennent environ 30 secondes chacun.
 
+> Note : Il n'est pas nécessaire d'utiliser un `virtualenv`, mais c'est recommandé. Vous pouvez simplement faire les tests avec `python3 ./parcoursup/ordreappel/__init__.py` et `python3 ./parcoursup/propositions/__init__.py`.
+
 ----
 
 ## À propos
@@ -96,8 +102,6 @@ $ . env/bin/activate ; python3 ./parcoursup/propositions/__init__.py
 [Python v3.6+](https://docs.python.org/3.6/).  Avec les [modules suivants](requirements.txt) :
 
 - [Numpy](http://numpy.org/) pour les tableaux,
-- [matplotlib](http://matplotlib.org/) pour les affichages,
-- [pandas](http://pandas.pydata.org/) pour les statistiques, (TODO enlever si pas nécessaire),
 - [La bibliothèque standard](https://docs.python.org/3.6/) pour tout le reste.
 
 ### :scroll: Licence ? [![GitHub license](https://img.shields.io/github/license/Naereen/Parcoursup.py.svg)](https://github.com/Naereen/Parcoursup.py/blob/master/LICENSE)
