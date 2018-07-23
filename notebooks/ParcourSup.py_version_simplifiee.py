@@ -155,7 +155,7 @@ print("Le vœu exemple est-il résident ?", estResident(exemple_voeu))
 # 
 # On a besoin de connaître ces deux contraintes, exprimées en pourcentage donné comme un *entier* entre $0$ et $100$.
 # 
-# - Par exemple ici, on demandera à avoir au moins 20% de boursiers-ères, mais aucune contrainte sur le taux de résidents-es.
+# - Par exemple ici, on demandera à avoir au moins 20% de boursiers-ères, mais aucune contrainte sur le taux de résidents-e-s.
 
 # In[12]:
 
@@ -239,12 +239,12 @@ def calculerOrdreAppel(
         # contraignent le choix du prochain candidat dans l'ordre d'appel
 
         contrainteTauxBoursier = (nbBoursiersAppeles < nbBoursiersTotal) and ((nbBoursiersAppeles * 100) < tauxMinBoursiersPourcents * (nbAppeles + 1))
-        affiche("  La contrainte sur le taux de boursier-es est", contrainteTauxBoursier, "...")
-        affiche("      Car il y a pour l'instant", nbBoursiersAppeles, "boursier-es appelé-es sur un total de", nbBoursiersTotal, "et ce n'est pas assez pour dépasser le taux de", tauxMinBoursiersPourcents, "...")
+        affiche("  La contrainte sur le taux de boursier-e-s est", contrainteTauxBoursier, "...")
+        affiche("      Car il y a pour l'instant", nbBoursiersAppeles, "boursier-e-s appelé-e-s sur un total de", nbBoursiersTotal, "et ce n'est pas assez pour dépasser le taux de", tauxMinBoursiersPourcents, "...")
 
         contrainteTauxResident = (nbResidentsAppeles < nbResidentsTotal) and ((nbResidentsAppeles * 100) < tauxMinResidentsPourcents * (nbAppeles + 1))
-        affiche("  La contrainte sur le taux de résident-es est", contrainteTauxResident, "...")
-        affiche("      Car il y a pour l'instant", nbResidentsAppeles, "résident-es appelé-es sur un total de", nbResidentsTotal, "et ce n'est pas assez pour dépasser le taux de", tauxMinResidentsPourcents, "...")
+        affiche("  La contrainte sur le taux de résident-e-s est", contrainteTauxResident, "...")
+        affiche("      Car il y a pour l'instant", nbResidentsAppeles, "résident-e-s appelé-e-s sur un total de", nbResidentsTotal, "et ce n'est pas assez pour dépasser le taux de", tauxMinResidentsPourcents, "...")
 
         # on fait la liste des voeux satisfaisant
         # les deux contraintes à la fois, ordonnée par rang de classement
@@ -275,11 +275,11 @@ def calculerOrdreAppel(
             # donc il reste au moins un boursier non résident
             CandidatsBoursierNonResident = filesAttente[BoursierNonResident]
             meilleur = max(CandidatsBoursierNonResident, key=lambda voeu: -voeu["rang"])
-            affiche("  La liste des éligibles est pas vide, donc le-la meilleur-e est le-la meilleur-e de la liste des boursier-es non résident-es =", meilleur)
+            affiche("  La liste des éligibles est pas vide, donc le-la meilleur-e est le-la meilleur-e de la liste des boursier-e-s non résident-e-s =", meilleur)
 
         # suppression du candidat choisi de sa file d'attente
         saFileAttente = filesAttente[meilleur["type"]]
-        affiche("  On vérifie si le-la meilleur", meilleur, "est aussi le-la meilleur-e de sa liste contenant", len(saFileAttente), "candidat-es du type", meilleur['type'])
+        affiche("  On vérifie si le-la meilleur", meilleur, "est aussi le-la meilleur-e de sa liste contenant", len(saFileAttente), "candidat-e-s du type", meilleur['type'])
         meilleur_de_sa_liste = saFileAttente.pop()
 
         # ajout du meilleur candidat à l'ordre d'appel
