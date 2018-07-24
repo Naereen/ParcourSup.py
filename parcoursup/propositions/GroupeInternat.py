@@ -87,16 +87,8 @@ class GroupeInternat(object):
         """ Vérifie si le candidat est affecté."""
         return G_CN_CODE in self.candidatsAffectes
 
-    def initialiserPositionAdmission(self) -> None:
-        """ Initialise la position d'admission à son maximum Bmax dans le document de référence."""
-        # on calcule le nombre de candidats éligibles à une admission
-        # dans l'internat aujourd'hui, stocké dans la variable assietteAdmission.
-        # On colle aux notations du document de référence (pour les lettres M, L, t, p etc)
-        M = len(self.candidatsEnAttente) + len(self.candidatsAffectes)
-        L = self.capacite
-        t = self.nbJoursCampagne
-        p = self.pourcentageOuverture
-
+    def calculeAssietteAdmission(self, M: int, L: int, t: int, p: int) -> int:
+        """ Calcule l'assiette d'admission Bmax comme décrit dans l'algorithme."""
         assietteAdmission = -1
 
         if M <= L:
@@ -117,6 +109,19 @@ class GroupeInternat(object):
             assietteAdmission = M
 
         self.contingentAdmission = max(0, assietteAdmission - len(self.candidatsAffectes))
+        return assietteAdmission
+
+    def initialiserPositionAdmission(self) -> None:
+        """ Initialise la position d'admission à son maximum Bmax dans le document de référence."""
+        # on calcule le nombre de candidats éligibles à une admission
+        # dans l'internat aujourd'hui, stocké dans la variable assietteAdmission.
+        # On colle aux notations du document de référence (pour les lettres M, L, t, p etc)
+        M = len(self.candidatsEnAttente) + len(self.candidatsAffectes)
+        L = self.capacite
+        t = self.nbJoursCampagne
+        p = self.pourcentageOuverture
+
+        assietteAdmission = self.calculeAssietteAdmission(M, L, t, p)
 
         if t <= 0 or t > 120 or p < 0 or p > 100 or L < 0 or assietteAdmission > M or self.contingentAdmission > len(self.candidatsEnAttente) or self.contingentAdmission < 0:
             raise RuntimeError("Problème de calcul du contingent d'admission, veuillez vérifier les données.")
