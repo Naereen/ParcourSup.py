@@ -53,6 +53,8 @@ TypesCandidats = [
 ]
 
 
+# On définie également une fonction pour pouvoir afficher le type d'un candidat.
+
 # In[4]:
 
 
@@ -69,25 +71,26 @@ def afficheTypeCandidat(typeCandidat):
 
 # ### Un vœu
 # 
-# Ici on représente un vœu comme la donnée d'un type de candidat et d'un rang.
-# On pourrait utiliser un tuple ou une liste, par exemple `[BoursierResident, 1, "Harry Potter"]` pour un boursier résident classé 1er et appelé Harry Potter, mais par lisibilité on préfère utiliser un dictionnaire qui contient ces informations :
+# Un vœu désigne la candidature d'un candidat à une formation donnée. Ici on représente un vœu comme la donnée du type de candidat et du rang que l'établissement lui a atribué.
+# On pourrait utiliser un tuple ou une liste pour représenter un vœu, par exemple `[BoursierResident, 1, "Harry Potter"]` pour un boursier résident classé 1er et appelé Harry Potter, mais par lisibilité on préfère utiliser un dictionnaire qui contient ces informations :
 
 # > *POUR NOUS* ne même pas parler de nom mais juste d'identifiant ?
 
-# In[5]:
+# In[38]:
 
 
 exemple_voeu = {
     "type": BoursierResident,
     "rang": 1,
-    "nom": "Harry Potter"
+    "nom": "Harry Potter",
+    "id": 1235
 }
 
 
 # En fait, on n'utilisera jamais le nom des vœux, parce que *la plateforme ParcourSup ne tient compte d'aucune information sur les vœux ou les candidat-s, à part leur identifiant unique et anonymisé*.
 # 
 # On ajoute un nom dans les premiers exemples simplement pour être un peu plus visuel.
-# Les seules chosent que l'algorithme de ParourSup utilise à propos des vœux sont leur type et leur rang.
+# Les seules chosent que l'algorithme de ParcourSup utilise à propos des vœux sont leur type et leur rang.
 # Dans le code ci-dessous, ils seront lu comme ça : `voeu["type"]` et `voeu["rang"]`.
 
 # In[6]:
@@ -103,17 +106,17 @@ print("Vœu de type", afficheTypeCandidat(exemple_voeu["type"]), "et de rang", e
 # 
 # > Note : les prénoms sont choisis pour être dans l'ordre alphabétique.
 
-# In[7]:
+# In[39]:
 
 
-voeu_alice      = { "type": NonBoursierNonResident, "rang": 1, "nom": "Alice" }
-voeu_bob        = { "type": NonBoursierNonResident, "rang": 2, "nom": "Bob" }
-voeu_christophe = { "type": NonBoursierNonResident, "rang": 3, "nom": "Christophe" }
-voeu_dora       = { "type": NonBoursierNonResident, "rang": 4, "nom": "Dora" }
-voeu_emilie     = { "type": NonBoursierNonResident, "rang": 5, "nom": "Emilie" }
-voeu_florian    = { "type": BoursierNonResident,    "rang": 6, "nom": "Florian" }
-voeu_guillaume  = { "type": BoursierNonResident,    "rang": 7, "nom": "Guillaume" }
-voeu_helene     = { "type": NonBoursierNonResident, "rang": 8, "nom": "Hélène" }
+voeu_alice      = { "type": NonBoursierNonResident, "rang": 1, "nom": "Alice" ,     "id": 1911}
+voeu_bob        = { "type": NonBoursierNonResident, "rang": 2, "nom": "Bob",        "id": 2211}
+voeu_christophe = { "type": NonBoursierNonResident, "rang": 3, "nom": "Christophe", "id": 1061}
+voeu_dora       = { "type": NonBoursierNonResident, "rang": 4, "nom": "Dora",       "id": 7843}
+voeu_emilie     = { "type": NonBoursierNonResident, "rang": 5, "nom": "Emilie",     "id": 3388}
+voeu_florian    = { "type": BoursierNonResident,    "rang": 6, "nom": "Florian",    "id": 4073}
+voeu_guillaume  = { "type": BoursierNonResident,    "rang": 7, "nom": "Guillaume",  "id": 8020}
+voeu_helene     = { "type": NonBoursierNonResident, "rang": 8, "nom": "Hélène",     "id": 4219}
 
 
 # On a juste à les mettre dans une liste ensuite (en Python, une liste commence par `[`, chaque valeur est séparée par `,` et termine par `]`).
@@ -128,7 +131,7 @@ voeuxClasses = [
 ]
 
 
-# On aura besoin de savoir si un type de candidat est boursier ou non (respectivement, est résident ou non).
+# On aura besoin de savoir si un type de candidat est boursier ou non (respectivement, est résident ou non). On ecrit deux fonctions pour faire ce test qui renvoie *True* si le candidat est du type proposé et *False* si ce n'est pas le cas.
 
 # In[9]:
 
@@ -153,7 +156,7 @@ print("Le vœu exemple est-il résident ?", estResident(exemple_voeu))
 
 # ### Contraintes
 # 
-# On a besoin de connaître ces deux contraintes, exprimées en pourcentage donné comme un *entier* entre $0$ et $100$.
+# L'algorithme ParcoursSup permet aux établissements de fixer des quotas minimaux sur le nombre de boursiers-ères et de résidents-es admis. On a besoin de connaître ces deux contraintes, exprimées en pourcentage donné comme un *entier* entre $0$ et $100$.
 # 
 # - Par exemple ici, on demandera à avoir au moins 20% de boursiers-ères, mais aucune contrainte sur le taux de résidents-e-s.
 
@@ -173,8 +176,25 @@ tauxMinResidentsPourcents = 0
 # <img src="images/Algorithme_CalculOrdreAppel.png" width=50%>
 # 
 # Nous avons essayé de rendre le code suivant le plus clair possible mais il est nécessairement un peu long. Forcez vous à le lire jusqu'au bout !
+# 
+# La fonction suivante passe par plusieurs étapes.
+# 
+# > Je trouve le terme voeuxClasses ambigue, voeuxFormation pour l'ensemble des voeux d'une formation serait plus clair. Ton avis ?
+# 
+# **Données d'entrée :** 
+# - voeuxClasses : la listes des voeux postulant à une formation.
+# - tauxMinBoursiersPourcents : le pourcentage minimale de boursiers que l'établissement souhaite recruter.
+# - tauxMinResidentsPourcents : le pourcentage minimale de résidents que l'établissement souhaite recruter.
+# - afficheTout : variable qui choisie si le fonction affiche ou non les explications.
+# 
+# **Grosses étapes :**
+# 1. Tri de la liste voeuxClasses selon le rang affecté à chaque candidat-e.
+# 1. On sépare la liste en quatres liste d'attente ordonnées, une par type de candidat-e.
+# 1. On créé la liste ordreAppel qui servira appeler les candidats-es sur le site. Elle est construite en ajoutant un par un tous-tes les candidats-es qui ont demandé cette formation. Pour cela on répète les actions jusqu'à ce que tous-tes les candidats-rs soient traités.
+#     1. On vérifie si les quotas fixés sont respectés et on détermine le type de candidat-e a recruter en fonction.
+#     1. On place à la suite de la liste ordreAppel le-a meilleur-e candidat-e du type choisi et on le retire de sa liste d'attente.
 
-# In[13]:
+# In[69]:
 
 
 def calculerOrdreAppel(
@@ -183,15 +203,20 @@ def calculerOrdreAppel(
         tauxMinResidentsPourcents,
         afficheTout=True
     ):
+    
+    # On définit la fonction d'affichage que si on demande d'afficher tout.
     if afficheTout == False:
-        def affiche(*args, **kwargs): pass
-    else: affiche = print
-
-    affiche("\n0. On commence à calculer les ordres d'appel pour cette liste de vœux qui contient", len(voeuxClasses), "voeux.")
-
-    affiche("  On crée des listes de vœux pour chaque types de candidats", TypesCandidats)
-    # on crée autant de listes de vœux que de types de candidats,
-    # triées par ordre de classement
+        def affiche(*args): pass
+    else:  affiche = print
+    
+    # 1. On tri la liste voeuxClasses par ordre de rang
+    affiche("\n1. On trie les vœux par rang")
+    affiche("  Avant le tri :", voeuxClasses)
+    voeuxClasses.sort(key=lambda voeu: -voeu["rang"])
+    affiche("  Après le tri :", voeuxClasses)    
+    
+    # 2. On crée des listes de vœux pour chaque types de candidats
+    affiche("\n2. On crée des listes triées pour chaque types de candidats")
     filesAttente = {
         BoursierResident: [ ],  # liste vide associée à chaque type
         BoursierNonResident: [ ],  # liste vide associée à chaque type
@@ -199,28 +224,26 @@ def calculerOrdreAppel(
         NonBoursierNonResident: [ ],  # liste vide associée à chaque type
     }
 
-    # Chaque voeu classé est ventilé dans la liste correspondante,
+    # Chaque voeu classé est placé dans la liste correspondante,
     # en fonction du type du candidat.
     # Les quatre listes obtenues sont ordonnées par rang de classement,
     # comme l'est la liste voeuxClasses.
     nbBoursiersTotal = 0
     nbResidentsTotal = 0
 
-    # on trie les vœux par classement
-    affiche("\n1. On trie les vœux par classement (rang croissant)...")
-    affiche("  Avant le tri :", voeuxClasses, "...")
-    voeuxClasses.sort(key=lambda voeu: -voeu["rang"])
-    affiche("  Après le tri :", voeuxClasses, "...")
-
     for voeu in voeuxClasses:
         # on ajoute le voeu à la fin de la file (FIFO) correspondante
         filesAttente[voeu["type"]].append(voeu)
         if estBoursier(voeu):
             nbBoursiersTotal += 1
-            affiche("    On compte un-e boursier-e en plus, c'est le", nbBoursiersTotal, "ème...")
         if estResident(voeu):
             nbResidentsTotal += 1
-            affiche("    On compte un-e résident-e en plus, c'est le", nbResidentsTotal, "ème...")
+            
+    # Affichage des listes d'attentes
+    affiche("  Liste des boursiers résident :\n\t", filesAttente[1])
+    affiche("  Liste des boursiers non résident :\n\t", filesAttente[2])
+    affiche("  Liste des boursiers non résident :\n\t", filesAttente[3])
+    affiche("  Liste des non boursiers non résident :\n\t", filesAttente[4])
 
     nbVoeuxClasses     = len(voeuxClasses)
     nbAppeles          = 0
@@ -231,20 +254,21 @@ def calculerOrdreAppel(
     # On commence par un ordre d'appel vide (liste vide).
     ordreAppel = [ ]
 
-    affiche("\n2. Début de la boucle while, on remplit l'ordre d'appel...")
+    affiche("\n3. Début de la boucle while, on remplit l'ordre d'appel pour respecter les critères")
 
     while len(ordreAppel) < nbVoeuxClasses:
-        affiche("\n  L'ordre d'appel contient", len(ordreAppel), "éléments et il y a", nbVoeuxClasses, "vœux à classer.")
         # on calcule lequel ou lesquels des critères boursiers et résidents
         # contraignent le choix du prochain candidat dans l'ordre d'appel
 
         contrainteTauxBoursier = (nbBoursiersAppeles < nbBoursiersTotal) and ((nbBoursiersAppeles * 100) < tauxMinBoursiersPourcents * (nbAppeles + 1))
-        affiche("  La contrainte sur le taux de boursier-e-s est", contrainteTauxBoursier, "...")
-        affiche("      Car il y a pour l'instant", nbBoursiersAppeles, "boursier-e-s appelé-e-s sur un total de", nbBoursiersTotal, "et ce n'est pas assez pour dépasser le taux de", tauxMinBoursiersPourcents, "...")
+        affiche("\tLes boursiers représentent : ", (nbBoursiersAppeles * 100), "% et on en veut ", tauxMinBoursiersPourcents * (nbAppeles + 1), "%")
+        affiche("\tIl reste des boursiers à appeler : ", (nbBoursiersAppeles < nbBoursiersTotal))
+        affiche("\t\t=> Du coup on va appeler un boursier : ", contrainteTauxBoursier)
 
         contrainteTauxResident = (nbResidentsAppeles < nbResidentsTotal) and ((nbResidentsAppeles * 100) < tauxMinResidentsPourcents * (nbAppeles + 1))
-        affiche("  La contrainte sur le taux de résident-e-s est", contrainteTauxResident, "...")
-        affiche("      Car il y a pour l'instant", nbResidentsAppeles, "résident-e-s appelé-e-s sur un total de", nbResidentsTotal, "et ce n'est pas assez pour dépasser le taux de", tauxMinResidentsPourcents, "...")
+        affiche("\tLes résident représentent : ", (nbResidentsAppeles * 100), "% et on en veut ", tauxMinResidentsPourcents * (nbAppeles + 1), "%")
+        affiche("\tIl reste des résidents à appeler : ", (nbResidentsAppeles < nbResidentsTotal))
+        affiche("\t\t=> Du coup on va appeler un résident : ", contrainteTauxResident)
 
         # on fait la liste des voeux satisfaisant
         # les deux contraintes à la fois, ordonnée par rang de classement
@@ -303,7 +327,7 @@ def calculerOrdreAppel(
 # 
 # Avec les valeurs prisent ci-dessus comme exemple :
 
-# In[14]:
+# In[70]:
 
 
 calculerOrdreAppel(
