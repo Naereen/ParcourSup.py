@@ -56,6 +56,7 @@ Des détails sur les algorithmes :
 
 - [Ce document texte](https://framagit.org/parcoursup/algorithmes-de-parcoursup/blob/master/doc/implementation.txt) et [cet autre document PDF](https://framagit.org/parcoursup/algorithmes-de-parcoursup/blob/master/doc/presentation_algorithmes_parcoursup.pdf) donnent plein d'explications.
 
+- [Ce texte du Journal Officiel](https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036748597&dateTexte=20180724) montre l'autorisation donnée par la CNIL pour la création de la base de données pour Parcoursup, et détaille un peu toutes les informations stockées pour le service. Il est important de garder en tête que ces données ne sont **pas** utilisées par les algorithmes de Parcoursup, qui n'utilisent qu'un identifiant unique et anonyme pour identifier chaque candidat-e.
 
 Autres ressources, moins techniques mais plus pédagogiques :
 
