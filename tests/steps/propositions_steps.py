@@ -8,8 +8,7 @@
 from behave import *
 
 import sys
-import os.path
-sys.path.insert(0, os.path.join('..', '..'))
+sys.path.insert(0, '..')
 
 # On importe parcoursup
 from parcoursup.ordreappel.VoeuClasse import VoeuClasse
