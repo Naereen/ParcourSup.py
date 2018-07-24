@@ -5,7 +5,8 @@
 
 Ce dossier contiendra des scripts utilitaires pour bidouiller des choses, si besoin.
 
-* TODO supprimer si pas besoin !
+- [telecharge-indicateurs-publics.sh](telecharge-indicateurs-publics.sh) permet de télécharger les documents PDF mis en ligne chaque jour, sur [le site du gouvernement](http://www.enseignementsup-recherche.gouv.fr/cid130714/tableaux-de-bord-des-indicateurs-de-parcoursup.html).
+- TODO supprimer si pas besoin !
 
 ---
 

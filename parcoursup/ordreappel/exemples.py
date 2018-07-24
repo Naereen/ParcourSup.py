@@ -99,7 +99,7 @@ class Exemple(object):
 
 
 class exempleA1(Exemple):
-    """ Exemple A1 avec une contrainte de 20% de boursiers-ères et de 0% de non-résidents-es."""
+    """ Exemple A1 avec une contrainte de 20% de boursiers-ère-s et de 0% de non résidents-e-s."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A1'
@@ -114,7 +114,7 @@ class exempleA1(Exemple):
 
 
 class exempleA2(Exemple):
-    """ Exemple A2 avec une contrainte de 2% de boursiers-ères et de 0% de non-résidents-es."""
+    """ Exemple A2 avec une contrainte de 2% de boursiers-ère-s et de 0% de non résidents-e-s."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A2'
@@ -129,7 +129,7 @@ class exempleA2(Exemple):
 
 
 class exempleA3(Exemple):
-    """ Exemple A3 avec une contrainte de 10% de boursiers-ères et de 0% de non-résidents-es."""
+    """ Exemple A3 avec une contrainte de 10% de boursiers-ère-s et de 0% de non résidents-e-s."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A3'
@@ -143,7 +143,7 @@ class exempleA3(Exemple):
 
 
 class exempleA4(Exemple):
-    """ Exemple A4 avec une contrainte de 10% de boursiers-ères et de 0% de non-résidents-es."""
+    """ Exemple A4 avec une contrainte de 10% de boursiers-ère-s et de 0% de non résidents-e-s."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A4'
@@ -163,7 +163,7 @@ class exempleA4(Exemple):
 
 
 class exempleA5(Exemple):
-    """ Exemple A5 avec une contrainte de 10% de boursiers-ères et de 95% de non-résidents-es."""
+    """ Exemple A5 avec une contrainte de 10% de boursiers-ère-s et de 95% de non résidents-e-s."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A5'
@@ -195,7 +195,7 @@ class exempleA5(Exemple):
 
 
 class exempleA6(Exemple):
-    """ Exemple A6 avec une contrainte de 10% de boursiers-ères et de 95% de non-résidents-es."""
+    """ Exemple A6 avec une contrainte de 10% de boursiers-ère-s et de 95% de non résidents-e-s."""
 
     def initialise(self) -> None:
         self.nom = 'exemple_A6'

@@ -107,12 +107,12 @@ class GroupeClassement(object):
             # contraignent le choix du prochain candidat dans l'ordre d'appel
 
             contrainteTauxBoursier = (nbBoursiersAppeles < nbBoursiersTotal) and ((nbBoursiersAppeles * 100) < self.tauxMinBoursiersPourcents * (nbAppeles + 1))
-            log(f"  La contrainte sur le taux de boursier-es est {contrainteTauxBoursier}...")
-            log(f"      Car il y a pour l'instant {nbBoursiersAppeles} boursier-es appelé-es sur un total de {nbBoursiersTotal}, et ce n'est pas assez pour dépasser le taux de {self.tauxMinBoursiersPourcents}...")
+            log(f"  La contrainte sur le taux de boursier-ère-s est {contrainteTauxBoursier}...")
+            log(f"      Car il y a pour l'instant {nbBoursiersAppeles} boursier-ère-s appelé-e-s sur un total de {nbBoursiersTotal}, et ce n'est pas assez pour dépasser le taux de {self.tauxMinBoursiersPourcents}...")
 
             contrainteTauxResident = (nbResidentsAppeles < nbResidentsTotal) and ((nbResidentsAppeles * 100) < self.tauxMinResidentsPourcents * (nbAppeles + 1))
-            log(f"  La contrainte sur le taux de résident-es est {contrainteTauxResident}...")
-            log(f"      Car il y a pour l'instant {nbResidentsAppeles} résident-es appelé-es sur un total de {nbResidentsTotal}, et ce n'est pas assez pour dépasser le taux de {self.tauxMinResidentsPourcents}...")
+            log(f"  La contrainte sur le taux de résident-e-s est {contrainteTauxResident}...")
+            log(f"      Car il y a pour l'instant {nbResidentsAppeles} résident-e-s appelé-e-s sur un total de {nbResidentsTotal}, et ce n'est pas assez pour dépasser le taux de {self.tauxMinResidentsPourcents}...")
 
             # on fait la liste des voeux satisfaisant
             # les deux contraintes à la fois, ordonnée par rang de classement
@@ -145,12 +145,12 @@ class GroupeClassement(object):
                 # donc il reste au moins un boursier non résident
                 assert contrainteTauxBoursier and contrainteTauxResident, "Erreur : ce cas où la file de priorité est vide mais les deux contraintes ne sont pas vérifiées ne devrait pas arriver."  # DEBUG
 
-                assert not filesAttente[TypeCandidat.BoursierResident], "Erreur : ce cas où la file de priorité est vide mais il reste des candidats-es boursiers-ères et résident-es ne devrait pas arriver."  # DEBUG
-                assert filesAttente[TypeCandidat.BoursierNonResident], "Erreur : ce cas où la file de priorité est vide mais il ne reste pas de candidats-es boursiers-ères et non résident-es ne devrait pas arriver."  # DEBUG
+                assert not filesAttente[TypeCandidat.BoursierResident], "Erreur : ce cas où la file de priorité est vide mais il reste des candidats-es boursiers-ères et résident-e-s ne devrait pas arriver."  # DEBUG
+                assert filesAttente[TypeCandidat.BoursierNonResident], "Erreur : ce cas où la file de priorité est vide mais il ne reste pas de candidats-es boursiers-ères et non résident-e-s ne devrait pas arriver."  # DEBUG
 
                 CandidatsBoursierNonResident = filesAttente[TypeCandidat.BoursierNonResident]
                 meilleur = max(CandidatsBoursierNonResident)
-                log(f"  La liste des éligibles est pas vide, donc le-la meilleur-e est le-la meilleur-e de la liste des boursier-es non résident-es = {meilleur}")
+                log(f"  La liste des éligibles est pas vide, donc le-la meilleur-e est le-la meilleur-e de la liste des boursier-ère-s non résident-e-s = {meilleur}")
 
             # suppression du candidat choisi de sa file d'attente
             saFileAttente = filesAttente[meilleur.typeCandidat]
