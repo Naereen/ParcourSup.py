@@ -6,12 +6,12 @@
 4. OK Travailler morceau par morceau,
 5. OK Générer des données synthétiques, peut-être sous le même format que les exemples ([ordreappel/exemples](https://framagit.org/parcoursup/algorithmes-de-parcoursup/tree/master/java/parcoursup/ordreappel/exemples) et [propositions/exemples](https://framagit.org/parcoursup/algorithmes-de-parcoursup/tree/master/java/parcoursup/propositions/exemples)),
 6. TODO Débogguer les algorithmes pour coller aux fichiers d'exemple de l'implémentation en Java.
-7. Essayer chaque morceau sur de petits exemples de données (par exemple une ville avec 3 lycées, 3 classes de terminales chacun, et 3 établissements supérieur avec 3 formations chacun),
-8. Écrire de belles explications,
-9. Intégrer les contraintes dans l'algorithme (boursiers, candidats hors académie),
-10. Ajouter les vœux dans les établissements avec internats,
-11. Simuler sur plusieurs jours en simulant les choix de certains candidats ?
-12. ??
+7. TODO Essayer chaque morceau sur de petits exemples de données (par exemple une ville avec 3 lycées, 3 classes de terminales chacun, et 3 établissements supérieur avec 3 formations chacun),
+8. TODO Écrire de belles explications,
+9. TODO Intégrer les contraintes dans l'algorithme (boursiers, candidats hors académie),
+10. TODO Ajouter les vœux dans les établissements avec internats,
+11. TODO Simuler sur plusieurs jours en simulant les choix de certains candidats ?
+12. TODO Internats non mixtes ??
 
 ---
 

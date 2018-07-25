@@ -51,16 +51,16 @@ def VoeuClasse2candidat(voeu: VoeuClasse) -> str:
 # ---------------------
 # On définit les étapes
 
-@given("les candidats sont {liste_candidats}")
+@given("les candidat-e-s sont {liste_candidats}")
 def step_impl(context, liste_candidats):
     liste_candidats = liste_candidats.split(' ')
     context.liste_candidats = liste_candidats
 
-@given("le taux minimum de boursiers est {qb:d}")
+@given("le taux minimum de boursier-ère-s est {qb:d}")
 def step_impl(context, qb):
     context.qb = qb
 
-@given("le taux minimum de résidents est {qr:d}")
+@given("le taux minimum de résident-e-s est {qr:d}")
 def step_impl(context, qr):
     context.qr = qr
 

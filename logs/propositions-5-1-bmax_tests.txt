@@ -1,0 +1,511 @@
+@Bmax
+Feature: Algorithme de calcul de la position max d'admission d'un internat # propositions-5-1-bmax.feature:16
+  Algorithme de calcul de la position maximum d'admission Bmax
+  Scenario Template: Calcul de Bmax -- @1.1   # propositions-5-1-bmax.feature:27
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 1          # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.2   # propositions-5-1-bmax.feature:28
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 2          # steps/propositions_steps.py:47
+    Then 340 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.3   # propositions-5-1-bmax.feature:29
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 15         # steps/propositions_steps.py:47
+    Then 860 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.4   # propositions-5-1-bmax.feature:30
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 30         # steps/propositions_steps.py:47
+    Then 1460 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.5   # propositions-5-1-bmax.feature:31
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 31         # steps/propositions_steps.py:47
+    Then 1500 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.6   # propositions-5-1-bmax.feature:32
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 45         # steps/propositions_steps.py:47
+    Then 1500 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.7   # propositions-5-1-bmax.feature:33
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 60         # steps/propositions_steps.py:47
+    Then 1500 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.8   # propositions-5-1-bmax.feature:34
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 61         # steps/propositions_steps.py:47
+    Then 1500 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.9   # propositions-5-1-bmax.feature:35
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 65         # steps/propositions_steps.py:47
+    Then 1500 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.1   # propositions-5-1-bmax.feature:45
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 1          # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.2   # propositions-5-1-bmax.feature:46
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 2          # steps/propositions_steps.py:47
+    Then 328 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.3   # propositions-5-1-bmax.feature:47
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 15         # steps/propositions_steps.py:47
+    Then 692 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.4   # propositions-5-1-bmax.feature:48
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 30         # steps/propositions_steps.py:47
+    Then 1112 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.5   # propositions-5-1-bmax.feature:49
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 31         # steps/propositions_steps.py:47
+    Then 1140 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.6   # propositions-5-1-bmax.feature:50
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 45         # steps/propositions_steps.py:47
+    Then 1140 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.7   # propositions-5-1-bmax.feature:51
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 60         # steps/propositions_steps.py:47
+    Then 1500 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.8   # propositions-5-1-bmax.feature:52
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 61         # steps/propositions_steps.py:47
+    Then 1500 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.9   # propositions-5-1-bmax.feature:53
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 1500 candidat-e-s        # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 65         # steps/propositions_steps.py:47
+    Then 1500 sont appelé-e-s                 # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.1   # propositions-5-1-bmax.feature:64
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 1          # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.2   # propositions-5-1-bmax.feature:65
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 2          # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.3   # propositions-5-1-bmax.feature:66
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 15         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.4   # propositions-5-1-bmax.feature:67
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 30         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.5   # propositions-5-1-bmax.feature:68
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 31         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.6   # propositions-5-1-bmax.feature:69
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 45         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.7   # propositions-5-1-bmax.feature:70
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 60         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.8   # propositions-5-1-bmax.feature:71
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 61         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.9   # propositions-5-1-bmax.feature:72
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 65         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.1   # propositions-5-1-bmax.feature:83
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 1          # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.2   # propositions-5-1-bmax.feature:84
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 2          # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.3   # propositions-5-1-bmax.feature:85
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 15         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.4   # propositions-5-1-bmax.feature:86
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 30         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.5   # propositions-5-1-bmax.feature:87
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 31         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.6   # propositions-5-1-bmax.feature:88
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 45         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.7   # propositions-5-1-bmax.feature:89
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 60         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.8   # propositions-5-1-bmax.feature:90
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 61         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.9   # propositions-5-1-bmax.feature:91
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 300 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 65         # steps/propositions_steps.py:47
+    Then 300 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.1   # propositions-5-1-bmax.feature:101
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 1          # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.2   # propositions-5-1-bmax.feature:102
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 2          # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.3   # propositions-5-1-bmax.feature:103
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 15         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.4   # propositions-5-1-bmax.feature:104
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 30         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.5   # propositions-5-1-bmax.feature:105
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 31         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.6   # propositions-5-1-bmax.feature:106
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 45         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.7   # propositions-5-1-bmax.feature:107
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 60         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.8   # propositions-5-1-bmax.feature:108
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 61         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.9   # propositions-5-1-bmax.feature:109
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 65         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.1   # propositions-5-1-bmax.feature:120
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 1          # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.2   # propositions-5-1-bmax.feature:121
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 2          # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.3   # propositions-5-1-bmax.feature:122
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 15         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.4   # propositions-5-1-bmax.feature:123
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 30         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.5   # propositions-5-1-bmax.feature:124
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 31         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.6   # propositions-5-1-bmax.feature:125
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 45         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.7   # propositions-5-1-bmax.feature:126
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 60         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.8   # propositions-5-1-bmax.feature:127
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 61         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.9   # propositions-5-1-bmax.feature:128
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 40 candidat-e-s          # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 65         # steps/propositions_steps.py:47
+    Then 40 sont appelé-e-s                   # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.1   # propositions-5-1-bmax.feature:138
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 1          # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.2   # propositions-5-1-bmax.feature:139
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 2          # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.3   # propositions-5-1-bmax.feature:140
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 15         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.4   # propositions-5-1-bmax.feature:141
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 30         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.5   # propositions-5-1-bmax.feature:142
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 31         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.6   # propositions-5-1-bmax.feature:143
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 45         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.7   # propositions-5-1-bmax.feature:144
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 60         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.8   # propositions-5-1-bmax.feature:145
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 61         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.9   # propositions-5-1-bmax.feature:146
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 100            # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 65         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.1   # propositions-5-1-bmax.feature:157
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 1          # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.2   # propositions-5-1-bmax.feature:158
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 2          # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.3   # propositions-5-1-bmax.feature:159
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 15         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.4   # propositions-5-1-bmax.feature:160
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 30         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.5   # propositions-5-1-bmax.feature:161
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 31         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.6   # propositions-5-1-bmax.feature:162
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 45         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.7   # propositions-5-1-bmax.feature:163
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 60         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.8   # propositions-5-1-bmax.feature:164
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 61         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+  Scenario Template: Calcul de Bmax -- @1.9   # propositions-5-1-bmax.feature:165
+    Given un internat disposant de 300 places # steps/propositions_steps.py:35
+    And une liste de 299 candidat-e-s         # steps/propositions_steps.py:39
+    And un taux d'ouverture de 70             # steps/propositions_steps.py:43
+    When l'appel est lancé le jour 65         # steps/propositions_steps.py:47
+    Then 299 sont appelé-e-s                  # steps/propositions_steps.py:55
+
+1 feature passed, 0 failed, 0 skipped
+72 scenarios passed, 0 failed, 0 skipped
+360 steps passed, 0 failed, 0 skipped, 0 undefined
+Took 0m0.032s

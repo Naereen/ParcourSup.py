@@ -36,7 +36,7 @@ from ordreappel_steps import candidat2VoeuClasse, VoeuClasse2candidat
 def step_impl(context, L):
     context.L = L
 
-@given("une liste de {M:d} candidats")
+@given("une liste de {M:d} candidat-e-s")
 def step_impl(context, M):
     context.M = M
 
@@ -52,6 +52,6 @@ def step_impl(context, jour):
     bmax = groupeInternat.calculeAssietteAdmission(context.M, context.L, context.jour, context.ouverture)
     context.bmax = bmax
 
-@then("{candidats:d} sont appelés")
+@then("{candidats:d} sont appelé-e-s")
 def step_impl(context, candidats):
     assert context.bmax == candidats

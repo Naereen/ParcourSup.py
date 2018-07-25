@@ -64,4 +64,4 @@ apidoc:
 
 html:
 	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-	-./.fixes_html_in_doc.sh
+	-./docs/.fixes_html_in_doc.sh
