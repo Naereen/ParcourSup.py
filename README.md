@@ -30,11 +30,14 @@ Les algorithmes et l'implémentation officielle (en Java) ont été distribués 
 - Des visualisations sont dans [le dossier `notebooks/`](notebooks/). TODO encore à travailler !
 - Le code des algorithmes est [dans le dossier `parcoursup/`](parcoursup/), comme le code Java initial, c'est découpé en deux modules, [`ordreappel`](parcoursup/ordreappel) et [`propositions`](parcoursup/propositions),
 - Les (exemples de) données synthétiques générées sont [dans le dossier `donnees/`](donnees/),
+- Des tests (plusieurs centaines) sont présents dans le dossier [`tests/`](tests/), inspirés par [ce projet](https://github.com/JosePaumard/tests-pour-parcoursup),
 - Une documentation de notre implémentation complète est disponible en ligne, [sur la page suivante](https://perso.crans.org/besson/publis/ParcourSup.py/), construite avec Sphinx à partir des fichiers présents dans [le dossier `docs/`](docs/),
 - Des utilitaires sont [dans le dossier `utils/`](utils/),
 
-## Démonstration dans un [notebook Jupyter](https://www.Jupyter.org/) ?
+## Démonstration dans un [notebook Jupyter](https://www.Jupyter.org/)
 - Des visualisations sont dans [le dossier `notebooks/`](notebooks/).
+
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks)
 
 ---
 
