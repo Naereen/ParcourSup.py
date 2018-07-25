@@ -1,7 +1,7 @@
 # :baby: :fr: Un clone en Python 3 de [Parcoursup](http://www.parcoursup.fr/), écrit à but didactique
 > [Écrit par](AUTHORS) [Lilian Besson (@Naereen)](https://github.com/Naereen) et [Bastien Trotobas (@BastienTr)](https://github.com/BastienTr), et d'autres collaborateurs.
 
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks%2FParcourSup.py_version_simplifiee.ipynb)
 
 ## Notebooks
 
@@ -29,7 +29,7 @@ Ce dossier contient des ressources supplémentaires pour expliquer les algorithm
     ![Visualisation_OrdreAppel_focus_sur_un_voeu](images/Visualisation_OrdreAppel_focus_sur_un_voeu.gif)
 
 - Voici un lien qui lance [MyBinder](https://mybinder.org/) sur le notebook, pour vous laisser exécuter le code par vous-même.
-  [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks%2FParcourSup.py_version_simplifiee.ipynb)
+  [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks%2FParcourSup.py_version_simplifiee.ipynb%2FParcourSup.py_version_simplifiee.ipynb)
 
 ### 2) Calcul des propositions
 > C'est la partie qui est implémentée [dans ce dossier `parcoursup/propositions`](../parcoursup/propositions/).

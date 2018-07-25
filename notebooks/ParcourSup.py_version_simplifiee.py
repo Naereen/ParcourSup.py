@@ -13,7 +13,7 @@
 
 # On utilise Python 3 dans ce document. Je vous conseille de le lire interactivement, en cliquant sur ce bouton là :
 # 
-# [![FIXME ajouter lien MyBinder](FIXME ajouter lien MyBinder)](FIXME ajouter lien MyBinder)
+# https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks%2FParcourSup.py_version_simplifiee.ipynb
 
 # In[1]:
 

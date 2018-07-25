@@ -37,7 +37,7 @@ Les algorithmes et l'implémentation officielle (en Java) ont été distribués 
 ## Démonstration dans un [notebook Jupyter](https://www.Jupyter.org/)
 - Des visualisations sont dans [le dossier `notebooks/`](notebooks/).
 
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks%2FParcourSup.py_version_simplifiee.ipynb)
 
 ---
 
