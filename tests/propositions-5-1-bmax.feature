@@ -14,14 +14,14 @@
 
 @Bmax
 Feature: Algorithme de calcul de la position max d'admission d'un internat
-  Algorithme de calcul de la position maximum d’admission Bmax
+  Algorithme de calcul de la position maximum d'admission Bmax
 
   Scenario Template: Calcul de Bmax
     Given un internat disposant de 300 places
-    And une liste de 1500 candidats
+    And une liste de 1500 candidat-e-s
     And un taux d'ouverture de 100
     When l'appel est lancé le jour <jour>
-    Then <candidats> sont appelés
+    Then <candidats> sont appelé-e-s
     Examples:
       | jour | candidats |
       | 1    | 300       |
@@ -36,10 +36,10 @@ Feature: Algorithme de calcul de la position max d'admission d'un internat
 
   Scenario Template: Calcul de Bmax
     Given un internat disposant de 300 places
-    And une liste de 1500 candidats
+    And une liste de 1500 candidat-e-s
     And un taux d'ouverture de 70
     When l'appel est lancé le jour <jour>
-    Then <candidats> sont appelés
+    Then <candidats> sont appelé-e-s
     Examples:
       | jour | candidats |
       | 1    | 300       |
@@ -55,10 +55,10 @@ Feature: Algorithme de calcul de la position max d'admission d'un internat
 
   Scenario Template: Calcul de Bmax
     Given un internat disposant de 300 places
-    And une liste de 300 candidats
+    And une liste de 300 candidat-e-s
     And un taux d'ouverture de 100
     When l'appel est lancé le jour <jour>
-    Then <candidats> sont appelés
+    Then <candidats> sont appelé-e-s
     Examples:
       | jour | candidats |
       | 1    | 300       |
@@ -74,10 +74,10 @@ Feature: Algorithme de calcul de la position max d'admission d'un internat
 
   Scenario Template: Calcul de Bmax
     Given un internat disposant de 300 places
-    And une liste de 300 candidats
+    And une liste de 300 candidat-e-s
     And un taux d'ouverture de 70
     When l'appel est lancé le jour <jour>
-    Then <candidats> sont appelés
+    Then <candidats> sont appelé-e-s
     Examples:
       | jour | candidats |
       | 1    | 300       |
@@ -92,10 +92,10 @@ Feature: Algorithme de calcul de la position max d'admission d'un internat
 
   Scenario Template: Calcul de Bmax
     Given un internat disposant de 300 places
-    And une liste de 40 candidats
+    And une liste de 40 candidat-e-s
     And un taux d'ouverture de 100
     When l'appel est lancé le jour <jour>
-    Then <candidats> sont appelés
+    Then <candidats> sont appelé-e-s
     Examples:
       | jour | candidats |
       | 1    | 40        |
@@ -111,10 +111,10 @@ Feature: Algorithme de calcul de la position max d'admission d'un internat
 
   Scenario Template: Calcul de Bmax
     Given un internat disposant de 300 places
-    And une liste de 40 candidats
+    And une liste de 40 candidat-e-s
     And un taux d'ouverture de 70
     When l'appel est lancé le jour <jour>
-    Then <candidats> sont appelés
+    Then <candidats> sont appelé-e-s
     Examples:
       | jour | candidats |
       | 1    | 40        |
@@ -129,10 +129,10 @@ Feature: Algorithme de calcul de la position max d'admission d'un internat
 
   Scenario Template: Calcul de Bmax
     Given un internat disposant de 300 places
-    And une liste de 299 candidats
+    And une liste de 299 candidat-e-s
     And un taux d'ouverture de 100
     When l'appel est lancé le jour <jour>
-    Then <candidats> sont appelés
+    Then <candidats> sont appelé-e-s
     Examples:
       | jour | candidats |
       | 1    | 299       |
@@ -148,10 +148,10 @@ Feature: Algorithme de calcul de la position max d'admission d'un internat
 
   Scenario Template: Calcul de Bmax
     Given un internat disposant de 300 places
-    And une liste de 299 candidats
+    And une liste de 299 candidat-e-s
     And un taux d'ouverture de 70
     When l'appel est lancé le jour <jour>
-    Then <candidats> sont appelés
+    Then <candidats> sont appelé-e-s
     Examples:
       | jour | candidats |
       | 1    | 299       |

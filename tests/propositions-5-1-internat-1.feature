@@ -14,32 +14,32 @@
 
 @Internat
 Feature: Gestion des internats section 5.1
-  Algorithme quotidien Internat étant donné la position d’admission B
+  Algorithme quotidien Internat étant donné la position d'admission B
 
   Les tests sont répartis en sections, dans des scénarios qui regroupent des formations
   partageant les mêmes caractéristiques :
   - le rang limite de proposition est-il plus grand ou plus petit que la capacité
     d'accueil de la formation ?
   - l'internat a-t-il une capacité d'accueil plus grande ou plus petite que le nombre
-    de candidats ?
-  - la valeur de B est-elle plus petite ou égale au nombre de candidats ?
+    de candidat-e-s ?
+  - la valeur de B est-elle plus petite ou égale au nombre de candidat-e-s ?
   - la valeur de B est-elle plus grande ou plus petite que la capacité d'accueil de l'internat.
 
-  Par nature, B ne doit pas être plus grand que le nombre de candidats avec internat
+  Par nature, B ne doit pas être plus grand que le nombre de candidat-e-s avec internat
 
   @1.1
   Scenario Template: Gestion des internats à capacité d'accueil suffisante
     Given une formation dont le rang limite de proposition est 10 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 4
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 5 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6 | C1 C2 C3 C4   | C5 C6      |
@@ -53,14 +53,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 5 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 4
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 5 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4    | C1 C2 C3 C4   | C5 C6      |
@@ -74,14 +74,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 10 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 4
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6 | C1 C2 C3 C4   | C5 C6      |
@@ -93,14 +93,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 5 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 10
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat  | en_attente |
       | 6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 | C1 C2 C3 C4 C5 | C6         |
@@ -112,14 +112,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 10 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 10
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation    | prop_internat  | en_attente |
       | 5 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 | C6         |
@@ -133,14 +133,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 5 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 10
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat  | en_attente |
       | 5 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 | C1 C2 C3 C4 C5 | C6         |
@@ -154,14 +154,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 10 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 10
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation    | prop_internat     | en_attente |
       | 6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | -          |
@@ -173,14 +173,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 5 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 10
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat  | en_attente |
       | 6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 | C1 C2 C3 C4 C5 | C6         |
@@ -192,14 +192,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 3 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 4
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 5 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4    | C1 C2 C3 C4   | C5 C6      |
@@ -213,14 +213,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 3 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 4
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 5 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4    | C1 C2 C3 C4   | C5 C6      |
@@ -234,14 +234,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 3 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 4
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4    | C1 C2 C3 C4   | C5 C6      |
@@ -253,14 +253,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 3 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 4
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4    | C1 C2 C3 C4   | C5 C6      |
@@ -272,14 +272,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 3 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 10
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 5 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4    | C1 C2 C3 C4   | C5 C6      |
@@ -293,14 +293,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 3 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 10
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 5 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4    | C1 C2 C3 C4   | C5 C6      |
@@ -315,14 +315,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 3 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 10
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4    | C1 C2 C3 C4   | C5 C6      |
@@ -334,14 +334,14 @@ Feature: Gestion des internats section 5.1
     Given une formation dont le rang limite de proposition est 3 et dont la capacité d'accueil est 4
     And un internat dont la capacité d'accueil est 10
     And la valeur de B est <B>
-    And les candidats à la formation sont <candidats>
-    And les candidats à l'internat sont <cdts_internat>
-    And les candidats à la formation sans internat sont <cdts_sans_internat>
+    And les candidat-e-s à la formation sont <candidats>
+    And les candidat-e-s à l'internat sont <cdts_internat>
+    And les candidat-e-s à la formation sans internat sont <cdts_sans_internat>
     And le classement à l'internat est <cl_internat>
     When l'ordre d'appel est calculé
-    Then les candidats suivants reçoivent une proposition pour la formation <prop_formation>
-    And les candidats suivants reçoivent une proposition pour l'internat <prop_internat>
-    And les candidats suivants sont en attente pour l'internat <en_attente>
+    Then les candidat-e-s suivant-e-s reçoivent une proposition pour la formation <prop_formation>
+    And les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat <prop_internat>
+    And les candidat-e-s suivant-e-s sont en attente pour l'internat <en_attente>
     Examples:
       | B | candidats         | cdts_internat     | cdts_sans_internat | cl_internat       | prop_formation | prop_internat | en_attente |
       | 6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4 C6     | C1 C2 C3 C4 C5 C6 | C1 C2 C3 C4    | C1 C2 C3 C4   | C5 C6      |

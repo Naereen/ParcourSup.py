@@ -15,26 +15,26 @@
 @ordreappel_boursierslocaux
 Feature: Algorithme de calcul de l'ordre d'appel section 4.2
   Calcul de l'ordre d'appel dans un groupe soumis
-  à deux taux, boursiers et non-résidents
+  à deux taux, boursier-ère-s et non-résident-e-s
 
   Les tests sont rangés dans quatre groupes, suivant
-  que le taux de boursier ou de non-résident est contraignant
+  que le taux de boursier-ère ou de non-résident-e est contraignant
   ou non.
   Dans tous les cas, on teste que la relation de récurrence
   est bien vérifiée, ce qui suffit à prouver que l'implémentation
   suit bien les spécifications.
   On teste tous les cas, y compris dégénérés, lorsque l'on n'a
-  qu'un candidat dans la liste.
+  qu'un-e candidat-e dans la liste.
   La convention est la suivante :
-  - C est un candidat ni boursier ni non-résident
-  - B est un candidat boursier non non-résident
-  - R est un candidat non boursier et non-résident
-  - T est un candidat boursier et non-résident
+  - C est un-e candidat-e ni boursier-ère ni non-résident-e
+  - B est un-e candidat-e boursier-ère non non-résident-e
+  - R est un-e candidat-e non boursier-ère et non-résident-e
+  - T est un-e candidat-e boursier-ère et non-résident-e
 
   Scenario Template: Vérification de l'ordre d'appel
-    Given les candidats sont <liste_candidats>
-    And le taux minimum de boursiers est 0
-    And le taux minimum de résidents est 0
+    Given les candidat-e-s sont <liste_candidats>
+    And le taux minimum de boursier-ère-s est 0
+    And le taux minimum de résident-e-s est 0
     When l'appel est calculé
     Then l'ordre d'appel est <ordre_appel>
     Examples:
@@ -124,10 +124,10 @@ Feature: Algorithme de calcul de l'ordre d'appel section 4.2
       | T1              | T1          |
 
 
-  Scenario Template: Choix du premier candidat
-    Given les candidats sont <liste_candidats>
-    And le taux minimum de boursiers est 1
-    And le taux minimum de résidents est 0
+  Scenario Template: Choix du ou de la premier-ère candidat-e
+    Given les candidat-e-s sont <liste_candidats>
+    And le taux minimum de boursier-ère-s est 1
+    And le taux minimum de résident-e-s est 0
     When l'appel est calculé
     Then l'ordre d'appel est <ordre_appel>
     Examples:
@@ -216,10 +216,10 @@ Feature: Algorithme de calcul de l'ordre d'appel section 4.2
 
       | T1              | T1          |
 
-  Scenario Template: Choix du premier candidat
-    Given les candidats sont <liste_candidats>
-    And le taux minimum de boursiers est 0
-    And le taux minimum de résidents est 1
+  Scenario Template: Choix du ou de la premier-ère candidat-e
+    Given les candidat-e-s sont <liste_candidats>
+    And le taux minimum de boursier-ère-s est 0
+    And le taux minimum de résident-e-s est 1
     When l'appel est calculé
     Then l'ordre d'appel est <ordre_appel>
     Examples:
@@ -309,10 +309,10 @@ Feature: Algorithme de calcul de l'ordre d'appel section 4.2
       | T1              | T1          |
 
 
-  Scenario Template: Choix du premier candidat
-    Given les candidats sont <liste_candidats>
-    And le taux minimum de boursiers est 1
-    And le taux minimum de résidents est 1
+  Scenario Template: Choix du premier-ère candidat-e
+    Given les candidat-e-s sont <liste_candidats>
+    And le taux minimum de boursier-ère-s est 1
+    And le taux minimum de résident-e-s est 1
     When l'appel est calculé
     Then l'ordre d'appel est <ordre_appel>
     Examples:

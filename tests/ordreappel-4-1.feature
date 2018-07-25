@@ -15,19 +15,19 @@
 @ordreappel
 Feature: Algorithme de calcul de l'ordre d'appel section 4.1
   Calcul de l'ordre d'appel dans un groupe soumis
-  au seul taux minimum de boursiers.
+  au seul taux minimum de boursier-ère-s.
 
   L'algorithme est défini par une relation de récurrence,
   il suffit donc de constater qu'il fonctionne à un rang
   particulier pour prouver qu'il est implémenté conformément
   à la spécification.
   La convention est la suivante :
-  - C est un candidat non boursier
-  - B est un candidat boursier
+  - C est un-e candidat-e non boursier-ère
+  - B est un-e candidat-e boursier-ère
 
-  Scenario Template: Cas dégénéré d'une liste d'un seul candidat
-    Given les candidats sont <liste_candidats>
-    And le taux minimum de boursiers est <qb>
+  Scenario Template: Cas dégénéré d'une liste d'un-e seul-e candidat-e
+    Given les candidat-e-s sont <liste_candidats>
+    And le taux minimum de boursier-ère-s est <qb>
     When l'appel est calculé
     Then l'ordre d'appel est <ordre_appel>
     Examples:
@@ -38,9 +38,9 @@ Feature: Algorithme de calcul de l'ordre d'appel section 4.1
       | 1  | C1              | C1          |
 
 
-  Scenario Template: Choix du premier candidat
-    Given les candidats sont <liste_candidats>
-    And le taux minimum de boursiers est <qb>
+  Scenario Template: Choix du ou de la premier-ère candidat-e
+    Given les candidat-e-s sont <liste_candidats>
+    And le taux minimum de boursier-ère-s est <qb>
     When l'appel est calculé
     Then l'ordre d'appel est <ordre_appel>
     Examples:
