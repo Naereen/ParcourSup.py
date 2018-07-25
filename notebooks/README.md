@@ -17,7 +17,7 @@ Ce dossier contient des ressources supplémentaires pour expliquer les algorithm
   + L'algorithme est assez simple s'il n'y a que la contrainte du taux de boursiers-ères à respecter :
     ![](images/Algorithme_CalculOrdreAppelJusteTauxBoursiers.png)
 
-  + L'algorithme est assez simple s'il n'y a que la contrainte du taux de boursiers-ères à respecter :
+  + L'algorithme est plus compliqué s'il y a la contrainte du taux de boursier-ère-s et la contrainte du taux de résident-e à respecter, mais c'est très similaire. La seule chose à savoir est qu'en cas d'incompatibilité des deux contraintes, la priorité est donnée à la première contrainte sur les boursier-ère-s :
     ![](images/Algorithme_CalculOrdreAppel.png)
 
 - Les deux exemples suivants de visualisations montrent l'interface de visualisation interactive que l'on est en train de construire dans cet exemple :
