@@ -1,11 +1,14 @@
 # https://docs.readthedocs.io/en/latest/yaml-config.html?highlight=3.6
+build:
+    image: latest
+
 python:
-  version: 3.6
-  setup_py_install: true
+    version: 3.6
+    setup_py_install: true
 
 format:
-  - html
-  - pdf
+    - html
+    - pdf
 
 requirement_file:
-  requirements.txt
+    requirements.txt
