@@ -1,12 +1,36 @@
-# :baby: :fr: Un clone en Python 3 de [Parcoursup](http://www.parcoursup.fr/), écrit à but didactique
+# :fr: Un clone en Python 3 de [Parcoursup](http://www.parcoursup.fr/), écrit à but didactique
+<a href="https://perso.crans.org/besson/publis/ParcourSup.py/"><img align="right" src="../docs/_static/logo_parcoursuppy.png" alt="Lien vers la documentation Sphinx du projet" width="40%"/></a>
+
 > [Écrit par](AUTHORS) [Lilian Besson (@Naereen)](https://github.com/Naereen) et [Bastien Trotobas (@BastienTr)](https://github.com/BastienTr), et d'autres collaborateurs.
 
 ## Documentation
 
-Ce dossier contiendra des ressources supplémentaires pour expliquer les algorithmes de Parcoursup, ainsi que les fichiers nécessaires à générer une documentation Sphinx pour ce projet Python.
+- Ce dossier contiendra des ressources supplémentaires pour expliquer les algorithmes de Parcoursup,
+- Il contient déjà les fichiers nécessaires à générer une [documentation Sphinx](http://sphinx-doc.org/) pour ce projet Python.
 
-* TODO héberger la documentation sur GitHub pages d'abord
-* TODO si tout marche, héberger la documentation sur ReadTheDocs, e.g., https://parcoursup-python.rtfd.io/ serait pas mal (il faut [importer le projet](https://readthedocs.org/dashboard/import/))
+## Plan de bataille
+
+- La documentation est hébergée sur [mon site](https://perso.crans.org/besson), dans [ce dossier](https://perso.crans.org/besson/publis/ParcourSup.py/parcoursup.html#module-parcoursup): https://perso.crans.org/besson/publis/ParcourSup.py/parcoursup.html#module-parcoursup
+
+- TODO héberger la documentation sur GitHub pages d'abord ? Peut-être pas nécessaire.
+- TODO si tout marche, héberger la documentation sur ReadTheDocs, e.g., https://parcoursup-python.rtfd.io/ serait pas mal (il faut [importer le projet](https://readthedocs.org/dashboard/import/), c'est très rapide).
+
+## Construire la documentation ?
+
+- Demande d'avoir le module [`sphinx`](http://sphinx-doc.org/) installé. (`sudo pip3 install sphinx` si besoin).
+- Puis, dans le dossier principal, il suffit de faire :
+
+```bash
+$ make docs
+```
+
+- Sous Windows ou si GNU Make n'est pas disponible, vous pouvez construire la documentation manuellement avec les deux commandes suivantes :
+
+```bash
+$ sphinx-apidoc -f -o ./docs -e -M ./parcoursup/
+$ sphinx-build -M html ./docs ./_build
+$ ./docs/.fixes_html_in_doc.sh
+```
 
 ---
 
