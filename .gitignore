@@ -11,8 +11,8 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-docs/parcoursup.*.rst
-docs/parcoursup.rst
+#docs/parcoursup.*.rst
+#docs/parcoursup.rst
 
 build/
 _build/

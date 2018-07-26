@@ -9,7 +9,7 @@ Ce dépôt contient un clone (presque complet) des algorithmes régissant la [pl
 
 Les algorithmes et l'implémentation officielle (en Java) ont été distribués en accès libre, et sous licence libre (GPL), en mai 2018. En 2018, ils étaient hébergés sur [ce site (framagit.org/parcoursup/algorithmes-de-parcoursup)](https://framagit.org/parcoursup/algorithmes-de-parcoursup).
 
-- Nous proposons ici une implémentation complète des différents algorithmes de Parcoursup, écrite en Python 3, dans un style très clair, avec des commentaires, et [une documentation](https://perso.crans.org/besson/publis/ParcourSup.py/parcoursup.html#module-parcoursup).
+- Nous proposons ici une implémentation complète des différents algorithmes de Parcoursup, écrite en Python 3, dans un style très clair, avec des commentaires, et [une documentation](https://perso.crans.org/besson/publis/ParcourSup.py/parcoursup.html#module-parcoursup). [![Documentation Status](https://readthedocs.org/projects/parcoursuppy/badge/?version=latest)](https://parcoursuppy.readthedocs.io/fr/latest/?badge=latest)
 - Nous avons pour objectif de comprendre et d'expliquer ces algorithmes, en utilisant au maximum des notions et des modules Python qui soient abordables et compréhensibles par des élèves de classes préparatoires scientifiques (typiquement des MPSI).
 - *Note* : Vous pouvez contribuer si vous le souhaiter ! [Une erreur à signaler ?](https://github.com/Naereen/ParcourSup.py/issues/new), ou [une contribution possible](https://github.com/Naereen/ParcourSup.py/pulls/) ? :clap: Merci d'avance !
 
