@@ -68,6 +68,7 @@ setup(name="parcoursup",
         "parcoursup.propositions",
     ],
     install_requires=[
+        "future-fstrins",
         "numpy",
         "tqdm >= 4.0",
         "jupyter",

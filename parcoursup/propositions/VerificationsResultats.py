@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8; mode: python -*-
+# -*- coding: future_fstrings; mode: python -*-
 """ VerificationsResultats, pour https://github.com/Naereen/ParcourSup.py.
 
 - Permet de vérifier un certain nombre de propriétés statiques des sorties de l'algorithme.
