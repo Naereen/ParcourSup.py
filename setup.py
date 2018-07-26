@@ -68,7 +68,6 @@ setup(name="parcoursup",
         "parcoursup.propositions",
     ],
     install_requires=[
-        "future-fstrins",
         "numpy",
         "tqdm >= 4.0",
         "jupyter",
@@ -84,12 +83,14 @@ setup(name="parcoursup",
             'LICENSE',
             'README.md',
             # FIXME add the xml data used in the tests
+            'donnes/*.xml',
+            'donnes/*.json',
         ]
     },
-    project_urls={  # Optional
-        "Bug Reports": "https://github.com/Naereen/ParcourSup.py/issues",
-        "Source":      "https://github.com/Naereen/ParcourSup.py/tree/master/",
-    },
+    # project_urls={  # Optional
+    #     "Bug Reports": "https://github.com/Naereen/ParcourSup.py/issues",
+    #     "Source":      "https://github.com/Naereen/ParcourSup.py/tree/master/",
+    # },
 )
 
 # End of setup.py

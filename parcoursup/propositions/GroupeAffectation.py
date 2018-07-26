@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: future_fstrings; mode: python -*-
+# -*- coding: utf-8; mode: python -*-
 """ GroupeAffectation, pour https://github.com/Naereen/ParcourSup.py.
 
 - Auteurs : Lilian Besson, Bastien Trotobas et al, (C) 2018.

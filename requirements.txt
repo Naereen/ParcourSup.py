@@ -1,5 +1,5 @@
 # --- Hack to try to have f-strings on Python 2 and 3
-future-fstrings
+# future-fstrings
 
 # --- For the codebase
 tqdm>=4.0
