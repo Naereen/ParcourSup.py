@@ -52,36 +52,38 @@ def VoeuClasse2candidat(voeu: VoeuClasse) -> str:
 # On définit les étapes
 
 @given("les candidat-e-s sont {liste_candidats}")
-def step_impl(context, liste_candidats):
-    liste_candidats = liste_candidats.split(' ')
-    context.liste_candidats = liste_candidats
+def step_impl(context, liste_candidats: str) -> None:
+    context.liste_candidats = [
+        candidat2VoeuClasse(candidat)
+        for candidat in liste_candidats.split(' ')
+    ]
 
 @given("le taux minimum de boursier-ère-s est {qb:d}")
-def step_impl(context, qb):
+def step_impl(context, qb: int) -> None:
     context.qb = qb
 
 @given("le taux minimum de résident-e-s est {qr:d}")
-def step_impl(context, qr):
+def step_impl(context, qr: int) -> None:
     context.qr = qr
 
 @when("l'appel est calculé")
-def step_impl(context):
+def step_impl(context) -> None:
     if not hasattr(context, "qb"): context.qb = 0
     if not hasattr(context, "qr"): context.qr = 0
     groupe = GroupeClassement(0, context.qb, context.qr)
     for candidat in context.liste_candidats:
-        groupe.ajouterVoeu(candidat2VoeuClasse(candidat))
+        groupe.ajouterVoeu(candidat)
     groupes = [groupe]
     entree = AlgoOrdreAppel(groupes)
     entree.calculeOrdresAppels()
     # un seul à extraire
     ordreAppel = list(entree.ordresAppel.values())[0]
-    order_appel_calcule = [VoeuClasse2candidat(voeu) for voeu in ordreAppel]
-    context.order_appel_calcule = ' '.join(order_appel_calcule)
+    context.ordreAppel = ordreAppel
 
 @then("l'ordre d'appel est {ordre_appel}")
-def step_impl(context, ordre_appel):
-    assert len(context.order_appel_calcule) == len(ordre_appel)
-    # print("Ordre calculé =\n", context.order_appel_calcule)
+def step_impl(context, ordre_appel: str) -> None:
+    order_appel_calcule = ' '.join([VoeuClasse2candidat(voeu) for voeu in context.ordreAppel])
+    assert len(order_appel_calcule) == len(ordre_appel)
+    # print("Ordre calculé =\n", order_appel_calcule)
     # print("Ordre correct =\n", ordre_appel)
-    assert context.order_appel_calcule == ordre_appel
+    assert order_appel_calcule == ordre_appel

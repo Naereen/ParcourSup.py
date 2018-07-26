@@ -35,6 +35,9 @@ clean:
 	-rm -vfr __pycache__/ */__pycache__/ */*/__pycache__/ */*/*/__pycache__/ */*/*/*/__pycache__/
 	-rm -vf *.pyc */*.pyc */*/*.pyc */*/*/*.pyc */*/*/*/*.pyc */*/*/*/*.pyc
 
+ignorelogs:
+	git checkout -- logs/
+
 # Linters
 # NPROC = `nproc`
 # NPROC = 1
