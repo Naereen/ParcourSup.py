@@ -79,7 +79,7 @@ class GroupeClassement(object):
         self.voeuxClasses.sort()
         log(f"  Après tri : {self.voeuxClasses}...")
 
-        for i, voeu in enumerate(self.voeuxClasses):
+        for voeu in self.voeuxClasses:
             # on ajoute le voeu à la fin de la file (FIFO) correspondante
             filesAttente[voeu.typeCandidat].append(voeu)
             # log(f"  On ajoute le voeu {voeu} à la file du type {voeu.typeCandidat}, c'est le {i+1}ème à être ajouté.")

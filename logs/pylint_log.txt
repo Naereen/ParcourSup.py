@@ -34,6 +34,9 @@ C:129,24: More than one statement on a single line (multiple-statements)
 W: 82,12: Unused variable 'i' (unused-variable)
 R: 53, 4: Too many branches (15/12) (too-many-branches)
 R: 53, 4: Too many statements (70/50) (too-many-statements)
+************* Module parcoursup.ordreappel.AlgoOrdreAppel
+C: 88,18: More than one statement on a single line (multiple-statements)
+C:132,18: More than one statement on a single line (multiple-statements)
 ************* Module parcoursup.ordreappel.VoeuClasse
 C: 30, 0: Wrong hanging indentation (remove 4 spaces).
         estBoursier: bool,
@@ -57,9 +60,6 @@ C: 53, 0: Wrong continued indentation (add 12 spaces).
     ):
     ^           | (bad-continuation)
 C: 25, 0: Missing function docstring (missing-docstring)
-************* Module parcoursup.ordreappel.AlgoOrdreAppel
-C: 88,18: More than one statement on a single line (multiple-statements)
-C:132,18: More than one statement on a single line (multiple-statements)
 ************* Module parcoursup.propositions.Candidat
 R: 13, 0: Too few public methods (0/2) (too-few-public-methods)
 ************* Module parcoursup.propositions.Etablissement
@@ -122,7 +122,7 @@ C: 34, 0: Wrong continued indentation (add 12 spaces).
     ):
     ^           | (bad-continuation)
 R: 25, 0: Too many instance attributes (11/7) (too-many-instance-attributes)
-R:121,11: Too many boolean expressions in if statement (8/5) (too-many-boolean-expressions)
+R:126,11: Too many boolean expressions in if statement (8/5) (too-many-boolean-expressions)
 ************* Module parcoursup.propositions.GroupeInternatUID
 W: 24, 0: FIXME le code java dit un fois à -1 une fois à 0 ? (fixme)
 C: 17, 0: Wrong continued indentation (add 9 spaces).
@@ -278,7 +278,7 @@ W: 24,28: Unused argument 'desc' (unused-argument)
 
 Report
 ======
-1317 statements analysed.
+1320 statements analysed.
 
 Statistics by type
 ------------------
@@ -290,7 +290,7 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |class    |28     |6          |+22.00     |100.00      |39.29    |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |100    |10         |+90.00     |99.00       |44.00    |
+|method   |101    |10         |+91.00     |99.01       |44.55    |
 +---------+-------+-----------+-----------+------------+---------+
 |function |23     |3          |+20.00     |65.22       |34.78    |
 +---------+-------+-----------+-----------+------------+---------+
@@ -344,13 +344,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |1557   |58.71 |NC       |NC         |
+|code      |1560   |58.71 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|docstring |394    |14.86 |NC       |NC         |
+|docstring |395    |14.87 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|comment   |282    |10.63 |NC       |NC         |
+|comment   |282    |10.61 |NC       |NC         |
 +----------+-------+------+---------+-----------+
-|empty     |419    |15.80 |NC       |NC         |
+|empty     |420    |15.81 |NC       |NC         |
 +----------+-------+------+---------+-----------+
 
 
