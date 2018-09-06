@@ -57,7 +57,7 @@ class GroupeInternat(object):
         self.candidatsEnAttente: Set[int] = set()
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.id}, {self.capacite}, {self.pourcentageOuverture}, {self.contingentAdmission}, {self.positionAdmission}, {self.positionMaximaleAdmission}, {self.groupesConcernes}, {self.voeux})"
+        return f"{self.__class__.__name__}({self.id}, {self.capacite}, {self.pourcentageOuverture}, {self.contingentAdmission}, {self.positionAdmission}, {self.positionMaximaleAdmission}, {self.groupesConcernes}, {len(self.voeux)} voeux)"
 
     def nbPlacesVacantes(self) -> int:
         """ Le nombre de places vacantes dans cet internat."""

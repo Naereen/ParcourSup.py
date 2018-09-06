@@ -48,7 +48,8 @@ class GroupeAffectation(object):
         self.candidatsAffectes: Set[int] = set()
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.id}, {self.capacite}, {self.rangLimite}, {self.voeux}, {self.voeuxSontTries})"
+        # return f"{self.__class__.__name__}({self.id}, {self.capacite}, {self.rangLimite}, {self.voeux}, {self.voeuxSontTries})"
+        return f"{self.__class__.__name__}({self.id}, {self.capacite}, {self.rangLimite}, {len(self.voeux)} voeux, {'voeux triés' if self.voeuxSontTries else 'voeux non triés'})"
 
     def ajouterVoeu(self, voe: VoeuEnAttente) -> None:
         """ Ajoute un voeu dans le groupe."""

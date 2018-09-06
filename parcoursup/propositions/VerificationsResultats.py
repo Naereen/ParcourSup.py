@@ -42,7 +42,7 @@ def verifierRespectOrdreAppelVoeuxSansInternat(formation: GroupeAffectation):
     for voeu1 in formation.voeux:
         if not voeu1.avecClassementInternat() and not voeu1.estAProposer():
             for voeu2 in formation.voeux:
-                assert voeu2.ordreAppel < voeu1.ordreAppel or (not voeu2.avecClassementInternat() and not voeu2.estAProposer()), f"Violation respect ordre appel pour deux vœux sans demandes d'internat ({voeu1}, {voeu2})."
+                assert voeu2.ordreAppel < voeu1.ordreAppel or (not voeu2.avecClassementInternat() and not voeu2.estAProposer()), f"Violation respect ordre appel pour deux vœux sans demandes d'internat \nvoeu1 = {voeu1},\nvoeu2 = {voeu2}."
 
 
 def verifierVoeuxAvecInternat(formation: GroupeAffectation):
@@ -64,7 +64,7 @@ def verifierVoeuxAvecInternat(formation: GroupeAffectation):
                     and (not voeu2.internatDejaObtenu() and voeu2.rangInternat > voeu1.rangInternat)
                     and voeu2.avecInternat()
                     and voeu2.estAProposer()
-                ), f"Violation respect ordre et classement pour deux vœux sans demandes d'internat ({voeu1}, {voeu2})."
+                ), f"Violation respect ordre et classement pour deux vœux sans demandes d'internat \nvoeu1 = {voeu1},\nvoeu2 = {voeu2}."
 
 
 def verifierRespectClassementInternat(formation: GroupeAffectation):
@@ -85,7 +85,7 @@ def verifierRespectClassementInternat(formation: GroupeAffectation):
                     voeu1.rangInternat > voeu2.rangInternat
                     and not voeu2.internatDejaObtenu()
                     and voeu2.estAProposer()
-                ), f"Violation respect ordre d'appel pour les attributions d'internat ({voeu1}, {voeu2})."
+                ), f"Violation respect ordre d'appel pour les attributions d'internat \nvoeu1 = {voeu1}\n voeu2 = {voeu2}."
 
 
 def verifierSurcapaciteEtRemplissage(formation: GroupeAffectation):

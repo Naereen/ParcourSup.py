@@ -170,6 +170,9 @@ def step_impl(context) -> None:
     context.sortie = entree
 
 
+from pprint import pprint
+
+
 @then("les candidat-e-s suivant-e-s reçoivent une proposition pour la formation {prop_formation}")
 def step_impl(context, prop_formation: str) -> None:
     context.prop_formation = context.sortie.propositions
@@ -179,6 +182,10 @@ def step_impl(context, prop_formation: str) -> None:
         for candidat in prop_formation.split(' ')
     ]
     assert context.prop_formation == prop_formation_convertie, "La prop_formation ne correspond pas à celle du contexte.\n\nsortie.propositions = {} et prop_formation_convertie = {} (prop_formation = {})...".format(context.sortie.propositions, prop_formation_convertie, prop_formation)  # DEBUG
+
+    pprint(context.sortie.propositions)  # DEBUG
+    pprint(prop_formation_convertie)  # DEBUG
+    pprint(prop_formation)  # DEBUG
 
     # idCandidatsRetenus = sortie.propositions.stream()
     #     .sorted(Comparator.comparing(voeuEnAttente -> voeuEnAttente.ordreAppel))
@@ -221,6 +228,10 @@ def step_impl(context, prop_internat: str) -> None:
     ]
     assert context.prop_internat == prop_internat_convertie, "La prop_internat ne correspond pas à celle du contexte.\n\nsortie.internats_sortie = {} et prop_internat_convertie = {} (prop_internat = {})...".format(context.sortie.internats_sortie, prop_internat_convertie, prop_internat)  # DEBUG
 
+    pprint(context.sortie.internats_sortie)  # DEBUG
+    pprint(prop_internat_convertie)  # DEBUG
+    pprint(prop_internat)  # DEBUG
+
     # idCandidatsRetenusInternat = sortie.propositions.stream()
     #     .sorted(Comparator.comparing(voeuEnAttente -> voeuEnAttente.rangInternat))
     #     .filter(voeuEnAttente -> voeuEnAttente.id.I_RH_COD)
@@ -262,6 +273,10 @@ def step_impl(context, en_attente: str) -> None:
         for candidat in en_attente.split(' ')
     ]
     assert context.en_attente == en_attente_convertie, "La en_attente ne correspond pas à celle du contexte.\n\nsortie.enAttentes = {} et en_attente_convertie = {} (en_attente = {})...".format(context.sortie.enAttentes, en_attente_convertie, en_attente)  # DEBUG
+
+    pprint(context.sortie.enAttentes)  # DEBUG
+    pprint(en_attente_convertie)  # DEBUG
+    pprint(en_attente)  # DEBUG
 
     # idCandidatsEnAttente = sortie.enAttente.stream()
     #     .sorted(Comparator.comparing(voeuEnAttente -> voeuEnAttente.rangInternat))
