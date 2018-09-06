@@ -153,7 +153,7 @@ def step_impl(context) -> None:
 @then("les candidat-e-s suivant-e-s reçoivent une proposition pour la formation {prop_formation}")
 def step_impl(context, prop_formation: str) -> None:
     context.prop_formation = context.sortie.propositions
-    assert context.prop_formation = [
+    assert context.prop_formation == [
         candidat2VoeuClasse(candidat)
         for candidat in prop_formation.split(' ')
     ]
