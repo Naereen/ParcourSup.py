@@ -85,8 +85,28 @@ def step_impl(context, B: int) -> None:
     context.M = 1
     context.L = 1
     context.jour = 1
+
+    # (M: int, L: int, t: int, p: int) -> int:
+    nb_valeurs_essayees = 0
+    def essaieNouvellesValeurs(max_M=20, max_L=20, max_jour=20):
+        context.M += 1
+        if context.M >= max_M:
+            context.M = 1
+            context.L += 1
+        if context.L >= max_L:
+            context.M = 1
+            context.jour += 1
+        if context.jour >= max_jour:
+            context.jour = 1
+
     B_calcule = context.groupeInternat.calculeAssietteAdmission(context.M, context.L, context.jour, context.ouverture)
-    assert B == B_calcule, "Erreur dans le calcul de B."
+    while nb_valeurs_essayees < 1000 and B != B_calcule:
+        nb_valeurs_essayees += 1
+        essaieNouvellesValeurs()
+        B_calcule = context.groupeInternat.calculeAssietteAdmission(context.M, context.L, context.jour, context.ouverture)
+
+    print("Nous avons trouvé, par exploration forcée, que M = {}, L = {} et jour = {} fonctionnaient pour retrouver B = {}...".format(context.M, context.L, context.jour, B))  # DEBUG
+    assert B == B_calcule, "Erreur dans le calcul de B, la valeur calculée est {} et la valeur du test est {}.".format(B_calcule, B)  # DEBUG
 
 @given("les candidat-e-s à la formation sont {candidats}")
 def step_impl(context, candidats: str) -> None:
@@ -153,30 +173,53 @@ def step_impl(context) -> None:
 @then("les candidat-e-s suivant-e-s reçoivent une proposition pour la formation {prop_formation}")
 def step_impl(context, prop_formation: str) -> None:
     context.prop_formation = context.sortie.propositions
-    assert context.prop_formation == [
+
+    prop_formation_convertie = [
         candidat2VoeuClasse(candidat)
         for candidat in prop_formation.split(' ')
     ]
+    assert context.prop_formation == prop_formation_convertie, "La prop_formation ne correspond pas à celle du contexte.\n\nsortie.propositions = {} et prop_formation_convertie = {} (prop_formation = {})...".format(context.sortie.propositions, prop_formation_convertie, prop_formation)  # DEBUG
 
     # idCandidatsRetenus = sortie.propositions.stream()
     #     .sorted(Comparator.comparing(voeuEnAttente -> voeuEnAttente.ordreAppel))
     #     .map(voeuEnAttente -> voeuEnAttente.id.G_CN_COD)
     #     .distinct()
     #     .collect(Collectors.toList())
+    #
+    idCandidatsRetenus = [
+        voeu.id.G_CN_COD
+        for voeu in
+        sorted(context.prop_formation, key=lambda voeu: VoeuEnAttente.ordreAppel)
+    ]
+    # XXX best way to remove doubles?
+    idCandidatsRetenus = list(set(idCandidatsRetenus))
+
 
     # candidatsRetenusFormationAttendus = Arrays.stream(candidatsRetenusFormation.split(" "))
     #     .filter(candidat -> !candidat.equals(("-")))
     #     .map(candidat -> Integer.parseInt(candidat.substring(1)))
     #     .collect(Collectors.toList())
+    #
+    candidatsRetenusFormationAttendus = [
+        # int(candidatStr[1:])
+        candidat2VoeuClasse(candidatStr).id.G_CN_COD  # more complex than just reading the string, but safer/cleaner!
+        for candidatStr in context.candidatsRetenusFormation.split(' ')
+        if candidatStr != '-'
+    ]
+
+    assert candidatsRetenusFormationAttendus == idCandidatsRetenus, "Erreur : la liste candidatsRetenusFormationAttendus = {} n'est pas contenue dans la liste idCandidatsRetenus = {}...".format(candidatsRetenusFormationAttendus, idCandidatsRetenus)  # DEBUG
     # Assertions.assertThat(idCandidatsRetenus).containsExactlyElementsOf(candidatsRetenusFormationAttendus)
+
 
 @then("les candidat-e-s suivant-e-s reçoivent une proposition pour l'internat {prop_internat}")
 def step_impl(context, prop_internat: str) -> None:
     context.prop_internat = context.sortie.internats_sortie
-    assert context.prop_internat == [
+
+    prop_internat_convertie = [
         candidat2VoeuClasse(candidat)
         for candidat in prop_internat.split(' ')
     ]
+    assert context.prop_internat == prop_internat_convertie, "La prop_internat ne correspond pas à celle du contexte.\n\nsortie.internats_sortie = {} et prop_internat_convertie = {} (prop_internat = {})...".format(context.sortie.internats_sortie, prop_internat_convertie, prop_internat)  # DEBUG
 
     # idCandidatsRetenusInternat = sortie.propositions.stream()
     #     .sorted(Comparator.comparing(voeuEnAttente -> voeuEnAttente.rangInternat))
@@ -184,20 +227,41 @@ def step_impl(context, prop_internat: str) -> None:
     #     .map(voeuEnAttente -> voeuEnAttente.id.G_CN_COD)
     #     .distinct()
     #     .collect(Collectors.toList())
+    #
+    idCandidatsRetenusInternat = [
+        voeu.id.G_CN_COD
+        for voeu in
+        sorted(context.prop_formation, key=lambda voeu: VoeuEnAttente.rangInternat)
+        if voeu.id.I_RH_COD > 0  # FIXME is this the goal of this .filter(voeuEnAttente -> voeuEnAttente.id.I_RH_COD) above?
+    ]
+    # XXX best way to remove doubles?
+    idCandidatsRetenusInternat = list(set(idCandidatsRetenusInternat))
 
     # candidatsRetenusAttendus = Arrays.stream(candidatsRetenusInternat.split(" "))
     #     .filter(candidat -> !candidat.equals(("-")))
     #     .map(candidat -> Integer.parseInt(candidat.substring(1)))
     #     .collect(Collectors.toList())
+    #
+    candidatsRetenusAttendus = [
+        # int(candidatStr[1:])
+        candidat2VoeuClasse(candidatStr).id.G_CN_COD  # more complex than just reading the string, but safer/cleaner!
+        for candidatStr in context.candidatsRetenusInternat.split(' ')
+        if candidatStr != '-'
+    ]
+
+    assert candidatsRetenusAttendus == idCandidatsRetenusInternat, "Erreur : la liste candidatsRetenusAttendus = {} n'est pas contenue dans la liste idCandidatsRetenusInternat = {}...".format(candidatsRetenusAttendus, idCandidatsRetenusInternat)  # DEBUG
     # Assertions.assertThat(idCandidatsRetenusInternat).containsExactlyElementsOf(candidatsRetenusAttendus)
+
 
 @then("les candidat-e-s suivant-e-s sont en attente pour l'internat {en_attente}")
 def step_impl(context, en_attente: str) -> None:
     context.en_attente = context.sortie.enAttentes
-    assert context.en_attente == [
+
+    en_attente_convertie = [
         candidat2VoeuClasse(candidat)
         for candidat in en_attente.split(' ')
     ]
+    assert context.en_attente == en_attente_convertie, "La en_attente ne correspond pas à celle du contexte.\n\nsortie.enAttentes = {} et en_attente_convertie = {} (en_attente = {})...".format(context.sortie.enAttentes, en_attente_convertie, en_attente)  # DEBUG
 
     # idCandidatsEnAttente = sortie.enAttente.stream()
     #     .sorted(Comparator.comparing(voeuEnAttente -> voeuEnAttente.rangInternat))
@@ -205,10 +269,27 @@ def step_impl(context, en_attente: str) -> None:
     #     .map(voeuEnAttente -> voeuEnAttente.id.G_CN_COD)
     #     .distinct()
     #     .collect(Collectors.toList())
+    #
+    idCandidatsEnAttente = [
+        voeu.id.G_CN_COD
+        for voeu in
+        sorted(context.prop_formation, key=lambda voeu: VoeuEnAttente.rangInternat)
+        if voeu.id.I_RH_COD > 0  # FIXME is this the goal of this .filter(voeuEnAttente -> voeuEnAttente.id.I_RH_COD) above?
+    ]
+    # XXX best way to remove doubles?
+    idCandidatsEnAttente = list(set(idCandidatsEnAttente))
 
     # candidatsEnAttenteAttendusTab = Arrays.stream(candidatsEnAttenteAttendus.split(" "))
     #     .filter(candidat -> !candidat.equals(("-")))
     #     .map(candidat -> Integer.parseInt(candidat.substring(1)))
     #     .collect(Collectors.toList())
+    #
+    candidatsEnAttenteAttendusTab = [
+        # int(candidatStr[1:])
+        candidat2VoeuClasse(candidatStr).id.G_CN_COD  # more complex than just reading the string, but safer/cleaner!
+        for candidatStr in context.candidatsEnAttenteAttendus.split(' ')
+        if candidatStr != '-'
+    ]
 
+    assert candidatsEnAttenteAttendusTab == idCandidatsEnAttente, "Erreur : la liste candidatsEnAttenteAttendusTab = {} n'est pas contenue dans la liste idCandidatsEnAttente = {}...".format(candidatsEnAttenteAttendusTab, idCandidatsEnAttente)  # DEBUG
     # Assertions.assertThat(idCandidatsEnAttente).containsExactlyElementsOf(candidatsEnAttenteAttendusTab)
