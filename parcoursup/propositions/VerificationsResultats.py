@@ -42,7 +42,7 @@ def verifierRespectOrdreAppelVoeuxSansInternat(formation: GroupeAffectation):
     for voeu1 in formation.voeux:
         if not voeu1.avecClassementInternat() and not voeu1.estAProposer():
             for voeu2 in formation.voeux:
-                assert voeu2.ordreAppel < voeu1.ordreAppel or (not voeu2.avecClassementInternat() and not voeu2.estAProposer()), f"Violation respect ordre appel pour deux vœux sans demandes d'internat \nvoeu1 = {voeu1},\nvoeu2 = {voeu2}."
+                assert voeu2.ordreAppel <= voeu1.ordreAppel or (not voeu2.avecClassementInternat() and not voeu2.estAProposer()), f"Violation respect ordre appel pour deux vœux sans demandes d'internat \nvoeu1 = {voeu1},\nvoeu2 = {voeu2}."
 
 
 def verifierVoeuxAvecInternat(formation: GroupeAffectation):

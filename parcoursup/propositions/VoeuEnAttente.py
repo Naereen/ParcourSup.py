@@ -40,6 +40,10 @@ class VoeuEnAttente(object):
         self.rangListeAttente = 0  #: Rang sur liste attente
         self.rangListeAttenteInternat = 0  #: Rang sur liste attente internat
 
+    @property
+    def G_CN_COD(self):
+        return self.id.G_CN_COD
+
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.id}, {self.groupe}, {self.avecInternat()}, {self.internat}, {self.rangInternat})"
 
