@@ -82,8 +82,8 @@ def step_impl(context, B: int) -> None:
     context.groupeInternat = GroupeInternat(context.internatUID, context.capaciteInternat, context.ouverture)
 
     # FIXME valeurs de M, L, jour ?
-    context.M = 1
-    context.L = 1
+    context.M = B
+    context.L = B
     context.jour = 1
 
     # (M: int, L: int, t: int, p: int) -> int:
@@ -170,8 +170,6 @@ def step_impl(context) -> None:
     context.sortie = entree
 
 
-from pprint import pprint
-
 def remove_doubles(a_list):
     """ Simple naive not-efficient function to remove doubles in a list but keep the order!"""
     new_list = []
@@ -189,7 +187,7 @@ def step_impl(context, prop_formation: str) -> None:
         for candidat in context.prop_formation
     ])
 
-    if prop_formationf == '-':
+    if prop_formation == '-':
         prop_formation_convertie = []
     else:
         prop_formation_convertie = [
@@ -197,10 +195,6 @@ def step_impl(context, prop_formation: str) -> None:
             for candidat in prop_formation.split(' ')
         ]
     assert context.prop_formation_convertie == prop_formation_convertie, "La prop_formation ne correspond pas à celle du contexte.\ncontext.prop_formation_convertie = {} et prop_formation_convertie = {} (prop_formation = {})...".format(context.prop_formation_convertie, prop_formation_convertie, prop_formation)  # DEBUG
-
-    pprint(context.prop_formation_convertie)  # DEBUG
-    pprint(prop_formation_convertie)  # DEBUG
-    pprint(prop_formation)  # DEBUG
 
     idCandidatsRetenus = [
         voeu.G_CN_COD
@@ -239,10 +233,6 @@ def step_impl(context, prop_internat: str) -> None:
         ]
     assert context.prop_internat_convertie == prop_internat_convertie, "La prop_internat_convertie ne correspond pas à celle du contexte.\ncontext.prop_internat_convertie = {} et prop_internat_convertie = {} (prop_internat_convertie = {})...".format(context.prop_internat_convertie, prop_internat_convertie, prop_internat_convertie)  # DEBUG
 
-    pprint(context.prop_internat_convertie)  # DEBUG
-    pprint(prop_internat_convertie)  # DEBUG
-    pprint(prop_internat)  # DEBUG
-
     idCandidatsRetenusInternat = [
         voeu.G_CN_COD
         for voeu in
@@ -280,10 +270,6 @@ def step_impl(context, en_attente: str) -> None:
             for candidat in en_attente.split(' ')
         ]
     assert context.en_attente_convertie == en_attente_convertie, "La en_attente_convertie ne correspond pas à celle du contexte.\n\ncontext.en_attente_convertie = {} et en_attente_convertie = {} (en_attente_convertie = {})...".format(context.en_attente_convertie, en_attente_convertie, en_attente)  # DEBUG
-
-    pprint(context.en_attente_convertie)  # DEBUG
-    pprint(en_attente_convertie)  # DEBUG
-    pprint(en_attente)  # DEBUG
 
     idCandidatsEnAttente = [
         voeu.G_CN_COD
