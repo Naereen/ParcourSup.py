@@ -26,11 +26,7 @@ DEBUG = False
 
 class GroupeClassement(object):
     """ Classe représentant un groupe d'appel."""
-    def __init__(self,
-        C_GP_COD: int,
-        tauxMinBoursiersPourcents: int,
-        tauxMinResidentsPourcents: int,
-    ):
+    def __init__(self, C_GP_COD: int, tauxMinBoursiersPourcents: int, tauxMinResidentsPourcents: int):
         assert C_GP_COD >= 0, f"Erreur : {self.__class__.__name__} le paramètre C_GP_COD doit être > 0, et pas {C_GP_COD}..."  # DEBUG
         self.C_GP_COD = C_GP_COD  #: C_GP_COD
 
@@ -50,7 +46,7 @@ class GroupeClassement(object):
         """ Ajouter ce voeu à la liste actuelle."""
         self.voeuxClasses.append(voeu)
 
-    def calculerOrdreAppel(self, verbeux: bool= DEBUG) -> OrdreAppel:
+    def calculerOrdreAppel(self, verbeux: bool=DEBUG) -> OrdreAppel:
         """ Calcule de l'ordre d'appel."""
         def log(*args, **kwargs) -> None:
             if verbeux:

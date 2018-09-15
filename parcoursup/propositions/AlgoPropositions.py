@@ -60,15 +60,15 @@ class AlgoPropositions(object):
     """ Stocke les entrées et sorties de l'algorithme de calcul d'ordre d'appel. """
 
     def __init__(self,
-        groupesAffectations: List[GroupeAffectation]=[],
-        internats: List[GroupeInternat]=[],
+        groupesAffectations: List[GroupeAffectation]=None,
+        internats: List[GroupeInternat]=None,
     ):
         """ Stocke la liste non-vide de classements."""
-        assert groupesAffectations, f"Erreur : {self.__class__.__name__} le paramètre groupesAffectations doit être non vide, et pas {groupesAffectations}..."  # DEBUG
+        assert groupesAffectations is not None, f"Erreur : {self.__class__.__name__} le paramètre groupesAffectations doit être non vide, et pas {groupesAffectations}..."  # DEBUG
         #: La liste des groupes d'affectation, contenant leurs voeux respectifs.
         self.groupesAffectations: List[GroupeAffectation] = groupesAffectations
 
-        assert internats, f"Erreur : {self.__class__.__name__} le paramètre internats doit être non vide, et pas {internats}..."  # DEBUG
+        assert internats is not None, f"Erreur : {self.__class__.__name__} le paramètre internats doit être non vide, et pas {internats}..."  # DEBUG
         #: La liste des internats, contenant leurs vœux respectifs.
         self.internats: List[GroupeInternat] = internats
         #: Liste des internats, permettant de récupérer les positions max d'admission

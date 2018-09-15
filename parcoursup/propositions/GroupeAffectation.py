@@ -102,6 +102,6 @@ class GroupeAffectation(object):
     def voeuxTries(self) -> List[VoeuEnAttente]:
         """ Trie les voeux dans l'ordre d'appel."""
         if not self.voeuxSontTries:
-            self.voeux.sort(key= lambda voeu: voeu.ordreAppel)
+            self.voeux.sort(key=lambda voeu: voeu.ordreAppel)
             self.voeuxSontTries = True
         return self.voeux

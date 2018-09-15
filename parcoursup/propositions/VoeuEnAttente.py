@@ -99,4 +99,3 @@ class VoeuEnAttente(object):
     def estDesactiveParPositionAdmissionInternat(self) -> bool:
         """ Vérifie si le voeu est désactivé du fait d'une demande d'internat"""
         return (self.internat is not None) and not self.internatDejaObtenu() and self.rangInternat > self.internat.positionAdmission
-

@@ -26,10 +26,7 @@ def typeCandidat_vers_str(typeCandidat: TypeCandidat) -> str:
     return str(typeCandidat).replace('TypeCandidat.', '')
 
 
-def typeCandidat_si_Boursier_etou_Resident(
-        estBoursier: bool,
-        estResident: bool
-    ) -> TypeCandidat:
+def typeCandidat_si_Boursier_etou_Resident(estBoursier: bool, estResident: bool) -> TypeCandidat:
     """ Donne le type de candidat selon qu'il/elle soit boursier-e et/ou résident-e. """
     if estBoursier and estResident:
         return TypeCandidat.BoursierResident
@@ -45,12 +42,7 @@ def typeCandidat_si_Boursier_etou_Resident(
 @total_ordering
 class VoeuClasse(object):
     """ Classe représentant un vœu d'un candidat."""
-    def __init__(self,
-        G_CN_COD: int,
-        rang: int,
-        estBoursier: bool,
-        estResident: bool,
-    ):
+    def __init__(self, G_CN_COD: int, rang: int, estBoursier: bool, estResident: bool):
         assert G_CN_COD > 0, f"Erreur : {self.__class__.__name__} le paramètre G_CN_COD doit être > 0, et pas {G_CN_COD}..."  # DEBUG
         self.G_CN_COD = G_CN_COD  #: G_CN_COD
         assert rang > 0, f"Erreur : {self.__class__.__name__} le paramètre rang doit être > 0, et pas {rang}..."  # DEBUG
