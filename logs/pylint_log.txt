@@ -3,63 +3,29 @@ C: 20, 4: Missing function docstring (missing-docstring)
 C: 24,42: Do not use `len(SEQUENCE)` as condition value (len-as-condition)
 C: 29,37: Do not use `len(SEQUENCE)` as condition value (len-as-condition)
 ************* Module parcoursup.ordreappel.GroupeClassement
-W:159, 0: XXX on ne le supprime pas ? si il faut ! (fixme)
-C: 30, 0: Wrong continued indentation (add 9 spaces).
-        C_GP_COD: int,
-        ^        | (bad-continuation)
-C: 31, 0: Wrong continued indentation (add 9 spaces).
-        tauxMinBoursiersPourcents: int,
-        ^        | (bad-continuation)
-C: 32, 0: Wrong continued indentation (add 9 spaces).
-        tauxMinResidentsPourcents: int,
-        ^        | (bad-continuation)
-C: 33, 0: Wrong continued indentation (add 12 spaces).
-    ):
-    ^           | (bad-continuation)
-C: 53, 0: Exactly one space required before keyword argument assignment
-    def calculerOrdreAppel(self, verbeux: bool= DEBUG) -> OrdreAppel:
+W:155, 0: XXX on ne le supprime pas ? si il faut ! (fixme)
+C: 49, 0: Exactly one space required around keyword argument assignment
+    def calculerOrdreAppel(self, verbeux: bool=DEBUG) -> OrdreAppel:
                                               ^ (bad-whitespace)
-C: 93, 0: Exactly one space required before assignment
+C: 89, 0: Exactly one space required before assignment
         nbVoeuxClasses     = len(self.voeuxClasses)
                            ^ (bad-whitespace)
-C: 94, 0: Exactly one space required before assignment
+C: 90, 0: Exactly one space required before assignment
         nbAppeles          = 0
                            ^ (bad-whitespace)
-R: 53, 4: Too many local variables (22/15) (too-many-locals)
-C: 55, 8: Missing function docstring (missing-docstring)
-C:119,24: More than one statement on a single line (multiple-statements)
-C:127,36: More than one statement on a single line (multiple-statements)
-C:128,24: More than one statement on a single line (multiple-statements)
-C:129,24: More than one statement on a single line (multiple-statements)
-W: 82,12: Unused variable 'i' (unused-variable)
-R: 53, 4: Too many branches (15/12) (too-many-branches)
-R: 53, 4: Too many statements (70/50) (too-many-statements)
+R: 49, 4: Too many local variables (21/15) (too-many-locals)
+C: 51, 8: Missing function docstring (missing-docstring)
+C:115,24: More than one statement on a single line (multiple-statements)
+C:123,36: More than one statement on a single line (multiple-statements)
+C:124,24: More than one statement on a single line (multiple-statements)
+C:125,24: More than one statement on a single line (multiple-statements)
+R: 49, 4: Too many branches (15/12) (too-many-branches)
+R: 49, 4: Too many statements (70/50) (too-many-statements)
+************* Module parcoursup.ordreappel.VoeuClasse
+C: 25, 0: Missing function docstring (missing-docstring)
 ************* Module parcoursup.ordreappel.AlgoOrdreAppel
 C: 88,18: More than one statement on a single line (multiple-statements)
 C:132,18: More than one statement on a single line (multiple-statements)
-************* Module parcoursup.ordreappel.VoeuClasse
-C: 30, 0: Wrong hanging indentation (remove 4 spaces).
-        estBoursier: bool,
-    |   ^ (bad-continuation)
-C: 31, 0: Wrong hanging indentation (remove 4 spaces).
-        estResident: bool
-    |   ^ (bad-continuation)
-C: 49, 0: Wrong continued indentation (add 9 spaces).
-        G_CN_COD: int,
-        ^        | (bad-continuation)
-C: 50, 0: Wrong continued indentation (add 9 spaces).
-        rang: int,
-        ^        | (bad-continuation)
-C: 51, 0: Wrong continued indentation (add 9 spaces).
-        estBoursier: bool,
-        ^        | (bad-continuation)
-C: 52, 0: Wrong continued indentation (add 9 spaces).
-        estResident: bool,
-        ^        | (bad-continuation)
-C: 53, 0: Wrong continued indentation (add 12 spaces).
-    ):
-    ^           | (bad-continuation)
-C: 25, 0: Missing function docstring (missing-docstring)
 ************* Module parcoursup.propositions.Candidat
 R: 13, 0: Too few public methods (0/2) (too-few-public-methods)
 ************* Module parcoursup.propositions.Etablissement
@@ -91,9 +57,6 @@ C: 28, 0: Wrong continued indentation (add 9 spaces).
 C: 29, 0: Wrong continued indentation (add 12 spaces).
     ):
     ^           | (bad-continuation)
-C:104, 0: No space allowed after keyword argument assignment
-            self.voeux.sort(key= lambda voeu: voeu.ordreAppel)
-                               ^ (bad-whitespace)
 ************* Module parcoursup.propositions.GroupeAffectationUID
 C: 17, 0: Wrong continued indentation (add 9 spaces).
         C_GP_COD: int,
@@ -173,15 +136,15 @@ C: 29, 0: Exactly one space required around keyword argument assignment
 C: 30, 0: Wrong continued indentation (add 12 spaces).
     ):
     ^           | (bad-continuation)
-C: 52, 0: Exactly one space required around keyword argument assignment
+C: 56, 0: Exactly one space required around keyword argument assignment
         rangInternat: int=0,
                          ^ (bad-whitespace)
-C: 53, 0: Exactly one space required around keyword argument assignment
+C: 57, 0: Exactly one space required around keyword argument assignment
         avecInternat: bool=False,
                           ^ (bad-whitespace)
-C: 98, 0: Trailing newlines (trailing-newlines)
 R: 19, 0: Too many instance attributes (8/7) (too-many-instance-attributes)
-C: 47, 4: Missing method docstring (missing-docstring)
+C: 44, 4: Missing method docstring (missing-docstring)
+C: 51, 4: Missing method docstring (missing-docstring)
 ************* Module parcoursup.propositions.VoeuUID
 C: 19, 0: Wrong continued indentation (add 9 spaces).
         G_CN_COD: int,
@@ -214,16 +177,16 @@ W:370, 0: FIXME (fixme)
 W:426, 0: FIXME (fixme)
 W:488, 0: FIXME (fixme)
 C: 63, 0: Wrong continued indentation (add 9 spaces).
-        groupesAffectations: List[GroupeAffectation]=[],
+        groupesAffectations: List[GroupeAffectation]=None,
         ^        | (bad-continuation)
 C: 63, 0: Exactly one space required around keyword argument assignment
-        groupesAffectations: List[GroupeAffectation]=[],
+        groupesAffectations: List[GroupeAffectation]=None,
                                                     ^ (bad-whitespace)
 C: 64, 0: Wrong continued indentation (add 9 spaces).
-        internats: List[GroupeInternat]=[],
+        internats: List[GroupeInternat]=None,
         ^        | (bad-continuation)
 C: 64, 0: Exactly one space required around keyword argument assignment
-        internats: List[GroupeInternat]=[],
+        internats: List[GroupeInternat]=None,
                                        ^ (bad-whitespace)
 C: 65, 0: Wrong continued indentation (add 12 spaces).
     ):
@@ -239,8 +202,6 @@ W: 21,23: Unused argument 'desc' (unused-argument)
 W: 35, 4: Wildcard import VerificationsResultats (wildcard-import)
 W: 43, 4: Wildcard import VerificationsResultats (wildcard-import)
 E: 48, 0: function already defined line 35 (function-redefined)
-W: 62, 4: Dangerous default value [] as argument (dangerous-default-value)
-W: 62, 4: Dangerous default value [] as argument (dangerous-default-value)
 R: 88, 4: Too many branches (13/12) (too-many-branches)
 R:147, 4: Too many branches (19/12) (too-many-branches)
 C:377,18: More than one statement on a single line (multiple-statements)
@@ -278,7 +239,7 @@ W: 24,28: Unused argument 'desc' (unused-argument)
 
 Report
 ======
-1320 statements analysed.
+1322 statements analysed.
 
 Statistics by type
 ------------------
@@ -286,13 +247,13 @@ Statistics by type
 +---------+-------+-----------+-----------+------------+---------+
 |type     |number |old number |difference |%documented |%badname |
 +=========+=======+===========+===========+============+=========+
-|module   |19     |1          |+18.00     |100.00      |0.00     |
+|module   |19     |19         |=          |100.00      |0.00     |
 +---------+-------+-----------+-----------+------------+---------+
-|class    |28     |6          |+22.00     |100.00      |39.29    |
+|class    |28     |28         |=          |100.00      |39.29    |
 +---------+-------+-----------+-----------+------------+---------+
-|method   |101    |10         |+91.00     |99.01       |44.55    |
+|method   |102    |101        |+1.00      |98.04       |44.12    |
 +---------+-------+-----------+-----------+------------+---------+
-|function |23     |3          |+20.00     |65.22       |34.78    |
+|function |23     |23         |=          |65.22       |34.78    |
 +---------+-------+-----------+-----------+------------+---------+
 
 
@@ -344,13 +305,13 @@ Raw metrics
 +----------+-------+------+---------+-----------+
 |type      |number |%     |previous |difference |
 +==========+=======+======+=========+===========+
-|code      |1560   |58.71 |NC       |NC         |
+|code      |1551   |58.55 |1560     |-9.00      |
 +----------+-------+------+---------+-----------+
-|docstring |395    |14.87 |NC       |NC         |
+|docstring |395    |14.91 |395      |=          |
 +----------+-------+------+---------+-----------+
-|comment   |282    |10.61 |NC       |NC         |
+|comment   |283    |10.68 |282      |+1.00      |
 +----------+-------+------+---------+-----------+
-|empty     |420    |15.81 |NC       |NC         |
+|empty     |420    |15.86 |420      |=          |
 +----------+-------+------+---------+-----------+
 
 
@@ -374,13 +335,13 @@ Messages by category
 +-----------+-------+---------+-----------+
 |type       |number |previous |difference |
 +===========+=======+=========+===========+
-|convention |85     |8        |+77.00     |
+|convention |73     |85       |-12.00     |
 +-----------+-------+---------+-----------+
-|refactor   |15     |0        |+15.00     |
+|refactor   |15     |15       |=          |
 +-----------+-------+---------+-----------+
-|warning    |31     |3        |+28.00     |
+|warning    |28     |31       |-3.00      |
 +-----------+-------+---------+-----------+
-|error      |2      |0        |+2.00      |
+|error      |2      |2        |=          |
 +-----------+-------+---------+-----------+
 
 
@@ -391,39 +352,39 @@ Messages by category
 +-----------------------------------------------+------+--------+---------+-----------+
 |module                                         |error |warning |refactor |convention |
 +===============================================+======+========+=========+===========+
-|parcoursup.propositions.AlgoPropositions       |50.00 |48.39   |13.33    |11.76      |
+|parcoursup.propositions.AlgoPropositions       |50.00 |46.43   |13.33    |13.70      |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.ordreappel.OrdreAppel               |50.00 |16.13   |0.00     |2.35       |
+|parcoursup.ordreappel.OrdreAppel               |50.00 |17.86   |0.00     |2.74       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.propositions.Etablissement          |0.00  |9.68    |20.00    |3.53       |
+|parcoursup.propositions.Etablissement          |0.00  |10.71   |20.00    |4.11       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.propositions.exemples               |0.00  |9.68    |0.00     |9.41       |
+|parcoursup.propositions.exemples               |0.00  |10.71   |0.00     |10.96      |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.ordreappel.GroupeClassement         |0.00  |6.45    |20.00    |14.12      |
+|parcoursup.ordreappel.GroupeClassement         |0.00  |3.57    |20.00    |10.96      |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.propositions.VoeuEnAttente          |0.00  |3.23    |6.67     |14.12      |
+|parcoursup.propositions.VoeuEnAttente          |0.00  |3.57    |6.67     |16.44      |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.propositions.GroupeInternatUID      |0.00  |3.23    |6.67     |3.53       |
+|parcoursup.propositions.GroupeInternatUID      |0.00  |3.57    |6.67     |4.11       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.propositions.VerificationsResultats |0.00  |3.23    |0.00     |2.35       |
+|parcoursup.propositions.VerificationsResultats |0.00  |3.57    |0.00     |2.74       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.propositions.GroupeInternat         |0.00  |0.00    |13.33    |4.71       |
+|parcoursup.propositions.GroupeInternat         |0.00  |0.00    |13.33    |5.48       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.propositions.VoeuUID                |0.00  |0.00    |6.67     |4.71       |
+|parcoursup.propositions.VoeuUID                |0.00  |0.00    |6.67     |5.48       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.propositions.GroupeAffectationUID   |0.00  |0.00    |6.67     |4.71       |
+|parcoursup.propositions.GroupeAffectationUID   |0.00  |0.00    |6.67     |5.48       |
 +-----------------------------------------------+------+--------+---------+-----------+
 |parcoursup.propositions.Candidat               |0.00  |0.00    |6.67     |0.00       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.ordreappel.VoeuClasse               |0.00  |0.00    |0.00     |9.41       |
+|parcoursup.propositions.GroupeAffectation      |0.00  |0.00    |0.00     |5.48       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.propositions.GroupeAffectation      |0.00  |0.00    |0.00     |5.88       |
+|parcoursup.propositions.__init__               |0.00  |0.00    |0.00     |4.11       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.propositions.__init__               |0.00  |0.00    |0.00     |3.53       |
+|parcoursup.ordreappel.__init__                 |0.00  |0.00    |0.00     |4.11       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.ordreappel.__init__                 |0.00  |0.00    |0.00     |3.53       |
+|parcoursup.ordreappel.AlgoOrdreAppel           |0.00  |0.00    |0.00     |2.74       |
 +-----------------------------------------------+------+--------+---------+-----------+
-|parcoursup.ordreappel.AlgoOrdreAppel           |0.00  |0.00    |0.00     |2.35       |
+|parcoursup.ordreappel.VoeuClasse               |0.00  |0.00    |0.00     |1.37       |
 +-----------------------------------------------+------+--------+---------+-----------+
 
 
@@ -434,13 +395,13 @@ Messages
 +-----------------------------+------------+
 |message id                   |occurrences |
 +=============================+============+
-|bad-continuation             |43          |
+|bad-continuation             |32          |
 +-----------------------------+------------+
-|bad-whitespace               |20          |
+|bad-whitespace               |19          |
 +-----------------------------+------------+
 |fixme                        |14          |
 +-----------------------------+------------+
-|missing-docstring            |9           |
+|missing-docstring            |10          |
 +-----------------------------+------------+
 |multiple-statements          |8           |
 +-----------------------------+------------+
@@ -452,11 +413,11 @@ Messages
 +-----------------------------+------------+
 |len-as-condition             |4           |
 +-----------------------------+------------+
-|unused-variable              |3           |
-+-----------------------------+------------+
 |too-many-branches            |3           |
 +-----------------------------+------------+
 |wildcard-import              |2           |
++-----------------------------+------------+
+|unused-variable              |2           |
 +-----------------------------+------------+
 |unused-import                |2           |
 +-----------------------------+------------+
@@ -464,11 +425,7 @@ Messages
 +-----------------------------+------------+
 |function-redefined           |2           |
 +-----------------------------+------------+
-|dangerous-default-value      |2           |
-+-----------------------------+------------+
 |unused-wildcard-import       |1           |
-+-----------------------------+------------+
-|trailing-newlines            |1           |
 +-----------------------------+------------+
 |too-many-statements          |1           |
 +-----------------------------+------------+
@@ -483,5 +440,5 @@ Messages
 
 
 ------------------------------------------------------------------
-Your code has been rated at 8.93/10 (previous run: 9.45/10, -0.52)
+Your code has been rated at 9.05/10 (previous run: 8.93/10, +0.12)
 
