@@ -30,6 +30,9 @@ tests_donnees_xml:
 tests_propositions:
 	python3 ./parcoursup/propositions/__init__.py
 
+tests_behave:
+	cd tests/ ; make tests
+
 # Cleaner
 clean:
 	-rm -vfr __pycache__/ */__pycache__/ */*/__pycache__/ */*/*/__pycache__/ */*/*/*/__pycache__/

@@ -3,6 +3,16 @@
 
 > [Écrit par](AUTHORS) deux doctorants de [l'équipe SCEE](http://www-scee.rennes.supelec.fr/wp/phd/) de [CentraleSupélec, campus de Rennes](http://www.rennes.centralesupelec.fr/), [Lilian Besson (@Naereen)](https://github.com/Naereen) et [Bastien Trotobas (@BastienTr)](https://github.com/BastienTr), et d'[autres collaborateur-trice-s](https://github.com/Naereen/ParcourSup.py/graphs/contributors).
 
+[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/ParcourSup.py/)
+[![PyPI implementation](https://img.shields.io/pypi/implementation/smpybandits.svg)](https://www.python.org/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/smpybandits.svg)](https://docs.python.org/3/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/Parcoursup.py/graphs/commit-activity)
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/Naereen/ama)
+[![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/Parcoursup.py/README.md?pixel)](https://GitHub.com/Naereen/Parcoursup.py/)
+[![Build Status](https://travis-ci.org/Naereen/Parcoursup.py.svg?branch=master)](https://travis-ci.org/Naereen/Parcoursup.py)
+[![Stars of https://github.com/Naereen/Parcoursup.py/](https://badgen.net/github/stars/Naereen/Parcoursup.py)](https://GitHub.com/Naereen/Parcoursup.py/stargazers)
+[![Releases of https://github.com/Naereen/Parcoursup.py/](https://badgen.net/github/release/Naereen/Parcoursup.py)](https://github.com/Naereen/Parcoursup.py/releases)
+
 ## Présentation
 
 Ce dépôt contient un clone (presque complet) des algorithmes régissant la [plateforme Parcoursup](http://www.parcoursup.fr/), qui gère depuis 2018 les affectations des élèves de classe de Terminale (🇫🇷 dans les lycées en France) dans leurs formations dans l'enseignement supérieur.
@@ -17,6 +27,9 @@ Les algorithmes et l'implémentation officielle (en Java) ont été distribués 
 
 ## [Plan de bataille](TODO.md)
 > Pour le développement en cours.
+
+> [![Commits of https://github.com/Naereen/Parcoursup.py/](https://badgen.net/github/commits/Naereen/Parcoursup.py)](https://github.com/Naereen/Parcoursup.py/commits/master) / [![Date of last commit of https://github.com/Naereen/Parcoursup.py/](https://badgen.net/github/last-commit/Naereen/Parcoursup.py)](https://github.com/Naereen/Parcoursup.py/commits/master)
+> [![Issues of https://github.com/Naereen/Parcoursup.py/](https://badgen.net/github/issues/Naereen/Parcoursup.py)](https://GitHub.com/Naereen/Parcoursup.py/issues) : [![Open issues of https://github.com/Naereen/Parcoursup.py/](https://badgen.net/github/open-issues/Naereen/Parcoursup.py)](https://github.com/Naereen/Parcoursup.py/issues?q=is%3Aopen+is%3Aissue) / [![Closed issues of https://github.com/Naereen/Parcoursup.py/](https://badgen.net/github/closed-issues/Naereen/Parcoursup.py)](https://github.com/Naereen/Parcoursup.py/issues?q=is%3Aclosed+is%3Aissue)
 
 ## Explications
 
@@ -124,11 +137,16 @@ Avec les [modules suivants](requirements.txt) :
 Code libre, [sous licence MIT](https://lbesson.mit-license.org/) (file [LICENSE](LICENSE)).
 © [Lilian Besson](https://GitHub.com/Naereen) et [Bastien Trotobas](https://github.com/BastienTr) et collaborateur-trice-s, 2018.
 
+[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/ParcourSup.py/)
 [![PyPI implementation](https://img.shields.io/pypi/implementation/smpybandits.svg)](https://www.python.org/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/smpybandits.svg)](https://docs.python.org/3/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/Parcoursup.py/graphs/commit-activity)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/Naereen/ama)
 [![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/Parcoursup.py/README.md?pixel)](https://GitHub.com/Naereen/Parcoursup.py/)
+[![Build Status](https://travis-ci.org/Naereen/Parcoursup.py.svg?branch=master)](https://travis-ci.org/Naereen/Parcoursup.py)
+[![Stars of https://github.com/Naereen/Parcoursup.py/](https://badgen.net/github/stars/Naereen/Parcoursup.py)](https://GitHub.com/Naereen/Parcoursup.py/stargazers)
+[![Releases of https://github.com/Naereen/Parcoursup.py/](https://badgen.net/github/release/Naereen/Parcoursup.py)](https://github.com/Naereen/Parcoursup.py/releases)
+
 
 [![ForTheBadge uses-badges](http://ForTheBadge.com/images/badges/uses-badges.svg)](http://ForTheBadge.com)
 [![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/)
