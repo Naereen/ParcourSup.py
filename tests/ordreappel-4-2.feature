@@ -1,4 +1,5 @@
 # Copyright (C) 2018 José Paumard
+# Modified by Trotobas Bastien and Besson Lilian
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -28,8 +29,8 @@ Feature: Algorithme de calcul de l'ordre d'appel section 4.2
   La convention est la suivante :
   - C est un-e candidat-e ni boursier-ère ni non-résident-e
   - B est un-e candidat-e boursier-ère non non-résident-e
-  - R est un-e candidat-e non boursier-ère et non-résident-e
-  - T est un-e candidat-e boursier-ère et non-résident-e
+  - R est un-e candidat-e non boursier-ère et résident-e
+  - T est un-e candidat-e boursier-ère et résident-e
 
   Scenario Template: Vérification de l'ordre d'appel
     Given les candidat-e-s sont <liste_candidats>
