@@ -508,4 +508,4 @@ Feature: Algorithme de calcul de la position max d'admission d'un internat # pro
 1 feature passed, 0 failed, 0 skipped
 72 scenarios passed, 0 failed, 0 skipped
 360 steps passed, 0 failed, 0 skipped, 0 undefined
-Took 0m0.032s
+Took 0m0.036s

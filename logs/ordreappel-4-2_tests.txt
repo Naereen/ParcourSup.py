@@ -1,5 +1,5 @@
 @ordreappel_boursierslocaux
-Feature: Algorithme de calcul de l'ordre d'appel section 4.2 # ordreappel-4-2.feature:16
+Feature: Algorithme de calcul de l'ordre d'appel section 4.2 # ordreappel-4-2.feature:17
   Calcul de l'ordre d'appel dans un groupe soumis
   à deux taux, boursier-ère-s et non-résident-e-s
   Les tests sont rangés dans quatre groupes, suivant
@@ -13,1822 +13,1822 @@ Feature: Algorithme de calcul de l'ordre d'appel section 4.2 # ordreappel-4-2.fe
   La convention est la suivante :
   - C est un-e candidat-e ni boursier-ère ni non-résident-e
   - B est un-e candidat-e boursier-ère non non-résident-e
-  - R est un-e candidat-e non boursier-ère et non-résident-e
-  - T est un-e candidat-e boursier-ère et non-résident-e
-  Scenario Template: Vérification de l'ordre d'appel -- @1.1   # ordreappel-4-2.feature:43
+  - R est un-e candidat-e non boursier-ère et résident-e
+  - T est un-e candidat-e boursier-ère et résident-e
+  Scenario Template: Vérification de l'ordre d'appel -- @1.1   # ordreappel-4-2.feature:44
     Given les candidat-e-s sont C1 B2 R3 T4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 B2 R3 T4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.2   # ordreappel-4-2.feature:44
+  Scenario Template: Vérification de l'ordre d'appel -- @1.2   # ordreappel-4-2.feature:45
     Given les candidat-e-s sont C1 B2 T3 R4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 B2 T3 R4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.3   # ordreappel-4-2.feature:45
+  Scenario Template: Vérification de l'ordre d'appel -- @1.3   # ordreappel-4-2.feature:46
     Given les candidat-e-s sont C1 R2 B3 T4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 R2 B3 T4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.4   # ordreappel-4-2.feature:46
+  Scenario Template: Vérification de l'ordre d'appel -- @1.4   # ordreappel-4-2.feature:47
     Given les candidat-e-s sont C1 R2 T3 B4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 R2 T3 B4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.5   # ordreappel-4-2.feature:47
+  Scenario Template: Vérification de l'ordre d'appel -- @1.5   # ordreappel-4-2.feature:48
     Given les candidat-e-s sont C1 T2 B3 R4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 T2 B3 R4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.6   # ordreappel-4-2.feature:48
+  Scenario Template: Vérification de l'ordre d'appel -- @1.6   # ordreappel-4-2.feature:49
     Given les candidat-e-s sont C1 T2 R3 B4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 T2 R3 B4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.7   # ordreappel-4-2.feature:50
+  Scenario Template: Vérification de l'ordre d'appel -- @1.7   # ordreappel-4-2.feature:51
     Given les candidat-e-s sont B1 C2 R3 T4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2 R3 T4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.8   # ordreappel-4-2.feature:51
+  Scenario Template: Vérification de l'ordre d'appel -- @1.8   # ordreappel-4-2.feature:52
     Given les candidat-e-s sont B1 C2 T3 R4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2 T3 R4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.9   # ordreappel-4-2.feature:52
+  Scenario Template: Vérification de l'ordre d'appel -- @1.9   # ordreappel-4-2.feature:53
     Given les candidat-e-s sont B1 R2 C3 T4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2 C3 T4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.10   # ordreappel-4-2.feature:53
+  Scenario Template: Vérification de l'ordre d'appel -- @1.10   # ordreappel-4-2.feature:54
     Given les candidat-e-s sont B1 R2 T3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2 T3 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.11   # ordreappel-4-2.feature:54
+  Scenario Template: Vérification de l'ordre d'appel -- @1.11   # ordreappel-4-2.feature:55
     Given les candidat-e-s sont B1 T2 C3 R4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 T2 C3 R4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.12   # ordreappel-4-2.feature:55
+  Scenario Template: Vérification de l'ordre d'appel -- @1.12   # ordreappel-4-2.feature:56
     Given les candidat-e-s sont B1 T2 R3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 T2 R3 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.13   # ordreappel-4-2.feature:57
+  Scenario Template: Vérification de l'ordre d'appel -- @1.13   # ordreappel-4-2.feature:58
     Given les candidat-e-s sont R1 C2 B3 T4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2 B3 T4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.14   # ordreappel-4-2.feature:58
+  Scenario Template: Vérification de l'ordre d'appel -- @1.14   # ordreappel-4-2.feature:59
     Given les candidat-e-s sont R1 C2 T3 B4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2 T3 B4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.15   # ordreappel-4-2.feature:59
+  Scenario Template: Vérification de l'ordre d'appel -- @1.15   # ordreappel-4-2.feature:60
     Given les candidat-e-s sont R1 B2 C3 T4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 B2 C3 T4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.16   # ordreappel-4-2.feature:60
+  Scenario Template: Vérification de l'ordre d'appel -- @1.16   # ordreappel-4-2.feature:61
     Given les candidat-e-s sont R1 B2 T3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 B2 T3 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.17   # ordreappel-4-2.feature:61
+  Scenario Template: Vérification de l'ordre d'appel -- @1.17   # ordreappel-4-2.feature:62
     Given les candidat-e-s sont R1 T2 C3 B4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 T2 C3 B4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.18   # ordreappel-4-2.feature:62
+  Scenario Template: Vérification de l'ordre d'appel -- @1.18   # ordreappel-4-2.feature:63
     Given les candidat-e-s sont R1 T2 B3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 T2 B3 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.19   # ordreappel-4-2.feature:64
+  Scenario Template: Vérification de l'ordre d'appel -- @1.19   # ordreappel-4-2.feature:65
     Given les candidat-e-s sont T1 C2 B3 R4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 B3 R4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.20   # ordreappel-4-2.feature:65
+  Scenario Template: Vérification de l'ordre d'appel -- @1.20   # ordreappel-4-2.feature:66
     Given les candidat-e-s sont T1 C2 R3 B4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 R3 B4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.21   # ordreappel-4-2.feature:66
+  Scenario Template: Vérification de l'ordre d'appel -- @1.21   # ordreappel-4-2.feature:67
     Given les candidat-e-s sont T1 B2 C3 R4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 C3 R4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.22   # ordreappel-4-2.feature:67
+  Scenario Template: Vérification de l'ordre d'appel -- @1.22   # ordreappel-4-2.feature:68
     Given les candidat-e-s sont T1 B2 R3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 R3 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.23   # ordreappel-4-2.feature:68
+  Scenario Template: Vérification de l'ordre d'appel -- @1.23   # ordreappel-4-2.feature:69
     Given les candidat-e-s sont T1 R2 C3 B4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 C3 B4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.24   # ordreappel-4-2.feature:69
+  Scenario Template: Vérification de l'ordre d'appel -- @1.24   # ordreappel-4-2.feature:70
     Given les candidat-e-s sont T1 R2 B3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 B3 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.25   # ordreappel-4-2.feature:71
+  Scenario Template: Vérification de l'ordre d'appel -- @1.25   # ordreappel-4-2.feature:72
     Given les candidat-e-s sont B1 R2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2 T3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.26   # ordreappel-4-2.feature:72
+  Scenario Template: Vérification de l'ordre d'appel -- @1.26   # ordreappel-4-2.feature:73
     Given les candidat-e-s sont B1 T2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 T2 R3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.27   # ordreappel-4-2.feature:73
+  Scenario Template: Vérification de l'ordre d'appel -- @1.27   # ordreappel-4-2.feature:74
     Given les candidat-e-s sont R1 B2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 B2 T3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.28   # ordreappel-4-2.feature:74
+  Scenario Template: Vérification de l'ordre d'appel -- @1.28   # ordreappel-4-2.feature:75
     Given les candidat-e-s sont R1 T2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 T2 B3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.29   # ordreappel-4-2.feature:75
+  Scenario Template: Vérification de l'ordre d'appel -- @1.29   # ordreappel-4-2.feature:76
     Given les candidat-e-s sont T1 B2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 R3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.30   # ordreappel-4-2.feature:76
+  Scenario Template: Vérification de l'ordre d'appel -- @1.30   # ordreappel-4-2.feature:77
     Given les candidat-e-s sont T1 R2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 B3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.31   # ordreappel-4-2.feature:78
+  Scenario Template: Vérification de l'ordre d'appel -- @1.31   # ordreappel-4-2.feature:79
     Given les candidat-e-s sont C1 R2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 R2 T3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.32   # ordreappel-4-2.feature:79
+  Scenario Template: Vérification de l'ordre d'appel -- @1.32   # ordreappel-4-2.feature:80
     Given les candidat-e-s sont C1 T2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 T2 R3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.33   # ordreappel-4-2.feature:80
+  Scenario Template: Vérification de l'ordre d'appel -- @1.33   # ordreappel-4-2.feature:81
     Given les candidat-e-s sont R1 C2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2 T3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.34   # ordreappel-4-2.feature:81
+  Scenario Template: Vérification de l'ordre d'appel -- @1.34   # ordreappel-4-2.feature:82
     Given les candidat-e-s sont R1 T2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 T2 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.35   # ordreappel-4-2.feature:82
+  Scenario Template: Vérification de l'ordre d'appel -- @1.35   # ordreappel-4-2.feature:83
     Given les candidat-e-s sont T1 C2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 R3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.36   # ordreappel-4-2.feature:83
+  Scenario Template: Vérification de l'ordre d'appel -- @1.36   # ordreappel-4-2.feature:84
     Given les candidat-e-s sont T1 R2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.37   # ordreappel-4-2.feature:85
+  Scenario Template: Vérification de l'ordre d'appel -- @1.37   # ordreappel-4-2.feature:86
     Given les candidat-e-s sont C1 B2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 B2 T3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.38   # ordreappel-4-2.feature:86
+  Scenario Template: Vérification de l'ordre d'appel -- @1.38   # ordreappel-4-2.feature:87
     Given les candidat-e-s sont C1 T2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 T2 B3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.39   # ordreappel-4-2.feature:87
+  Scenario Template: Vérification de l'ordre d'appel -- @1.39   # ordreappel-4-2.feature:88
     Given les candidat-e-s sont B1 C2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2 T3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.40   # ordreappel-4-2.feature:88
+  Scenario Template: Vérification de l'ordre d'appel -- @1.40   # ordreappel-4-2.feature:89
     Given les candidat-e-s sont B1 T2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 T2 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.41   # ordreappel-4-2.feature:89
+  Scenario Template: Vérification de l'ordre d'appel -- @1.41   # ordreappel-4-2.feature:90
     Given les candidat-e-s sont T1 C2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 B3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.42   # ordreappel-4-2.feature:90
+  Scenario Template: Vérification de l'ordre d'appel -- @1.42   # ordreappel-4-2.feature:91
     Given les candidat-e-s sont T1 B2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.43   # ordreappel-4-2.feature:92
+  Scenario Template: Vérification de l'ordre d'appel -- @1.43   # ordreappel-4-2.feature:93
     Given les candidat-e-s sont C1 B2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 B2 R3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.44   # ordreappel-4-2.feature:93
+  Scenario Template: Vérification de l'ordre d'appel -- @1.44   # ordreappel-4-2.feature:94
     Given les candidat-e-s sont C1 R2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 R2 B3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.45   # ordreappel-4-2.feature:94
+  Scenario Template: Vérification de l'ordre d'appel -- @1.45   # ordreappel-4-2.feature:95
     Given les candidat-e-s sont B1 C2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2 R3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.46   # ordreappel-4-2.feature:95
+  Scenario Template: Vérification de l'ordre d'appel -- @1.46   # ordreappel-4-2.feature:96
     Given les candidat-e-s sont B1 R2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.47   # ordreappel-4-2.feature:96
+  Scenario Template: Vérification de l'ordre d'appel -- @1.47   # ordreappel-4-2.feature:97
     Given les candidat-e-s sont R1 C2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2 B3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.48   # ordreappel-4-2.feature:97
+  Scenario Template: Vérification de l'ordre d'appel -- @1.48   # ordreappel-4-2.feature:98
     Given les candidat-e-s sont R1 B2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 B2 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.49   # ordreappel-4-2.feature:99
+  Scenario Template: Vérification de l'ordre d'appel -- @1.49   # ordreappel-4-2.feature:100
     Given les candidat-e-s sont B1 R2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.50   # ordreappel-4-2.feature:100
+  Scenario Template: Vérification de l'ordre d'appel -- @1.50   # ordreappel-4-2.feature:101
     Given les candidat-e-s sont R1 B2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 B2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.51   # ordreappel-4-2.feature:102
+  Scenario Template: Vérification de l'ordre d'appel -- @1.51   # ordreappel-4-2.feature:103
     Given les candidat-e-s sont C1 R2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 R2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.52   # ordreappel-4-2.feature:103
+  Scenario Template: Vérification de l'ordre d'appel -- @1.52   # ordreappel-4-2.feature:104
     Given les candidat-e-s sont R1 C2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.53   # ordreappel-4-2.feature:105
+  Scenario Template: Vérification de l'ordre d'appel -- @1.53   # ordreappel-4-2.feature:106
     Given les candidat-e-s sont C1 B2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 B2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.54   # ordreappel-4-2.feature:106
+  Scenario Template: Vérification de l'ordre d'appel -- @1.54   # ordreappel-4-2.feature:107
     Given les candidat-e-s sont B1 C2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.55   # ordreappel-4-2.feature:108
+  Scenario Template: Vérification de l'ordre d'appel -- @1.55   # ordreappel-4-2.feature:109
     Given les candidat-e-s sont T1 R2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.56   # ordreappel-4-2.feature:109
+  Scenario Template: Vérification de l'ordre d'appel -- @1.56   # ordreappel-4-2.feature:110
     Given les candidat-e-s sont R1 T2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 T2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.57   # ordreappel-4-2.feature:111
+  Scenario Template: Vérification de l'ordre d'appel -- @1.57   # ordreappel-4-2.feature:112
     Given les candidat-e-s sont C1 T2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 T2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.58   # ordreappel-4-2.feature:112
+  Scenario Template: Vérification de l'ordre d'appel -- @1.58   # ordreappel-4-2.feature:113
     Given les candidat-e-s sont T1 C2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.59   # ordreappel-4-2.feature:114
+  Scenario Template: Vérification de l'ordre d'appel -- @1.59   # ordreappel-4-2.feature:115
     Given les candidat-e-s sont T1 B2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.60   # ordreappel-4-2.feature:115
+  Scenario Template: Vérification de l'ordre d'appel -- @1.60   # ordreappel-4-2.feature:116
     Given les candidat-e-s sont B1 T2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 T2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.61   # ordreappel-4-2.feature:117
+  Scenario Template: Vérification de l'ordre d'appel -- @1.61   # ordreappel-4-2.feature:118
     Given les candidat-e-s sont C1 C2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 C2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.62   # ordreappel-4-2.feature:118
+  Scenario Template: Vérification de l'ordre d'appel -- @1.62   # ordreappel-4-2.feature:119
     Given les candidat-e-s sont C1 C2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 C2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.63   # ordreappel-4-2.feature:120
+  Scenario Template: Vérification de l'ordre d'appel -- @1.63   # ordreappel-4-2.feature:121
     Given les candidat-e-s sont C1                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.64   # ordreappel-4-2.feature:122
+  Scenario Template: Vérification de l'ordre d'appel -- @1.64   # ordreappel-4-2.feature:123
     Given les candidat-e-s sont B1                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Vérification de l'ordre d'appel -- @1.65   # ordreappel-4-2.feature:124
+  Scenario Template: Vérification de l'ordre d'appel -- @1.65   # ordreappel-4-2.feature:125
     Given les candidat-e-s sont T1                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.1   # ordreappel-4-2.feature:136
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.1   # ordreappel-4-2.feature:137
     Given les candidat-e-s sont C1 B2 R3 T4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 C1 R3 T4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.2   # ordreappel-4-2.feature:137
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.2   # ordreappel-4-2.feature:138
     Given les candidat-e-s sont C1 B2 T3 R4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 C1 T3 R4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.3   # ordreappel-4-2.feature:138
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.3   # ordreappel-4-2.feature:139
     Given les candidat-e-s sont C1 R2 B3 T4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B3 C1 R2 T4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.4   # ordreappel-4-2.feature:139
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.4   # ordreappel-4-2.feature:140
     Given les candidat-e-s sont C1 R2 T3 B4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 C1 R2 B4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.5   # ordreappel-4-2.feature:140
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.5   # ordreappel-4-2.feature:141
     Given les candidat-e-s sont C1 T2 B3 R4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 B3 R4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.6   # ordreappel-4-2.feature:141
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.6   # ordreappel-4-2.feature:142
     Given les candidat-e-s sont C1 T2 R3 B4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 R3 B4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.7   # ordreappel-4-2.feature:143
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.7   # ordreappel-4-2.feature:144
     Given les candidat-e-s sont B1 C2 R3 T4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2 R3 T4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.8   # ordreappel-4-2.feature:144
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.8   # ordreappel-4-2.feature:145
     Given les candidat-e-s sont B1 C2 T3 R4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2 T3 R4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.9   # ordreappel-4-2.feature:145
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.9   # ordreappel-4-2.feature:146
     Given les candidat-e-s sont B1 R2 C3 T4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2 C3 T4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.10   # ordreappel-4-2.feature:146
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.10   # ordreappel-4-2.feature:147
     Given les candidat-e-s sont B1 R2 T3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2 T3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.11   # ordreappel-4-2.feature:147
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.11   # ordreappel-4-2.feature:148
     Given les candidat-e-s sont B1 T2 C3 R4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 T2 C3 R4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.12   # ordreappel-4-2.feature:148
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.12   # ordreappel-4-2.feature:149
     Given les candidat-e-s sont B1 T2 R3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 T2 R3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.13   # ordreappel-4-2.feature:150
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.13   # ordreappel-4-2.feature:151
     Given les candidat-e-s sont R1 C2 B3 T4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B3 R1 C2 T4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.14   # ordreappel-4-2.feature:151
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.14   # ordreappel-4-2.feature:152
     Given les candidat-e-s sont R1 C2 T3 B4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 R1 C2 B4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.15   # ordreappel-4-2.feature:152
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.15   # ordreappel-4-2.feature:153
     Given les candidat-e-s sont R1 B2 C3 T4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 R1 C3 T4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.16   # ordreappel-4-2.feature:153
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.16   # ordreappel-4-2.feature:154
     Given les candidat-e-s sont R1 B2 T3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 R1 T3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.17   # ordreappel-4-2.feature:154
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.17   # ordreappel-4-2.feature:155
     Given les candidat-e-s sont R1 T2 C3 B4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 R1 C3 B4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.18   # ordreappel-4-2.feature:155
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.18   # ordreappel-4-2.feature:156
     Given les candidat-e-s sont R1 T2 B3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 R1 B3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.19   # ordreappel-4-2.feature:157
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.19   # ordreappel-4-2.feature:158
     Given les candidat-e-s sont T1 C2 B3 R4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 B3 R4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.20   # ordreappel-4-2.feature:158
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.20   # ordreappel-4-2.feature:159
     Given les candidat-e-s sont T1 C2 R3 B4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 R3 B4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.21   # ordreappel-4-2.feature:159
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.21   # ordreappel-4-2.feature:160
     Given les candidat-e-s sont T1 B2 C3 R4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 C3 R4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.22   # ordreappel-4-2.feature:160
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.22   # ordreappel-4-2.feature:161
     Given les candidat-e-s sont T1 B2 R3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 R3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.23   # ordreappel-4-2.feature:161
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.23   # ordreappel-4-2.feature:162
     Given les candidat-e-s sont T1 R2 C3 B4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 C3 B4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.24   # ordreappel-4-2.feature:162
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.24   # ordreappel-4-2.feature:163
     Given les candidat-e-s sont T1 R2 B3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 B3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.25   # ordreappel-4-2.feature:164
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.25   # ordreappel-4-2.feature:165
     Given les candidat-e-s sont B1 R2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2 T3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.26   # ordreappel-4-2.feature:165
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.26   # ordreappel-4-2.feature:166
     Given les candidat-e-s sont B1 T2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 T2 R3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.27   # ordreappel-4-2.feature:166
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.27   # ordreappel-4-2.feature:167
     Given les candidat-e-s sont R1 B2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 R1 T3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.28   # ordreappel-4-2.feature:167
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.28   # ordreappel-4-2.feature:168
     Given les candidat-e-s sont R1 T2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 R1 B3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.29   # ordreappel-4-2.feature:168
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.29   # ordreappel-4-2.feature:169
     Given les candidat-e-s sont T1 B2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 R3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.30   # ordreappel-4-2.feature:169
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.30   # ordreappel-4-2.feature:170
     Given les candidat-e-s sont T1 R2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 B3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.31   # ordreappel-4-2.feature:171
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.31   # ordreappel-4-2.feature:172
     Given les candidat-e-s sont C1 R2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 C1 R2                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.32   # ordreappel-4-2.feature:172
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.32   # ordreappel-4-2.feature:173
     Given les candidat-e-s sont C1 T2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 R3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.33   # ordreappel-4-2.feature:173
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.33   # ordreappel-4-2.feature:174
     Given les candidat-e-s sont R1 C2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 R1 C2                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.34   # ordreappel-4-2.feature:174
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.34   # ordreappel-4-2.feature:175
     Given les candidat-e-s sont R1 T2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 R1 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.35   # ordreappel-4-2.feature:175
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.35   # ordreappel-4-2.feature:176
     Given les candidat-e-s sont T1 C2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 R3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.36   # ordreappel-4-2.feature:176
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.36   # ordreappel-4-2.feature:177
     Given les candidat-e-s sont T1 R2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.37   # ordreappel-4-2.feature:178
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.37   # ordreappel-4-2.feature:179
     Given les candidat-e-s sont C1 B2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 C1 T3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.38   # ordreappel-4-2.feature:179
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.38   # ordreappel-4-2.feature:180
     Given les candidat-e-s sont C1 T2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 B3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.39   # ordreappel-4-2.feature:180
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.39   # ordreappel-4-2.feature:181
     Given les candidat-e-s sont B1 C2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2 T3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.40   # ordreappel-4-2.feature:181
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.40   # ordreappel-4-2.feature:182
     Given les candidat-e-s sont B1 T2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 T2 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.41   # ordreappel-4-2.feature:182
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.41   # ordreappel-4-2.feature:183
     Given les candidat-e-s sont T1 C2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 B3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.42   # ordreappel-4-2.feature:183
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.42   # ordreappel-4-2.feature:184
     Given les candidat-e-s sont T1 B2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.43   # ordreappel-4-2.feature:185
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.43   # ordreappel-4-2.feature:186
     Given les candidat-e-s sont C1 B2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 C1 R3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.44   # ordreappel-4-2.feature:186
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.44   # ordreappel-4-2.feature:187
     Given les candidat-e-s sont C1 R2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B3 C1 R2                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.45   # ordreappel-4-2.feature:187
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.45   # ordreappel-4-2.feature:188
     Given les candidat-e-s sont B1 C2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2 R3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.46   # ordreappel-4-2.feature:188
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.46   # ordreappel-4-2.feature:189
     Given les candidat-e-s sont B1 R2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.47   # ordreappel-4-2.feature:189
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.47   # ordreappel-4-2.feature:190
     Given les candidat-e-s sont R1 C2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B3 R1 C2                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.48   # ordreappel-4-2.feature:190
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.48   # ordreappel-4-2.feature:191
     Given les candidat-e-s sont R1 B2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 R1 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.49   # ordreappel-4-2.feature:192
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.49   # ordreappel-4-2.feature:193
     Given les candidat-e-s sont B1 R2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.50   # ordreappel-4-2.feature:193
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.50   # ordreappel-4-2.feature:194
     Given les candidat-e-s sont R1 B2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 R1                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.51   # ordreappel-4-2.feature:195
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.51   # ordreappel-4-2.feature:196
     Given les candidat-e-s sont C1 R2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 R2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.52   # ordreappel-4-2.feature:196
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.52   # ordreappel-4-2.feature:197
     Given les candidat-e-s sont R1 C2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.53   # ordreappel-4-2.feature:198
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.53   # ordreappel-4-2.feature:199
     Given les candidat-e-s sont C1 B2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 C1                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.54   # ordreappel-4-2.feature:199
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.54   # ordreappel-4-2.feature:200
     Given les candidat-e-s sont B1 C2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.55   # ordreappel-4-2.feature:201
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.55   # ordreappel-4-2.feature:202
     Given les candidat-e-s sont T1 R2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.56   # ordreappel-4-2.feature:202
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.56   # ordreappel-4-2.feature:203
     Given les candidat-e-s sont R1 T2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 R1                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.57   # ordreappel-4-2.feature:204
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.57   # ordreappel-4-2.feature:205
     Given les candidat-e-s sont C1 T2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.58   # ordreappel-4-2.feature:205
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.58   # ordreappel-4-2.feature:206
     Given les candidat-e-s sont T1 C2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.59   # ordreappel-4-2.feature:207
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.59   # ordreappel-4-2.feature:208
     Given les candidat-e-s sont T1 B2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.60   # ordreappel-4-2.feature:208
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.60   # ordreappel-4-2.feature:209
     Given les candidat-e-s sont B1 T2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 T2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.61   # ordreappel-4-2.feature:210
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.61   # ordreappel-4-2.feature:211
     Given les candidat-e-s sont C1 C2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 C2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.62   # ordreappel-4-2.feature:211
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.62   # ordreappel-4-2.feature:212
     Given les candidat-e-s sont C1 C2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 C2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.63   # ordreappel-4-2.feature:213
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.63   # ordreappel-4-2.feature:214
     Given les candidat-e-s sont C1                                       # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1                                          # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.64   # ordreappel-4-2.feature:215
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.64   # ordreappel-4-2.feature:216
     Given les candidat-e-s sont B1                                       # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1                                          # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.65   # ordreappel-4-2.feature:217
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.65   # ordreappel-4-2.feature:218
     Given les candidat-e-s sont T1                                       # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 0                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1                                          # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.1   # ordreappel-4-2.feature:228
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.1   # ordreappel-4-2.feature:229
     Given les candidat-e-s sont C1 B2 R3 T4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R3 C1 B2 T4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.2   # ordreappel-4-2.feature:229
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.2   # ordreappel-4-2.feature:230
     Given les candidat-e-s sont C1 B2 T3 R4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 C1 B2 R4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.3   # ordreappel-4-2.feature:230
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.3   # ordreappel-4-2.feature:231
     Given les candidat-e-s sont C1 R2 B3 T4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 C1 B3 T4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.4   # ordreappel-4-2.feature:231
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.4   # ordreappel-4-2.feature:232
     Given les candidat-e-s sont C1 R2 T3 B4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 C1 T3 B4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.5   # ordreappel-4-2.feature:232
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.5   # ordreappel-4-2.feature:233
     Given les candidat-e-s sont C1 T2 B3 R4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 B3 R4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.6   # ordreappel-4-2.feature:233
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.6   # ordreappel-4-2.feature:234
     Given les candidat-e-s sont C1 T2 R3 B4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 R3 B4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.7   # ordreappel-4-2.feature:235
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.7   # ordreappel-4-2.feature:236
     Given les candidat-e-s sont B1 C2 R3 T4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R3 B1 C2 T4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.8   # ordreappel-4-2.feature:236
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.8   # ordreappel-4-2.feature:237
     Given les candidat-e-s sont B1 C2 T3 R4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 B1 C2 R4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.9   # ordreappel-4-2.feature:237
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.9   # ordreappel-4-2.feature:238
     Given les candidat-e-s sont B1 R2 C3 T4                             # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                         # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                           # steps/ordreappel_steps.py:65
     When l'appel est calculé                                            # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 B1 C3 T4                                # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.10   # ordreappel-4-2.feature:238
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.10   # ordreappel-4-2.feature:239
     Given les candidat-e-s sont B1 R2 T3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 B1 T3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.11   # ordreappel-4-2.feature:239
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.11   # ordreappel-4-2.feature:240
     Given les candidat-e-s sont B1 T2 C3 R4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 B1 C3 R4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.12   # ordreappel-4-2.feature:240
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.12   # ordreappel-4-2.feature:241
     Given les candidat-e-s sont B1 T2 R3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 B1 R3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.13   # ordreappel-4-2.feature:242
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.13   # ordreappel-4-2.feature:243
     Given les candidat-e-s sont R1 C2 B3 T4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2 B3 T4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.14   # ordreappel-4-2.feature:243
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.14   # ordreappel-4-2.feature:244
     Given les candidat-e-s sont R1 C2 T3 B4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2 T3 B4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.15   # ordreappel-4-2.feature:244
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.15   # ordreappel-4-2.feature:245
     Given les candidat-e-s sont R1 B2 C3 T4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 B2 C3 T4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.16   # ordreappel-4-2.feature:245
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.16   # ordreappel-4-2.feature:246
     Given les candidat-e-s sont R1 B2 T3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 B2 T3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.17   # ordreappel-4-2.feature:246
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.17   # ordreappel-4-2.feature:247
     Given les candidat-e-s sont R1 T2 C3 B4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 T2 C3 B4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.18   # ordreappel-4-2.feature:247
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.18   # ordreappel-4-2.feature:248
     Given les candidat-e-s sont R1 T2 B3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 T2 B3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.19   # ordreappel-4-2.feature:249
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.19   # ordreappel-4-2.feature:250
     Given les candidat-e-s sont T1 C2 B3 R4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 B3 R4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.20   # ordreappel-4-2.feature:250
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.20   # ordreappel-4-2.feature:251
     Given les candidat-e-s sont T1 C2 R3 B4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 R3 B4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.21   # ordreappel-4-2.feature:251
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.21   # ordreappel-4-2.feature:252
     Given les candidat-e-s sont T1 B2 C3 R4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 C3 R4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.22   # ordreappel-4-2.feature:252
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.22   # ordreappel-4-2.feature:253
     Given les candidat-e-s sont T1 B2 R3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 R3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.23   # ordreappel-4-2.feature:253
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.23   # ordreappel-4-2.feature:254
     Given les candidat-e-s sont T1 R2 C3 B4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 C3 B4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.24   # ordreappel-4-2.feature:254
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.24   # ordreappel-4-2.feature:255
     Given les candidat-e-s sont T1 R2 B3 C4                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 B3 C4                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.25   # ordreappel-4-2.feature:256
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.25   # ordreappel-4-2.feature:257
     Given les candidat-e-s sont B1 R2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 B1 T3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.26   # ordreappel-4-2.feature:257
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.26   # ordreappel-4-2.feature:258
     Given les candidat-e-s sont B1 T2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 B1 R3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.27   # ordreappel-4-2.feature:258
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.27   # ordreappel-4-2.feature:259
     Given les candidat-e-s sont R1 B2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 B2 T3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.28   # ordreappel-4-2.feature:259
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.28   # ordreappel-4-2.feature:260
     Given les candidat-e-s sont R1 T2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 T2 B3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.29   # ordreappel-4-2.feature:260
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.29   # ordreappel-4-2.feature:261
     Given les candidat-e-s sont T1 B2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 R3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.30   # ordreappel-4-2.feature:261
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.30   # ordreappel-4-2.feature:262
     Given les candidat-e-s sont T1 R2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 B3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.31   # ordreappel-4-2.feature:263
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.31   # ordreappel-4-2.feature:264
     Given les candidat-e-s sont C1 R2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 C1 T3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.32   # ordreappel-4-2.feature:264
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.32   # ordreappel-4-2.feature:265
     Given les candidat-e-s sont C1 T2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 R3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.33   # ordreappel-4-2.feature:265
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.33   # ordreappel-4-2.feature:266
     Given les candidat-e-s sont R1 C2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2 T3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.34   # ordreappel-4-2.feature:266
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.34   # ordreappel-4-2.feature:267
     Given les candidat-e-s sont R1 T2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 T2 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.35   # ordreappel-4-2.feature:267
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.35   # ordreappel-4-2.feature:268
     Given les candidat-e-s sont T1 C2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 R3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.36   # ordreappel-4-2.feature:268
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.36   # ordreappel-4-2.feature:269
     Given les candidat-e-s sont T1 R2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.37   # ordreappel-4-2.feature:270
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.37   # ordreappel-4-2.feature:271
     Given les candidat-e-s sont C1 B2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 C1 B2                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.38   # ordreappel-4-2.feature:271
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.38   # ordreappel-4-2.feature:272
     Given les candidat-e-s sont C1 T2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 B3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.39   # ordreappel-4-2.feature:272
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.39   # ordreappel-4-2.feature:273
     Given les candidat-e-s sont B1 C2 T3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 B1 C2                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.40   # ordreappel-4-2.feature:273
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.40   # ordreappel-4-2.feature:274
     Given les candidat-e-s sont B1 T2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 B1 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.41   # ordreappel-4-2.feature:274
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.41   # ordreappel-4-2.feature:275
     Given les candidat-e-s sont T1 C2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 B3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.42   # ordreappel-4-2.feature:275
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.42   # ordreappel-4-2.feature:276
     Given les candidat-e-s sont T1 B2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.43   # ordreappel-4-2.feature:277
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.43   # ordreappel-4-2.feature:278
     Given les candidat-e-s sont C1 B2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R3 C1 B2                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.44   # ordreappel-4-2.feature:278
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.44   # ordreappel-4-2.feature:279
     Given les candidat-e-s sont C1 R2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 C1 B3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.45   # ordreappel-4-2.feature:279
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.45   # ordreappel-4-2.feature:280
     Given les candidat-e-s sont B1 C2 R3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R3 B1 C2                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.46   # ordreappel-4-2.feature:280
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.46   # ordreappel-4-2.feature:281
     Given les candidat-e-s sont B1 R2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 B1 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.47   # ordreappel-4-2.feature:281
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.47   # ordreappel-4-2.feature:282
     Given les candidat-e-s sont R1 C2 B3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2 B3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.48   # ordreappel-4-2.feature:282
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.48   # ordreappel-4-2.feature:283
     Given les candidat-e-s sont R1 B2 C3                                 # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 B2 C3                                    # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.49   # ordreappel-4-2.feature:284
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.49   # ordreappel-4-2.feature:285
     Given les candidat-e-s sont B1 R2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 B1                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.50   # ordreappel-4-2.feature:285
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.50   # ordreappel-4-2.feature:286
     Given les candidat-e-s sont R1 B2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 B2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.51   # ordreappel-4-2.feature:287
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.51   # ordreappel-4-2.feature:288
     Given les candidat-e-s sont C1 R2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 C1                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.52   # ordreappel-4-2.feature:288
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.52   # ordreappel-4-2.feature:289
     Given les candidat-e-s sont R1 C2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.53   # ordreappel-4-2.feature:290
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.53   # ordreappel-4-2.feature:291
     Given les candidat-e-s sont C1 B2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 B2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.54   # ordreappel-4-2.feature:291
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.54   # ordreappel-4-2.feature:292
     Given les candidat-e-s sont B1 C2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.55   # ordreappel-4-2.feature:293
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.55   # ordreappel-4-2.feature:294
     Given les candidat-e-s sont T1 R2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.56   # ordreappel-4-2.feature:294
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.56   # ordreappel-4-2.feature:295
     Given les candidat-e-s sont R1 T2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 T2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.57   # ordreappel-4-2.feature:296
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.57   # ordreappel-4-2.feature:297
     Given les candidat-e-s sont C1 T2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.58   # ordreappel-4-2.feature:297
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.58   # ordreappel-4-2.feature:298
     Given les candidat-e-s sont T1 C2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.59   # ordreappel-4-2.feature:299
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.59   # ordreappel-4-2.feature:300
     Given les candidat-e-s sont T1 B2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.60   # ordreappel-4-2.feature:300
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.60   # ordreappel-4-2.feature:301
     Given les candidat-e-s sont B1 T2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 B1                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.61   # ordreappel-4-2.feature:302
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.61   # ordreappel-4-2.feature:303
     Given les candidat-e-s sont C1 C2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 C2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.62   # ordreappel-4-2.feature:303
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.62   # ordreappel-4-2.feature:304
     Given les candidat-e-s sont C1 C2                                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 C2                                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.63   # ordreappel-4-2.feature:305
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.63   # ordreappel-4-2.feature:306
     Given les candidat-e-s sont C1                                       # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1                                          # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.64   # ordreappel-4-2.feature:307
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.64   # ordreappel-4-2.feature:308
     Given les candidat-e-s sont B1                                       # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1                                          # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.65   # ordreappel-4-2.feature:309
+  Scenario Template: Choix du ou de la premier-ère candidat-e -- @1.65   # ordreappel-4-2.feature:310
     Given les candidat-e-s sont T1                                       # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 0                          # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                            # steps/ordreappel_steps.py:65
     When l'appel est calculé                                             # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1                                          # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.1   # ordreappel-4-2.feature:321
+  Scenario Template: Choix du premier-ère candidat-e -- @1.1   # ordreappel-4-2.feature:322
     Given les candidat-e-s sont C1 B2 R3 T4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T4 C1 B2 R3                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.2   # ordreappel-4-2.feature:322
+  Scenario Template: Choix du premier-ère candidat-e -- @1.2   # ordreappel-4-2.feature:323
     Given les candidat-e-s sont C1 B2 T3 R4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 C1 B2 R4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.3   # ordreappel-4-2.feature:323
+  Scenario Template: Choix du premier-ère candidat-e -- @1.3   # ordreappel-4-2.feature:324
     Given les candidat-e-s sont C1 R2 B3 T4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T4 C1 R2 B3                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.4   # ordreappel-4-2.feature:324
+  Scenario Template: Choix du premier-ère candidat-e -- @1.4   # ordreappel-4-2.feature:325
     Given les candidat-e-s sont C1 R2 T3 B4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 C1 R2 B4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.5   # ordreappel-4-2.feature:325
+  Scenario Template: Choix du premier-ère candidat-e -- @1.5   # ordreappel-4-2.feature:326
     Given les candidat-e-s sont C1 T2 B3 R4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 B3 R4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.6   # ordreappel-4-2.feature:326
+  Scenario Template: Choix du premier-ère candidat-e -- @1.6   # ordreappel-4-2.feature:327
     Given les candidat-e-s sont C1 T2 R3 B4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 R3 B4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.7   # ordreappel-4-2.feature:328
+  Scenario Template: Choix du premier-ère candidat-e -- @1.7   # ordreappel-4-2.feature:329
     Given les candidat-e-s sont B1 C2 R3 T4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T4 B1 C2 R3                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.8   # ordreappel-4-2.feature:329
+  Scenario Template: Choix du premier-ère candidat-e -- @1.8   # ordreappel-4-2.feature:330
     Given les candidat-e-s sont B1 C2 T3 R4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 B1 C2 R4                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.9   # ordreappel-4-2.feature:330
+  Scenario Template: Choix du premier-ère candidat-e -- @1.9   # ordreappel-4-2.feature:331
     Given les candidat-e-s sont B1 R2 C3 T4                    # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                  # steps/ordreappel_steps.py:65
     When l'appel est calculé                                   # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T4 B1 R2 C3                       # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.10   # ordreappel-4-2.feature:331
+  Scenario Template: Choix du premier-ère candidat-e -- @1.10   # ordreappel-4-2.feature:332
     Given les candidat-e-s sont B1 R2 T3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 B1 R2 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.11   # ordreappel-4-2.feature:332
+  Scenario Template: Choix du premier-ère candidat-e -- @1.11   # ordreappel-4-2.feature:333
     Given les candidat-e-s sont B1 T2 C3 R4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 B1 C3 R4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.12   # ordreappel-4-2.feature:333
+  Scenario Template: Choix du premier-ère candidat-e -- @1.12   # ordreappel-4-2.feature:334
     Given les candidat-e-s sont B1 T2 R3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 B1 R3 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.13   # ordreappel-4-2.feature:335
+  Scenario Template: Choix du premier-ère candidat-e -- @1.13   # ordreappel-4-2.feature:336
     Given les candidat-e-s sont R1 C2 B3 T4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T4 R1 C2 B3                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.14   # ordreappel-4-2.feature:336
+  Scenario Template: Choix du premier-ère candidat-e -- @1.14   # ordreappel-4-2.feature:337
     Given les candidat-e-s sont R1 C2 T3 B4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 R1 C2 B4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.15   # ordreappel-4-2.feature:337
+  Scenario Template: Choix du premier-ère candidat-e -- @1.15   # ordreappel-4-2.feature:338
     Given les candidat-e-s sont R1 B2 C3 T4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T4 R1 B2 C3                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.16   # ordreappel-4-2.feature:338
+  Scenario Template: Choix du premier-ère candidat-e -- @1.16   # ordreappel-4-2.feature:339
     Given les candidat-e-s sont R1 B2 T3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 R1 B2 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.17   # ordreappel-4-2.feature:339
+  Scenario Template: Choix du premier-ère candidat-e -- @1.17   # ordreappel-4-2.feature:340
     Given les candidat-e-s sont R1 T2 C3 B4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 R1 C3 B4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.18   # ordreappel-4-2.feature:340
+  Scenario Template: Choix du premier-ère candidat-e -- @1.18   # ordreappel-4-2.feature:341
     Given les candidat-e-s sont R1 T2 B3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 R1 B3 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.19   # ordreappel-4-2.feature:342
+  Scenario Template: Choix du premier-ère candidat-e -- @1.19   # ordreappel-4-2.feature:343
     Given les candidat-e-s sont T1 C2 B3 R4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 B3 R4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.20   # ordreappel-4-2.feature:343
+  Scenario Template: Choix du premier-ère candidat-e -- @1.20   # ordreappel-4-2.feature:344
     Given les candidat-e-s sont T1 C2 R3 B4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 R3 B4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.21   # ordreappel-4-2.feature:344
+  Scenario Template: Choix du premier-ère candidat-e -- @1.21   # ordreappel-4-2.feature:345
     Given les candidat-e-s sont T1 B2 C3 R4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 C3 R4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.22   # ordreappel-4-2.feature:345
+  Scenario Template: Choix du premier-ère candidat-e -- @1.22   # ordreappel-4-2.feature:346
     Given les candidat-e-s sont T1 B2 R3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 R3 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.23   # ordreappel-4-2.feature:346
+  Scenario Template: Choix du premier-ère candidat-e -- @1.23   # ordreappel-4-2.feature:347
     Given les candidat-e-s sont T1 R2 C3 B4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 C3 B4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.24   # ordreappel-4-2.feature:347
+  Scenario Template: Choix du premier-ère candidat-e -- @1.24   # ordreappel-4-2.feature:348
     Given les candidat-e-s sont T1 R2 B3 C4                     # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 B3 C4                        # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.25   # ordreappel-4-2.feature:349
+  Scenario Template: Choix du premier-ère candidat-e -- @1.25   # ordreappel-4-2.feature:350
     Given les candidat-e-s sont B1 R2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 B1 R2                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.26   # ordreappel-4-2.feature:350
+  Scenario Template: Choix du premier-ère candidat-e -- @1.26   # ordreappel-4-2.feature:351
     Given les candidat-e-s sont B1 T2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 B1 R3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.27   # ordreappel-4-2.feature:351
+  Scenario Template: Choix du premier-ère candidat-e -- @1.27   # ordreappel-4-2.feature:352
     Given les candidat-e-s sont R1 B2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 R1 B2                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.28   # ordreappel-4-2.feature:352
+  Scenario Template: Choix du premier-ère candidat-e -- @1.28   # ordreappel-4-2.feature:353
     Given les candidat-e-s sont R1 T2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 R1 B3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.29   # ordreappel-4-2.feature:353
+  Scenario Template: Choix du premier-ère candidat-e -- @1.29   # ordreappel-4-2.feature:354
     Given les candidat-e-s sont T1 B2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 R3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.30   # ordreappel-4-2.feature:354
+  Scenario Template: Choix du premier-ère candidat-e -- @1.30   # ordreappel-4-2.feature:355
     Given les candidat-e-s sont T1 R2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 B3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.31   # ordreappel-4-2.feature:356
+  Scenario Template: Choix du premier-ère candidat-e -- @1.31   # ordreappel-4-2.feature:357
     Given les candidat-e-s sont C1 R2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 C1 R2                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.32   # ordreappel-4-2.feature:357
+  Scenario Template: Choix du premier-ère candidat-e -- @1.32   # ordreappel-4-2.feature:358
     Given les candidat-e-s sont C1 T2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 R3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.33   # ordreappel-4-2.feature:358
+  Scenario Template: Choix du premier-ère candidat-e -- @1.33   # ordreappel-4-2.feature:359
     Given les candidat-e-s sont R1 C2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 R1 C2                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.34   # ordreappel-4-2.feature:359
+  Scenario Template: Choix du premier-ère candidat-e -- @1.34   # ordreappel-4-2.feature:360
     Given les candidat-e-s sont R1 T2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 R1 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.35   # ordreappel-4-2.feature:360
+  Scenario Template: Choix du premier-ère candidat-e -- @1.35   # ordreappel-4-2.feature:361
     Given les candidat-e-s sont T1 C2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 R3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.36   # ordreappel-4-2.feature:361
+  Scenario Template: Choix du premier-ère candidat-e -- @1.36   # ordreappel-4-2.feature:362
     Given les candidat-e-s sont T1 R2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.37   # ordreappel-4-2.feature:363
+  Scenario Template: Choix du premier-ère candidat-e -- @1.37   # ordreappel-4-2.feature:364
     Given les candidat-e-s sont C1 B2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 C1 B2                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.38   # ordreappel-4-2.feature:364
+  Scenario Template: Choix du premier-ère candidat-e -- @1.38   # ordreappel-4-2.feature:365
     Given les candidat-e-s sont C1 T2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1 B3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.39   # ordreappel-4-2.feature:365
+  Scenario Template: Choix du premier-ère candidat-e -- @1.39   # ordreappel-4-2.feature:366
     Given les candidat-e-s sont B1 C2 T3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T3 B1 C2                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.40   # ordreappel-4-2.feature:366
+  Scenario Template: Choix du premier-ère candidat-e -- @1.40   # ordreappel-4-2.feature:367
     Given les candidat-e-s sont B1 T2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 B1 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.41   # ordreappel-4-2.feature:367
+  Scenario Template: Choix du premier-ère candidat-e -- @1.41   # ordreappel-4-2.feature:368
     Given les candidat-e-s sont T1 C2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2 B3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.42   # ordreappel-4-2.feature:368
+  Scenario Template: Choix du premier-ère candidat-e -- @1.42   # ordreappel-4-2.feature:369
     Given les candidat-e-s sont T1 B2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.43   # ordreappel-4-2.feature:370
+  Scenario Template: Choix du premier-ère candidat-e -- @1.43   # ordreappel-4-2.feature:371
     Given les candidat-e-s sont C1 B2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 R3 C1                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.44   # ordreappel-4-2.feature:371
+  Scenario Template: Choix du premier-ère candidat-e -- @1.44   # ordreappel-4-2.feature:372
     Given les candidat-e-s sont C1 R2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B3 R2 C1                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.45   # ordreappel-4-2.feature:372
+  Scenario Template: Choix du premier-ère candidat-e -- @1.45   # ordreappel-4-2.feature:373
     Given les candidat-e-s sont B1 C2 R3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R3 C2                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.46   # ordreappel-4-2.feature:373
+  Scenario Template: Choix du premier-ère candidat-e -- @1.46   # ordreappel-4-2.feature:374
     Given les candidat-e-s sont B1 R2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.47   # ordreappel-4-2.feature:374
+  Scenario Template: Choix du premier-ère candidat-e -- @1.47   # ordreappel-4-2.feature:375
     Given les candidat-e-s sont R1 C2 B3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B3 R1 C2                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.48   # ordreappel-4-2.feature:375
+  Scenario Template: Choix du premier-ère candidat-e -- @1.48   # ordreappel-4-2.feature:376
     Given les candidat-e-s sont R1 B2 C3                        # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 R1 C3                           # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.49   # ordreappel-4-2.feature:377
+  Scenario Template: Choix du premier-ère candidat-e -- @1.49   # ordreappel-4-2.feature:378
     Given les candidat-e-s sont B1 R2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 R2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.50   # ordreappel-4-2.feature:378
+  Scenario Template: Choix du premier-ère candidat-e -- @1.50   # ordreappel-4-2.feature:379
     Given les candidat-e-s sont R1 B2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 R1                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.51   # ordreappel-4-2.feature:380
+  Scenario Template: Choix du premier-ère candidat-e -- @1.51   # ordreappel-4-2.feature:381
     Given les candidat-e-s sont C1 R2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R2 C1                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.52   # ordreappel-4-2.feature:381
+  Scenario Template: Choix du premier-ère candidat-e -- @1.52   # ordreappel-4-2.feature:382
     Given les candidat-e-s sont R1 C2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est R1 C2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.53   # ordreappel-4-2.feature:383
+  Scenario Template: Choix du premier-ère candidat-e -- @1.53   # ordreappel-4-2.feature:384
     Given les candidat-e-s sont C1 B2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B2 C1                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.54   # ordreappel-4-2.feature:384
+  Scenario Template: Choix du premier-ère candidat-e -- @1.54   # ordreappel-4-2.feature:385
     Given les candidat-e-s sont B1 C2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1 C2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.55   # ordreappel-4-2.feature:386
+  Scenario Template: Choix du premier-ère candidat-e -- @1.55   # ordreappel-4-2.feature:387
     Given les candidat-e-s sont T1 R2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 R2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.56   # ordreappel-4-2.feature:387
+  Scenario Template: Choix du premier-ère candidat-e -- @1.56   # ordreappel-4-2.feature:388
     Given les candidat-e-s sont R1 T2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 R1                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.57   # ordreappel-4-2.feature:389
+  Scenario Template: Choix du premier-ère candidat-e -- @1.57   # ordreappel-4-2.feature:390
     Given les candidat-e-s sont C1 T2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 C1                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.58   # ordreappel-4-2.feature:390
+  Scenario Template: Choix du premier-ère candidat-e -- @1.58   # ordreappel-4-2.feature:391
     Given les candidat-e-s sont T1 C2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 C2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.59   # ordreappel-4-2.feature:392
+  Scenario Template: Choix du premier-ère candidat-e -- @1.59   # ordreappel-4-2.feature:393
     Given les candidat-e-s sont T1 B2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T1 B2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.60   # ordreappel-4-2.feature:393
+  Scenario Template: Choix du premier-ère candidat-e -- @1.60   # ordreappel-4-2.feature:394
     Given les candidat-e-s sont B1 T2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est T2 B1                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.61   # ordreappel-4-2.feature:395
+  Scenario Template: Choix du premier-ère candidat-e -- @1.61   # ordreappel-4-2.feature:396
     Given les candidat-e-s sont C1 C2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 C2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.62   # ordreappel-4-2.feature:396
+  Scenario Template: Choix du premier-ère candidat-e -- @1.62   # ordreappel-4-2.feature:397
     Given les candidat-e-s sont C1 C2                           # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1 C2                              # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.63   # ordreappel-4-2.feature:398
+  Scenario Template: Choix du premier-ère candidat-e -- @1.63   # ordreappel-4-2.feature:399
     Given les candidat-e-s sont C1                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est C1                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.64   # ordreappel-4-2.feature:400
+  Scenario Template: Choix du premier-ère candidat-e -- @1.64   # ordreappel-4-2.feature:401
     Given les candidat-e-s sont B1                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
     When l'appel est calculé                                    # steps/ordreappel_steps.py:69
     Then l'ordre d'appel est B1                                 # steps/ordreappel_steps.py:83
 
-  Scenario Template: Choix du premier-ère candidat-e -- @1.65   # ordreappel-4-2.feature:402
+  Scenario Template: Choix du premier-ère candidat-e -- @1.65   # ordreappel-4-2.feature:403
     Given les candidat-e-s sont T1                              # steps/ordreappel_steps.py:54
     And le taux minimum de boursier-ère-s est 1                 # steps/ordreappel_steps.py:61
     And le taux minimum de résident-e-s est 1                   # steps/ordreappel_steps.py:65
@@ -1838,4 +1838,4 @@ Feature: Algorithme de calcul de l'ordre d'appel section 4.2 # ordreappel-4-2.fe
 1 feature passed, 0 failed, 0 skipped
 260 scenarios passed, 0 failed, 0 skipped
 1300 steps passed, 0 failed, 0 skipped, 0 undefined
-Took 0m0.151s
+Took 0m0.181s

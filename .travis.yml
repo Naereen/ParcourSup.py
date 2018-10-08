@@ -1,0 +1,43 @@
+# The configurations you want to execute
+# That is, a combination of operating system and python version
+# Please add or remove for your needs.
+# Check all possible values for python in here: https://docs.travis-ci.com/user/languages/python/
+# See how to further configure the matrix of combinations in here: https://docs.travis-ci.com/user/multi-os/
+language: python
+
+sudo: require
+
+matrix:
+    include:
+        # - os: linux
+        #   python: 2.7
+        # # - os: osx
+        # #   language: generic
+        # #   env: PYTHON=2.7
+        - os: linux
+          python: 3.6
+        # - os: osx
+        #   language: generic
+        #   env: PYTHON=3.6
+
+# Command to install dependencies for each configuration.
+before_install:
+# For OSX, you may want to call a script installing virtual env and so on.
+  - . ./utils/travis_install.sh
+
+install:
+  - python -m pip install -U pip
+  - python -m easy_install -U setuptools
+  - pip install -r requirements.txt
+
+script:
+  - python --version
+  - python ./parcoursup/ordreappel/__init__.py
+  - python ./parcoursup/propositions/__init__.py
+  - cd ./donnees/
+  - ./compare_avec_donnees_references.sh --batch
+  - cd ../tests/
+  - behave ordreappel-4-1.feature
+  - behave ordreappel-4-2.feature
+  - behave propositions-5-1-bmax.feature
+  # - behave propositions-5-1-internat-1.feature  # FIXME add as soon as it works!
