@@ -10,6 +10,7 @@ Bienvenue à la documentation de ParcourSup.py !
    :maxdepth: 2
    :caption: Contenu :
 
+   presentation
    README
    modules
 

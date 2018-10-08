@@ -10,7 +10,6 @@
 
 EMOJIZE=emojize.py
 
-cd ..
 BUILDDIR=_build/html
 
 for i in "$BUILDDIR"/*.html; do
