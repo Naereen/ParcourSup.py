@@ -65,7 +65,6 @@ Communications journalistiques, entre le 23 mai 2018 et le 15 juillet 2018 :
 - Les indicateurs quotidiennement publiés par le ministère sont sur [cette page là](http://www.enseignementsup-recherche.gouv.fr/cid130714/tableaux-de-bord-des-indicateurs-de-parcoursup.html) (en juin 2018).
 
 - Cette carte qui montre jour après jour les résultats donnés par Parcoursup : [statistiques.parcoursup.fr](http://statistiques.parcoursup.fr/).
-  <span style="color:red;">C'est bizarre, la carte marchait le 5 juin, elle semble désactivée depuis mi-juillet !</span>
   > Nous voulons proposer notre propre carte de visualisation, [c'est en cours](https://github.com/Naereen/ParcourSup.py/issues/8)…
 
 
