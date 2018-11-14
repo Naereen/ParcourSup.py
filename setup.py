@@ -31,7 +31,7 @@ if path.exists(README):
         # print("Using a long_description of length,", len(long_description), "from file", README)  # DEBUG
 
 
-version = "0.3"
+version = "0.2.1"
 try:
     from parcoursup import __version__ as version
 except ImportError:
