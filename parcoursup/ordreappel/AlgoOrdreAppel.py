@@ -7,7 +7,7 @@
 - Licence : MIT License (http://lbesson.mit-license.org).
 """
 __author__ = "Lilian Besson, Bastien Trotobas et al"
-__version__ = "0.2"
+__version__ = "0.2.1"
 
 import xml.etree.ElementTree as ET
 from pprint import pprint  # DEBUG
