@@ -50,6 +50,31 @@ lint:
 	cd ./parcoursup/ ; pylint -j $(NPROC) *.py */*.py | tee ../logs/pylint_log.txt
 	cd ./parcoursup/ ; pylint --py3k -j $(NPROC) *.py */*.py | tee ../logs/pylint3_log.txt
 
+# --------------------------------------------------------
+# Build and upload to PyPI
+build_for_pypi:	clean_pypi_build sdist wheel
+
+test_twine:
+	twine upload --sign --repository testpypi dist/*.whl
+twine:
+	twine upload --sign --repository pypi dist/*.whl
+
+clean_pypi_build:
+	-mv -vf dist/* /tmp/
+sdist:	sdist.zip sdist.tar.gz
+sdist.zip:
+	python3 setup.py sdist --formats=zip
+	# -gpg --detach-sign -a dist/*.zip
+	-ls -larth dist/*.zip
+sdist.tar.gz:
+	python3 setup.py sdist --formats=gztar
+	# -gpg --detach-sign -a dist/*.tar.gz
+	-ls -larth dist/*.tar.gz
+wheel:
+	python3 setup.py bdist_wheel --universal
+	# -gpg --detach-sign -a dist/*.whl
+	-ls -larth dist/*.whl
+
 
 #-----------------------------------------------------------------
 #

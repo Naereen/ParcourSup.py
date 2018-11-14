@@ -30,8 +30,11 @@ Ce dossier contient des ressources supplémentaires pour expliquer les algorithm
   + Cette fois on a aussi le contrôle d'un vœu en particulier, représenté en couleur plus vive. La vidéo montre l'influence des deux taux (minimum de boursiers et minimum de résidents) sur le classement final de ce vœu en comparaison à d'autres.
     ![Visualisation_OrdreAppel_focus_sur_un_voeu](images/Visualisation_OrdreAppel_focus_sur_un_voeu.gif)
 
-- Voici un lien qui lance [MyBinder](https://mybinder.org/) sur le notebook, pour vous laisser exécuter le code par vous-même.
-  [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks%2FParcourSup.py_version_simplifiee.ipynb%2FParcourSup.py_version_simplifiee.ipynb)
+- Voici un lien qui ouvre le notebook avec [MyBinder](https://mybinder.org/), pour vous laisser exécuter le code par vous-même.
+  [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/Naereen/ParcourSup.py/master?filepath=notebooks%2FParcourSup.py_version_simplifiee.ipynb)
+
+- Voici un lien qui ouvre le notebook avec [Google Colab](https://colab.research.google.com/notebook), pour vous laisser exécuter le code par vous-même.
+  [![Google Colab](https://badgen.net/badge/Lancer/sur%20Google%20Colab/blue?icon=terminal)](https://colab.research.google.com/github/Naereen/ParcourSup.py/blob/master/notebooks/ParcourSup.py_version_simplifiee.ipynb)
 
 ### 2) Calcul des propositions
 > C'est la partie qui est implémentée [dans ce dossier `parcoursup/propositions`](../parcoursup/propositions/).
