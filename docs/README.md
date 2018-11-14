@@ -4,8 +4,8 @@
 > [Écrit par](AUTHORS) deux doctorants de [l'équipe SCEE](http://www-scee.rennes.supelec.fr/wp/phd/) de [CentraleSupélec, campus de Rennes](http://www.rennes.centralesupelec.fr/), [Lilian Besson (@Naereen)](https://github.com/Naereen) et [Bastien Trotobas (@BastienTr)](https://github.com/BastienTr), et d'[autres collaborateur-trice-s](https://github.com/Naereen/ParcourSup.py/graphs/contributors).
 
 [![Open Source ? Oui !](https://badgen.net/badge/Open%20Source%20%3F/Oui%20%21/blue?icon=github)](https://github.com/Naereen/ParcourSup.py/)
-[![Implementation](https://img.shields.io/pypi/implementation/smpybandits.svg)](https://www.python.org/)
-[![Version de Python](https://img.shields.io/pypi/pyversions/smpybandits.svg)](https://docs.python.org/3/)
+[![Implementation](https://img.shields.io/pypi/implementation/parcoursup.svg)](https://www.python.org/)
+[![Version de Python](https://img.shields.io/pypi/pyversions/parcoursup.svg)](https://docs.python.org/3/)
 [![Maintenance](https://img.shields.io/badge/Maintenu%3F-Oui%20%21-green.svg)](https://GitHub.com/Naereen/ParcourSup.py/graphs/commit-activity)
 [![Ask Me Anything !](https://img.shields.io/badge/Posez-une%20question-1abc9c.svg)](https://GitHub.com/Naereen/ama)
 [![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/ParcourSup.py/README.md?pixel)](https://GitHub.com/Naereen/ParcourSup.py/)
@@ -160,8 +160,8 @@ Code libre, [sous licence MIT](https://lbesson.mit-license.org/) (file [LICENSE]
 © [Lilian Besson](https://GitHub.com/Naereen) et [Bastien Trotobas](https://github.com/BastienTr) et collaborateur-trice-s, 2018.
 
 [![Open Source ? Oui !](https://badgen.net/badge/Open%20Source%20%3F/Oui%20%21/blue?icon=github)](https://github.com/Naereen/ParcourSup.py/)
-[![Implementation](https://img.shields.io/pypi/implementation/smpybandits.svg)](https://www.python.org/)
-[![Version de Python](https://img.shields.io/pypi/pyversions/smpybandits.svg)](https://docs.python.org/3/)
+[![Implementation](https://img.shields.io/pypi/implementation/parcoursup.svg)](https://www.python.org/)
+[![Version de Python](https://img.shields.io/pypi/pyversions/parcoursup.svg)](https://docs.python.org/3/)
 [![Maintenance](https://img.shields.io/badge/Maintenu%3F-Oui%20%21-green.svg)](https://GitHub.com/Naereen/ParcourSup.py/graphs/commit-activity)
 [![Ask Me Anything !](https://img.shields.io/badge/Posez-une%20question-1abc9c.svg)](https://GitHub.com/Naereen/ama)
 [![Analytics](https://ga-beacon.appspot.com/UA-38514290-17/github.com/Naereen/ParcourSup.py/README.md?pixel)](https://GitHub.com/Naereen/ParcourSup.py/)

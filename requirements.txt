@@ -4,20 +4,3 @@
 # --- For the codebase
 tqdm>=4.0
 numpy>=1.14
-# matplotlib>=2.0
-# pandas>=0.23
-
-# --- For the notebooks
-jupyter
-ipython
-watermark
-ipythonblocks
-
-# --- For the documentation
-sphinx            # sphinx
-sphinx_rtd_theme  # better sphinx theme
-recommonmark      # parser to read Markdown files
-# nbsphinx          # to include the notebooks as Sphinx pages
-
-# --- For the tests
-behave

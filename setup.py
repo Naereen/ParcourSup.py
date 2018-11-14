@@ -18,9 +18,13 @@ here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
 long_description = "ParcourSup.py : un clone en Python 3 de ParcoursSup, écrit à but didactique"
-README = path.join(here, "..", "README.md")
+README = path.join(here, "README.rst")
+if not path.exists(README):
+    README = path.join(here, "..", "README.rst")
 if not path.exists(README):
     README = path.join(here, "README.md")
+if not path.exists(README):
+    README = path.join(here, "..", "README.md")
 if path.exists(README):
     with open(README, encoding="utf-8") as f:
         long_description = f.read()
@@ -35,7 +39,7 @@ except ImportError:
     print("Are you sure you are building in the correct folder?")
 
 # FIXME revert when done uploading the first version to PyPI
-version = "0.1.dev9"
+# version = "0.1.dev4"
 
 
 setup(name="parcoursup",

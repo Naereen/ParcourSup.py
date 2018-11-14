@@ -60,7 +60,7 @@ twine:
 	twine upload --sign --repository pypi dist/*.whl
 
 clean_pypi_build:
-	-mv -vf dist/* /tmp/
+	-mv -vf dist/* parcoursup.egg-info /tmp/
 sdist:	sdist.zip sdist.tar.gz
 sdist.zip:
 	python3 setup.py sdist --formats=zip
