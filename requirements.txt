@@ -4,6 +4,14 @@
 # --- For the codebase
 tqdm>=4.0
 numpy>=1.14
+# matplotlib>=2.0
+# pandas>=0.23
+
+# --- For the notebooks
+jupyter
+ipython
+watermark
+ipythonblocks
 
 # --- For the tests
 behave
