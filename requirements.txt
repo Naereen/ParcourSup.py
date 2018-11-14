@@ -4,3 +4,6 @@
 # --- For the codebase
 tqdm>=4.0
 numpy>=1.14
+
+# --- For the tests
+behave
