@@ -27,7 +27,7 @@ if path.exists(README):
         # print("Using a long_description of length,", len(long_description), "from file", README)  # DEBUG
 
 
-version = "0.1"
+version = "0.2"
 try:
     from parcoursup import __version__ as version
 except ImportError:
@@ -35,7 +35,7 @@ except ImportError:
     print("Are you sure you are building in the correct folder?")
 
 # FIXME revert when done uploading the first version to PyPI
-# version = "0.0.1.dev9"
+version = "0.1.dev9"
 
 
 setup(name="parcoursup",
@@ -83,8 +83,8 @@ setup(name="parcoursup",
             'LICENSE',
             'README.md',
             # FIXME add the xml data used in the tests
-            'donnes/*.xml',
-            'donnes/*.json',
+            'donnees/*.xml',
+            'donnees/*.json',
         ]
     },
     # project_urls={  # Optional

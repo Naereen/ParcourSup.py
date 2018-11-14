@@ -1838,4 +1838,4 @@ Feature: Algorithme de calcul de l'ordre d'appel section 4.2 # ordreappel-4-2.fe
 1 feature passed, 0 failed, 0 skipped
 260 scenarios passed, 0 failed, 0 skipped
 1300 steps passed, 0 failed, 0 skipped, 0 undefined
-Took 0m0.181s
+Took 0m0.212s

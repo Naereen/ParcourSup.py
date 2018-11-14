@@ -7,7 +7,7 @@
 - Licence : MIT License (http://lbesson.mit-license.org).
 """
 __author__ = "Lilian Besson, Bastien Trotobas et al"
-__version__ = "0.0.1"
+__version__ = "0.2"
 
 
 class GroupeAffectationUID(object):
